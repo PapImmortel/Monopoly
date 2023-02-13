@@ -56,9 +56,10 @@ public class Rue extends Patrimoine
         }
     }
 
-    public int getNbMaison()
+    public int[] getNbMaison()
     {
-        return 5*this.aHotel+this.aNbMaison;
+        int [] vNbMaison= {this.aNbMaison,this.aHotel};
+        return vNbMaison;
     }
 
 

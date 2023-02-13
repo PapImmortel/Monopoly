@@ -505,7 +505,7 @@ public class VideoGame
                                 } else {
                                     System.out.println("Tu es sur la propriété de " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
                                     int prixAPayer = 0;
-                                    if(terrain.getNbCase()==12 || terrain.getNbCase()==37)
+                                    if(terrain.getNbCase()==12 || terrain.getNbCase()==28)
                                     {
                                         Compagnie terrain2 = (Compagnie)terrain;
                                         prixAPayer = terrain2.getPrixPayer(this.aListPlayer,lancedes1+lancedes2);

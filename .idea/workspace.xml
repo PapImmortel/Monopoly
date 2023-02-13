@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="Ca devrait etre bon jespere">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ajout monopole( potentiellment fonction à ajouter)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compagnie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compagnie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Rue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
@@ -77,11 +74,19 @@
       <option name="project" value="LOCAL" />
       <updated>1675862603748</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ajout monopole( potentiellment fonction à ajouter)">
+      <created>1676291826195</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676291826195</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ca devrait etre bon jespere" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ca devrait etre bon jespere" />
+    <MESSAGE value="ajout monopole( potentiellment fonction à ajouter)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout monopole( potentiellment fonction à ajouter)" />
   </component>
 </project>

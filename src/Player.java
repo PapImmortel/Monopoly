@@ -216,7 +216,7 @@ public class Player
         while (iterator.hasNext())
         {
             Map.Entry Monopole = (Map.Entry) iterator.next();
-            Cases_Plateau Case1 = (Cases_Plateau) Monopole.getValue();
+            Patrimoine Case1 = (Patrimoine) Monopole.getValue();
             PatrimoineJoueur = PatrimoineJoueur + Case1.getNomCase() + "\n";
         }//while()
         return  PatrimoineJoueur;
@@ -356,4 +356,27 @@ public class Player
         return 2-this.aListPossession[9];
     }
 
+    public int[] getNbMaisonHotel()
+    {
+        Iterator iterator = aPatrimoine.entrySet().iterator();
+        int [] nbResultat=new int[2];
+        if (aPatrimoine.isEmpty())
+        {
+            nbResultat[0]=0;
+            nbResultat[1]=0;
+            return nbResultat;
+        }//if(aPatrimoine.isEmpty())
+        while (iterator.hasNext())
+        {
+            Map.Entry Monopole = (Map.Entry) iterator.next();
+            Patrimoine terrain = (Patrimoine) Monopole.getValue();
+            if(terrain.getNbCase()!=12 &&terrain.getNbCase()!=28 && (terrain.getNbCase()%5)!=0)
+            {
+                Rue terrain2 = (Rue)terrain;
+                nbResultat[0]+=terrain2.getNbMaison()[0];
+                nbResultat[1]+=terrain2.getNbMaison()[1];
+            }
+        }//while()
+        return nbResultat;
+    }
 }//Player.java
