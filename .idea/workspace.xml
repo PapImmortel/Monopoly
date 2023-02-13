@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="Ca devrait etre bon jespere">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cases_Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cases_Plateau.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compagnie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compagnie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Rue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rue.java" afterDir="false" />
@@ -31,6 +28,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b1358b8f-b3c9-49df-b8dd-fde7a6fafba1" />
+        <option name="url" value="https://github.com/PapImmortel/Monopoly.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -40,17 +50,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,6 +70,18 @@
       <option name="presentableId" value="Default" />
       <updated>1673516025896</updated>
     </task>
+    <task id="LOCAL-00001" summary="Ca devrait etre bon jespere">
+      <created>1675862603748</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675862603748</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ca devrait etre bon jespere" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ca devrait etre bon jespere" />
   </component>
 </project>

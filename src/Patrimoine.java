@@ -5,11 +5,13 @@ public class Patrimoine extends Cases_Plateau{
     private int aIdPropriete;
     private int aPrixAchat;
     private int aJoueurBoss;
-    public Patrimoine(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss  )
+    private String aColor;
+    public Patrimoine(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,String pColor  )
     {
         super(pNomPatrimoine,pIdPropriete,true);
         this.aPrixAchat = pPrixAchat;
         this.aJoueurBoss = pJoueurBoss;
+        this.aColor= pColor;
     }
 
     /*
@@ -34,5 +36,12 @@ public class Patrimoine extends Cases_Plateau{
         this.aJoueurBoss = pJoueurBoss;
     }
 
-    public int getPrixPayer(HashMap vListPlayer){return -1;}
+    public int getPrixPayer(HashMap<Integer,Player> vListPlayer){return -1;}
+    public int getPrixPayer(HashMap<Integer,Player> vListPlayer,int vScoreDes){return -1;}
+
+    public String getColor()
+    {
+        return this.aColor;
+    }
+
 }

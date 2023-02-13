@@ -218,7 +218,7 @@ public class VideoGame
             System.out.println("Tu achetes le titre de proprièté : " + vTerrain.getNomCase());
             getJoueurActif().setArgent(getJoueurActif().getArgent() - vTerrain.getPrixAchat());
             vTerrain.setJoueurBoss(getNumJoueurActif());
-            getJoueurActif().ajouterPatrimoine(vTerrain);
+            getJoueurActif().ajouterPatrimoine(vTerrain,1);
             return true;
         }
         else {
@@ -504,11 +504,22 @@ public class VideoGame
 
                                 } else {
                                     System.out.println("Tu es sur la propriété de " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
-                                    System.out.println("Le loyer te coute donc : " + terrain.getPrixPayer(this.aListPlayer));
+                                    int prixAPayer = 0;
+                                    if(terrain.getNbCase()==12 || terrain.getNbCase()==37)
+                                    {
+                                        Compagnie terrain2 = (Compagnie)terrain;
+                                        prixAPayer = terrain2.getPrixPayer(this.aListPlayer,lancedes1+lancedes2);
+
+                                        System.out.println("Le loyer te coute donc : " + prixAPayer);
+                                    }
+                                    else{
+                                        prixAPayer = terrain.getPrixPayer(this.aListPlayer);
+                                        System.out.println("Le loyer te coute donc : " + terrain.getPrixPayer(this.aListPlayer));
+                                    }
 
 
-                                    getJoueurActif().setArgent(getJoueurActif().getArgent() - terrain.getPrixPayer(this.aListPlayer));
-                                    this.aListPlayer.get(terrain.getJoueurBoss()).setArgent(this.aListPlayer.get(terrain.getJoueurBoss()).getArgent() + terrain.getPrixPayer(this.aListPlayer));
+                                    getJoueurActif().setArgent(getJoueurActif().getArgent() - prixAPayer);
+                                    this.aListPlayer.get(terrain.getJoueurBoss()).setArgent(this.aListPlayer.get(terrain.getJoueurBoss()).getArgent() + prixAPayer);
                                     if (getJoueurActif().getArgent() < 0) {
                                         hypothequer();
                                     }

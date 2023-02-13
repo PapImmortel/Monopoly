@@ -5,26 +5,26 @@ public class Rue extends Patrimoine
     private int aNbMaison;
     private int aHotel;
 
-    private String aColor;
 
-    private int [ ] aPrixRente= new int[6];
+
+    private int [] aPrixRente;
 
 
     public Rue(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,int pNbMaison, int pHotel, String pColor, int[] pPrixPassage)
     {
-        super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss);
+        super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,pColor);
         this.aNbMaison= pNbMaison;
         this.aHotel=pHotel;
-        this.aColor=pColor;
+
         this.aPrixRente=pPrixPassage;
     }
 
-    @Override public int getPrixPayer(HashMap vListPlayer)
+    @Override public int getPrixPayer(HashMap<Integer,Player> vListPlayer)
     {
         if(this.aNbMaison==0 && this.aHotel==0 )
         {
             int vJoueur=getJoueurBoss();
-            if(vListPlayer.get(vJoueur).getMonopole(this.aColor))//non officiel
+            if(vListPlayer.get(vJoueur).getMonopole(super.getColor()))
             {
                 return this.aPrixRente[0]*2;
             }
@@ -34,7 +34,7 @@ public class Rue extends Patrimoine
         }
         else if(this.aHotel==1)
         {
-            return this.aPrixRente[-1];
+            return this.aPrixRente[5];
         }
         else {
             return this.aPrixRente[this.aNbMaison];
@@ -61,10 +61,6 @@ public class Rue extends Patrimoine
         return 5*this.aHotel+this.aNbMaison;
     }
 
-    public String getColor()
-    {
-        return this.aColor;
-    }
 
 
 
