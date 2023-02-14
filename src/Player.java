@@ -240,12 +240,12 @@ public class Player
     {
         switch (pCouleur)
         {
-            case "rose":
+            case "marron":
                 return this.aListPossession[0]==0;
 
             case "cyan":
                 return this.aListPossession[1]==0;
-            case "violet":
+            case "rose":
                 return this.aListPossession[2]==0;
             case "orange":
                 return this.aListPossession[3]==0;
@@ -269,7 +269,7 @@ public class Player
     {
         switch (pCouleur)
         {
-            case "rose":
+            case "marron":
                 if(this.aListPossession[0]==0){setNbMonopole(-1);}
                 this.aListPossession[0]-=pModif;
                 if(this.aListPossession[0]==0){setNbMonopole(1);}
@@ -281,7 +281,7 @@ public class Player
                 if(this.aListPossession[0]==0){setNbMonopole(1);}
 
                 break;
-            case "violet":
+            case "rose":
                 if(this.aListPossession[0]==0){setNbMonopole(-1);}
                 this.aListPossession[2]-=pModif;
                 if(this.aListPossession[0]==0){setNbMonopole(1);}
@@ -344,7 +344,40 @@ public class Player
                 if(this.aListPossession[0]==0){setNbMonopole(1);}
 
                 break;
+        }
+    }
+    public String afficheMonopole()
+    {
+        if(getNbMonopole()==0)
+        {
+            return " Vous ne possedez aucun monopole , vous ne pouvez donc pas construire.";
+        }
+        else {
+            String vListMonopole = " Vous possédez toutes les rues de couleur :   ";
+            for (int i = 0; i < 8; i++) {
+                if (this.aListPossession[i] == 0) {
+                    switch (i) {
+                        case 0:
+                            vListMonopole += "marron ";
 
+                        case 1:
+                            vListMonopole += "cyan ";
+                        case 2:
+                            vListMonopole += "rose ";
+                        case 3:
+                            vListMonopole += "orange ";
+                        case 4:
+                            vListMonopole += "rouge ";
+                        case 5:
+                            vListMonopole += "jaune ";
+                        case 6:
+                            vListMonopole += "vert ";
+                        case 7:
+                            vListMonopole += "bleu ";
+                    }
+                }
+            }
+            return vListMonopole + "\n ";
         }
     }
     public int getNbGare()

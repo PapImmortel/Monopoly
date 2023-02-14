@@ -165,9 +165,9 @@ public class VideoGame
     public void remplirCase()
     {
         this.aListeCase.put( 0,new Cases_Plateau("DEPART",0,false));
-        this.aListeCase.put( 1,new Rue("BOULEVARD DE BELLEVILLE",1, 60,0,0, 0, "rose",new int[]{2,10,30,90,160,250}));
+        this.aListeCase.put( 1,new Rue("BOULEVARD DE BELLEVILLE",1, 60,0,0, 0, "marron",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put( 2,new Cases_Plateau("CAISSE DE COMMUNAUTE", 2,false));
-        this.aListeCase.put( 3,new Rue("RUE LECOURBE",3, 60,0,0, 0, "rose",new int[]{2,10,30,90,160,250}));
+        this.aListeCase.put( 3,new Rue("RUE LECOURBE",3, 60,0,0, 0, "marron",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put( 4,new Cases_Plateau("IMPOTS SUR LE REVENU",4,false));
         this.aListeCase.put( 5,new Gare("GARE MONTPARNASSE",5, 200,0));
         this.aListeCase.put( 6,new Rue("RUE DE VAUGIRARD",6, 100,0,0, 0, "cyan",new int[]{2,10,30,90,160,250}));
@@ -175,10 +175,10 @@ public class VideoGame
         this.aListeCase.put( 8,new Rue("RUE DE COURCELLES",8, 100,0,0, 0, "cyan",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put( 9,new Rue("AVENUE DE LA REPUBLIQUE",9, 120,0,0, 0, "cyan",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put(10,new Cases_Plateau("Prison",10,false));
-        this.aListeCase.put(11,new Rue("BOULEVARD DE LA VILLETTE",11, 140,0,0, 0, "violet",new int[]{2,10,30,90,160,250}));
+        this.aListeCase.put(11,new Rue("BOULEVARD DE LA VILLETTE",11, 140,0,0, 0, "rose",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put(12,new Compagnie("COMPAGNIE DE La DISTRIBUTION D'ELECTRICITE",12, 150,0));
-        this.aListeCase.put(13,new Rue("AVENUE DE NEUILLY",13, 140,0,0, 0, "violet",new int[]{2,10,30,90,160,250}));
-        this.aListeCase.put(14,new Rue("RUE DU PARADIS",14, 160,0,0, 0, "violet",new int[]{2,10,30,90,160,250}));
+        this.aListeCase.put(13,new Rue("AVENUE DE NEUILLY",13, 140,0,0, 0, "rose",new int[]{2,10,30,90,160,250}));
+        this.aListeCase.put(14,new Rue("RUE DU PARADIS",14, 160,0,0, 0, "rose",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put(15,new Gare("GARE DE LYON",15, 200,0));
         this.aListeCase.put(16,new Rue("AVENUE DE MOZART",16, 180,0,0, 0, "orange",new int[]{2,10,30,90,160,250}));
         this.aListeCase.put(17,new Cases_Plateau("CAISSE DE COMMUNAUTE",17,false));
@@ -274,7 +274,7 @@ public class VideoGame
                 if (this.aListPlayer.get(vJoueurActuel).getArgent() - prix > 0) {
                     System.out.println("Le terrain coute actuellement" + prix);
                     System.out.println(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites encherir tape enchere ");
-                    System.out.println("ainsi que la valeur dont tu souhaites enchérir, sinon tape laisser");
+                    System.out.println("ainsi que la valeur dont tu souhaites enchérir, sinon tape laisser\n");
                     String temp = this.aInterface.getCommand();//!\\ à modifier
                     boolean fonctionne = false;
                     while (!fonctionne) {
@@ -287,7 +287,8 @@ public class VideoGame
                             }
                             else
                             {
-                                System.out.println("Tu ne possèdes pas autant d'argent");
+                                System.out.println("Tu ne possèdes pas autant d'argent\n");
+                                temp = this.aInterface.getCommand();
                             }
                         }
                         else if (temp.equals("laisser"))
@@ -296,7 +297,8 @@ public class VideoGame
                         }
                         else
                         {
-                            System.out.println("Je n'ai pas compris votre commande");
+                            System.out.println("Je n'ai pas compris votre commande\n");
+                            temp = this.aInterface.getCommand();//!\\ à modifier
                         }
                     }
 
@@ -311,11 +313,183 @@ public class VideoGame
         System.out.println(" pour un prix de " + prix);
         this.aListPlayer.get(vGagnant).setArgent(this.aListPlayer.get(vGagnant).getArgent()-prix);
     }
+
+    public int[] villeCouleurCorrespondance(String pCouleur)
+    {
+        int[] vListCouleur = new int[3];
+        switch(pCouleur)
+        {
+            case "marron":
+                vListCouleur[0] = 1;
+                vListCouleur[1] = 3;
+                vListCouleur[2] = -1;
+                break;
+            case "cyan":
+                vListCouleur[0] = 6;
+                vListCouleur[1] = 8;
+                vListCouleur[2] = 9;
+                break;
+
+            case "rose":
+                vListCouleur[0] = 11;
+                vListCouleur[1] = 13;
+                vListCouleur[2] = 14;
+                break;
+
+            case "orange":
+                vListCouleur[0] = 16;
+                vListCouleur[1] = 18;
+                vListCouleur[2] = 19;
+                break;
+
+            case "rouge":
+                vListCouleur[0] = 21;
+                vListCouleur[1] = 23;
+                vListCouleur[2] = 24;
+                break;
+
+            case "jaune":
+                vListCouleur[0] = 26;
+                vListCouleur[1] = 28;
+                vListCouleur[2] = 29;
+                break;
+
+            case "vert":
+                vListCouleur[0] = 31;
+                vListCouleur[1] = 32;
+                vListCouleur[2] = 34;
+                break;
+
+            case "bleu":
+                vListCouleur[0] = 37;
+                vListCouleur[1] = 39;
+                vListCouleur[2] = -1;
+                break;
+
+        }
+        return vListCouleur;
+    }
     /**
      * Méthode de gestion de l'achat de maison et/ou d'hotel
      */
     public void construction()
     {
+        boolean fonctionne = false;
+        while (!fonctionne) {
+            System.out.println(this.getJoueurActif().afficheMonopole());
+            System.out.println("Tapez le nom de la couleur où vous souhaitez construire des maisons\n");
+            System.out.println(" Sinon, vous pouvez taper 'retour' pour arretez de construire \n");
+            String temp = this.aInterface.getCommand();
+            if((temp.equals("marron") ||temp.equals("cyan") ||temp.equals("rose") ||temp.equals("orange") ||temp.equals("rouge") ||temp.equals("jaune") ||temp.equals("vert") ||temp.equals("bleu"))&& this.getJoueurActif().getMonopole(temp))
+            {
+
+                int[] listVille=villeCouleurCorrespondance(temp);
+                int vPrixMaison;
+                if(listVille[0]<10)
+                {
+                    vPrixMaison=50;
+                }
+                else if(listVille[0]<20)
+                {
+                    vPrixMaison=100;
+                }
+                else if(listVille[0]<30)
+                {
+                    vPrixMaison=150;
+                }
+                else
+                {
+                    vPrixMaison=200;
+                }
+                boolean fonctionne2 = false;
+                while(!fonctionne2)
+                {
+                    for(int i =0;i<3;i++)
+                    {
+                        if(listVille[i]!=-1)
+                        {
+                            System.out.println("Tapez " + i+1 + " pour acheter une maison sur : " + this.aListeCase.get(listVille[i]).getNomCase() + "\n");
+                        }
+                    }
+                    System.out.println("Tapez 'retour' pour revenir en arriere\n");
+                    temp = this.aInterface.getCommand();
+                    if(temp.equals("1") || temp.equals("2") || (temp.equals("3") && listVille[2]!=-1))
+                    {
+                        int idTerrain = Integer.valueOf(temp)-1;
+                        Rue terrain = (Rue)this.getJoueurActif().getPatrimoine().get(idTerrain);
+                        if(getJoueurActif().getArgent()-vPrixMaison>=0)
+                        {
+                            if(terrain.getNbMaison()[0]<4 &&terrain.getNbMaison()[1]==0 &&getBanque().getNbMaison()>0  )
+                            {
+                                getBanque().setNbMaison(-1);
+                                terrain.setaNbMaison(1);
+                                getJoueurActif().setArgent(getJoueurActif().getArgent()-vPrixMaison);
+                                System.out.println(" Vous avez acheté une maison sur : " + terrain.getNomCase() +"\n");
+
+                            }
+                            else if(terrain.getNbMaison()[0]<4 &&terrain.getNbMaison()[1]==0 && getBanque().getNbMaison()==0)
+                            {
+                                System.out.println(" La banque ne possède plus de maison à vendre, tu ne peux donc pas construire\n");
+                            }
+                            else if (terrain.getNbMaison()[1]==1 )
+                            {
+                                System.out.println(" Tu possèdes deja un hotel ici, tu ne peux plus rajouter de batiment\n");
+                            }
+                            else if(getBanque().getNbHotel()>0)
+                            {
+                                boolean vAchatPossible = true;
+                                for(int i =0;i<3;i++) {
+                                    if (listVille[i] != -1) {
+                                        Rue terrain2 = (Rue) this.getJoueurActif().getPatrimoine().get(i);
+                                        if (terrain2.getNbMaison()[0] != 4 && terrain2.getNbMaison()[1] != 1) {
+                                            vAchatPossible = false;
+                                        }
+                                    }
+                                }
+                                if(vAchatPossible)
+                                {
+                                    getBanque().setNbHotel(-1);
+                                    terrain.setaNbMaison(1);
+                                    getJoueurActif().setArgent(getJoueurActif().getArgent()-vPrixMaison);
+                                    System.out.println(" Vous avez acheté une hotel sur : " + terrain.getNomCase() +"\n");
+                                }
+                                else {
+                                    System.out.println(" Tu ne peux pas construire d'hotel ici, tu dois d'abord avoir au moins 4 maisons sur les autres rues de la meme couleur\n");
+                                }
+
+                            }
+                            else {
+                                System.out.println(" La banque ne possède plus d'Hotel' à vendre, tu ne peux donc pas construire\n");
+
+                            }
+                        }
+                        else
+                        {
+                            System.out.println(" Tu n'as pas l'argent pour acheter une maison ici\n");
+                            System.out.println(" Celles-ci coutent : "+ vPrixMaison + "\n");
+                            fonctionne2=true;
+                        }
+                    }
+                    else if(temp.equals("retour"))
+                    {
+                        fonctionne2=true;
+                    }
+                    else
+                    {
+                        System.out.println("Je n'ai pas compris votre commande \n");
+                    }
+                }
+            }
+            else if(temp.equals("retour"))
+            {
+                fonctionne=true;
+                return;
+            }
+            else
+            {
+                System.out.println("Je n'ai pas compris votre commande \n");
+            }
+        }
 
     }
     /**
@@ -333,7 +507,7 @@ public class VideoGame
 
     }
     /**
-     * Méthode de gestion de la revente d'hotel ou de maison à la banqueS
+     * Méthode de gestion de la revente d'hotel ou de maison à la banque
      */
     public void venteMaison()
     {

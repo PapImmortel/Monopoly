@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ajout monopole( potentiellment fonction à ajouter)">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="pour Klhaimands( fonction = getNbMaisonHotel)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,12 +80,20 @@
       <option name="project" value="LOCAL" />
       <updated>1676291826195</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="pour Klhaimands( fonction = getNbMaisonHotel)">
+      <created>1676297107708</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1676297107708</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ca devrait etre bon jespere" />
     <MESSAGE value="ajout monopole( potentiellment fonction à ajouter)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout monopole( potentiellment fonction à ajouter)" />
+    <MESSAGE value="pour Klhaimands( fonction = getNbMaisonHotel)" />
+    <option name="LAST_COMMIT_MESSAGE" value="pour Klhaimands( fonction = getNbMaisonHotel)" />
   </component>
 </project>
