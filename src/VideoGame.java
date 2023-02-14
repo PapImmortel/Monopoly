@@ -216,7 +216,7 @@ public class VideoGame
         if(getJoueurActif().getArgent() - vTerrain.getPrixAchat()>=0)//si on a l'argent pour acheter le terrain
         {
             System.out.println("Tu achetes le titre de proprièté : " + vTerrain.getNomCase());
-            getJoueurActif().setArgent(getJoueurActif().getArgent() - vTerrain.getPrixAchat());
+            getJoueurActif().ajouteArgent(- vTerrain.getPrixAchat());
             vTerrain.setJoueurBoss(getNumJoueurActif());
             getJoueurActif().ajouterPatrimoine(vTerrain,1);
             return true;
@@ -311,7 +311,7 @@ public class VideoGame
         }
         System.out.println(this.aListPlayer.get(vGagnant).getNomJoueur() + " emporte l'enchère et achete le terrain " + vTerrain.getNomCase());
         System.out.println(" pour un prix de " + prix);
-        this.aListPlayer.get(vGagnant).setArgent(this.aListPlayer.get(vGagnant).getArgent()-prix);
+        this.aListPlayer.get(vGagnant).ajouteArgent(-prix);
     }
 
     public int[] villeCouleurCorrespondance(String pCouleur)
@@ -374,9 +374,14 @@ public class VideoGame
      */
     public void construction()
     {
+        if(getJoueurActif().getNbMonopole()==0)
+        {
+            System.out.println(getJoueurActif().afficheMonopole());
+            return;
+        }
         boolean fonctionne = false;
         while (!fonctionne) {
-            System.out.println(this.getJoueurActif().afficheMonopole());
+            System.out.println(getJoueurActif().afficheMonopole());
             System.out.println("Tapez le nom de la couleur où vous souhaitez construire des maisons\n");
             System.out.println(" Sinon, vous pouvez taper 'retour' pour arretez de construire \n");
             String temp = this.aInterface.getCommand();
@@ -423,7 +428,7 @@ public class VideoGame
                             {
                                 getBanque().setNbMaison(-1);
                                 terrain.setaNbMaison(1);
-                                getJoueurActif().setArgent(getJoueurActif().getArgent()-vPrixMaison);
+                                getJoueurActif().ajouteArgent(-vPrixMaison);
                                 System.out.println(" Vous avez acheté une maison sur : " + terrain.getNomCase() +"\n");
 
                             }
@@ -450,7 +455,7 @@ public class VideoGame
                                 {
                                     getBanque().setNbHotel(-1);
                                     terrain.setaNbMaison(1);
-                                    getJoueurActif().setArgent(getJoueurActif().getArgent()-vPrixMaison);
+                                    getJoueurActif().ajouteArgent(-vPrixMaison);
                                     System.out.println(" Vous avez acheté une hotel sur : " + terrain.getNomCase() +"\n");
                                 }
                                 else {
@@ -492,18 +497,17 @@ public class VideoGame
         }
 
     }
-    /**
-     * Méthode de gestion de la vente de ses propriétés si on est ruiné
-     */
-    public void hypothequer()
-    {
 
-    }
     /**
      * Méthode de gestion de l'achat et de vente de terrain nu avec les autres joueurs
      */
-    public void businessJoueur()
-    {
+    public void businessJoueur() {
+        int[] listJoueur = new int[this.aNbJoueur];
+        for (int i = 1; i <= this.aNbJoueur; i++) {
+            if (this.aListPlayer.get(i).getArgent() >= 0) {
+                nbJoueurVivant += 1;
+            }
+        }
 
     }
     /**
@@ -610,9 +614,12 @@ public class VideoGame
                                         getJoueurActif().setEstPrisonnier(0);
                                     } else {
                                         System.out.println(" Tu payes 50 pour pouvoir sortir de prison.");
-                                        getJoueurActif().setArgent(getJoueurActif().getArgent() - 50);
-                                        if (getJoueurActif().getArgent() < 0) {
-                                            hypothequer();
+                                        getJoueurActif().ajouteArgent(- 50);
+                                        if(getJoueurActif().getArgent()<0)
+                                        {
+                                            System.out.println("Vous etes ruinés, vous avez perdu");
+                                            finTourAutorise=true;
+                                            break;
                                         }
                                         getJoueurActif().setEstPrisonnier(0);
 
@@ -633,9 +640,12 @@ public class VideoGame
                                     getJoueurActif().setEstPrisonnier(0);
                                 } else {
                                     System.out.println(" Tu payes 50 pour pouvoir sortir de prison.");
-                                    getJoueurActif().setArgent(getJoueurActif().getArgent() - 50);
-                                    if (getJoueurActif().getArgent() < 0) {
-                                        hypothequer();
+                                    getJoueurActif().ajouteArgent( - 50);
+                                    if(getJoueurActif().getArgent()<0)
+                                    {
+                                        System.out.println("Vous etes ruinés, vous avez perdu");
+                                        finTourAutorise=true;
+                                        break;
                                     }
                                     getJoueurActif().setEstPrisonnier(0);
 
@@ -660,7 +670,17 @@ public class VideoGame
                         }//if(lancedes1 == lancedes2)
                         if (getJoueurActif().getEstPrisonnier() == 0) {
 
-                            getJoueurActif().setPosition(getCase(getJoueurActif().getPosition().getNbCase() + lancedes1 + lancedes2));
+                            int newCase=getJoueurActif().getPosition().getNbCase()+ lancedes1 + lancedes2;
+                            if(newCase >39)
+                            {
+                                getJoueurActif().setPosition(getCase( newCase- 40));
+                                getJoueurActif().ajouteArgent(200);
+                                System.out.println("Tu gagnes 200 car tu es passé par la case départ");
+                            }
+                            else
+                            {
+                                getJoueurActif().setPosition(getCase(newCase));
+                            }
                             System.out.println("Tu avances de " + (lancedes1 + lancedes2) + " car tu as fait " + lancedes1 + "et " + lancedes2 + ".");
                             System.out.println("Tu atterris sur la case : " + getJoueurActif().getPosition().getNomCase());
 
@@ -692,13 +712,17 @@ public class VideoGame
                                     }
 
 
-                                    getJoueurActif().setArgent(getJoueurActif().getArgent() - prixAPayer);
-                                    this.aListPlayer.get(terrain.getJoueurBoss()).setArgent(this.aListPlayer.get(terrain.getJoueurBoss()).getArgent() + prixAPayer);
-                                    if (getJoueurActif().getArgent() < 0) {
-                                        hypothequer();
-                                    }
+                                    getJoueurActif().ajouteArgent(-prixAPayer);
+                                    this.aListPlayer.get(terrain.getJoueurBoss()).ajouteArgent(prixAPayer);
+
                                     nbEffetCaseEffectue += 1;
                                     vEffetCaseEffectue = true;
+                                    if(getJoueurActif().getArgent()<0)
+                                    {
+                                        System.out.println("Vous etes ruinés, vous avez perdu");
+                                        finTourAutorise=true;
+                                        break;
+                                    }
 
                                 }
                             } else {

@@ -106,6 +106,15 @@ public class Player
         this.aAtribute = pAtribute;
     }//setAtribute(.)
 
+    public void ajouteArgent(int pArgent)
+    {
+        this.aArgent += pArgent;
+        if(this.aArgent<0)
+        {
+            hypothequer();
+        }
+    }
+
     /**
      * Assesseur d'attribut du joueur
      * @return aAttribut liste des attributs d'un joueur
@@ -202,7 +211,7 @@ public class Player
 
     /**
      * retourne une String contenant la liste des propriètés du joueur
-     * @return PatrimoineJoueur sous forme de String avec le nom du joueur et son nombre de monopole
+     * @return PatrimoineJoueur sous forme de String avec le nom du joueur et son nombre de monopole ainsi qye la liste de ses patrimoines
      */
     public String affichePatrimoine()
     {
@@ -215,8 +224,8 @@ public class Player
         PatrimoineJoueur = PatrimoineJoueur + aNomJoueur + " possede les propriétés suivante : \n";
         while (iterator.hasNext())
         {
-            Map.Entry Monopole = (Map.Entry) iterator.next();
-            Patrimoine Case1 = (Patrimoine) Monopole.getValue();
+            Map.Entry terrain = (Map.Entry) iterator.next();
+            Patrimoine Case1 = (Patrimoine) terrain.getValue();
             PatrimoineJoueur = PatrimoineJoueur + Case1.getNomCase() + "\n";
         }//while()
         return  PatrimoineJoueur;
@@ -350,7 +359,7 @@ public class Player
     {
         if(getNbMonopole()==0)
         {
-            return " Vous ne possedez aucun monopole , vous ne pouvez donc pas construire.";
+            return " Vous ne possedez aucun monopole , vous ne pouvez donc pas construire.\n";
         }
         else {
             String vListMonopole = " Vous possédez toutes les rues de couleur :   ";
