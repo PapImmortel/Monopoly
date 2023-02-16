@@ -502,21 +502,281 @@ public class VideoGame
      * Méthode de gestion de l'achat et de vente de terrain nu avec les autres joueurs
      */
     public void businessJoueur() {
-        int[] listJoueur = new int[this.aNbJoueur];
+        int[] listJoueur = new int[this.aNbJoueur-1];
+        for (int i = 1; i <= this.aNbJoueur; i++)
+        {
+            listJoueur[i]=-1;
+
+        }
+        int positionList=0;
         for (int i = 1; i <= this.aNbJoueur; i++) {
-            if (this.aListPlayer.get(i).getArgent() >= 0) {
-                nbJoueurVivant += 1;
+            if (this.aListPlayer.get(i).getArgent() >= 0 && this.aListPlayer.get(i)!=getJoueurActif())
+            {
+                listJoueur[positionList]=i;
+                positionList+=1;
+            }
+        }
+
+        boolean fonctionne = false;
+        while (!fonctionne) {
+            System.out.println("Tapez 'achat' si vous souhaitez racheter des terrains à d'autres joueurs.\n");
+            System.out.println("Tapez 'vendre' si vous souhaitez vendre des terrains à d'autres joueurs.\n");
+            System.out.println(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
+            String temp = this.aInterface.getCommand();
+            if(temp.equals("achat")) {
+
+
+                boolean fonctionne2 = false;
+                while (!fonctionne2) {
+                    for (int i = 0; i < positionList; i++) {
+                        System.out.println("Tapez " + i + " , si vous souhaitez racheter des terrains à " + this.aListPlayer.get(listJoueur[i]).getNomJoueur() + "\n");
+                    }
+                    System.out.println(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
+
+                    String temp2 = this.aInterface.getCommand();
+                    if (temp2.equals("retour")) {
+                        fonctionne2 = true;
+                    } else if (Integer.valueOf(temp2) >= 0 && Integer.valueOf(temp2) < positionList) {
+                        boolean fonctionne3 = false;
+                        Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.valueOf(temp2)]);
+                        int[] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
+                        int positionListPatrimoine = 0;
+                        Iterator iterator = joueurEchange.getPatrimoine().entrySet().iterator();
+                        if (joueurEchange.getPatrimoine().isEmpty()) {
+                            System.out.println(joueurEchange.getNomJoueur() + " ne possède aucun terrain, vous ne pouvez donc pas lui en acheter. \n");
+                            fonctionne3 = true;
+                        }//if(aPatrimoine.isEmpty())
+                        else {
+
+                            while (iterator.hasNext()) {
+                                Map.Entry terrain = (Map.Entry) iterator.next();
+                                Patrimoine terrain2 = (Patrimoine) terrain.getValue();
+                                if (terrain2.getNbCase() != 12 && terrain2.getNbCase() != 28 && (terrain2.getNbCase() % 5) != 0) {
+                                    Rue terrain3 = (Rue) terrain;
+                                    if (terrain3.getNbMaison()[0] == 0 && terrain3.getNbMaison()[1] == 0) {
+                                        listPatrimoineVente[positionListPatrimoine] = terrain3.getNbCase();
+                                        positionListPatrimoine += 1;
+                                    }
+                                } else {
+                                    listPatrimoineVente[positionListPatrimoine] = terrain2.getNbCase();
+                                    positionListPatrimoine += 1;
+                                }
+                            }//while()
+                        }
+                        while (!fonctionne3) {
+                            for (int i = 0; i < positionListPatrimoine; i++) {
+                                System.out.println("Tapez " + i + " pour demander l'autorisation d'acheter : " + joueurEchange.getPatrimoine().get(listPatrimoineVente[i]).getNomCase() + " pour le prix de " + joueurEchange.getPatrimoine().get(listPatrimoineVente[i]).getPrixAchat() + "\n");
+                            }
+                            System.out.println("Tapez 'retour' pour revenir en arriere\n");
+                            String temp3 = this.aInterface.getCommand();
+                            if (Integer.valueOf(temp3) >= 0 && Integer.valueOf(temp3) < positionListPatrimoine) {
+                                Patrimoine vTerrainChoisi = joueurEchange.getPatrimoine().get(Integer.valueOf(temp3));
+                                if (getJoueurActif().getArgent() - vTerrainChoisi.getPrixAchat() < 0) {
+                                    System.out.println(" Vous n'avez pas assez d'argent pour acheter ce terrain.\n");
+                                } else {
+                                    boolean fonctionne4 = false;
+                                    while (!fonctionne4) {
+                                        System.out.println(joueurEchange.getNomJoueur() + " , " + getJoueurActif().getNomJoueur() + " souhaite acheter votre terrain " + vTerrainChoisi.getNomCase() + " pour une somme de " + vTerrainChoisi.getPrixAchat() + "\n");
+                                        System.out.println(" Tapez  'accepter' pour vendre votre terrain, Tapez ' refuser' pour refuser l'offre .\n");
+                                        String temp4 = this.aInterface.getCommand();
+
+                                        if (temp4.equals("accepter")) {
+                                            joueurEchange.ajouteArgent(vTerrainChoisi.getPrixAchat());
+                                            getJoueurActif().ajouteArgent(-vTerrainChoisi.getPrixAchat());
+                                            vTerrainChoisi.setJoueurBoss(getNumJoueurActif());
+                                            getJoueurActif().ajouterPatrimoine(vTerrainChoisi, 1);
+                                            joueurEchange.ajouterPatrimoine(vTerrainChoisi, -1);
+                                            fonctionne3 = true;
+
+
+                                        } else if (temp.equals("refuser")) {
+                                            System.out.println(" L'offre a été rejetée\n");
+                                            fonctionne3 = true;
+                                        } else {
+                                            System.out.println("Je n'ai pas compris votre commande \n");
+                                        }
+                                    }
+                                }
+                            } else if (temp.equals("retour")) {
+                                fonctionne3 = true;
+                            } else {
+                                System.out.println("Je n'ai pas compris votre commande \n");
+                            }
+                        }
+
+                    } else {
+                        System.out.println("Je n'ai pas compris votre commande \n");
+                    }
+                }
+            }
+            else if(temp.equals("vendre"))
+            {
+                boolean fonctionne2 = false;
+                while(!fonctionne2)
+                {
+                    for(int i = 0; i<positionList;i++)
+                    {
+                        System.out.println("Tapez " + i + " , si vous souhaitez vendre des terrains à " + this.aListPlayer.get(listJoueur[i]).getNomJoueur() + "\n");
+                    }
+                    System.out.println(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
+
+                    String temp2 = this.aInterface.getCommand();
+                    if(temp2.equals("retour"))
+                    {
+                        fonctionne2=true;
+                    }
+                    else if(Integer.valueOf(temp2)>=0 && Integer.valueOf(temp2)<positionList)
+                    {
+                        boolean fonctionne3 = false;
+                        Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.valueOf(temp2)]);
+                        int [] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
+                        int positionListPatrimoine = 0;
+                        Iterator iterator = getJoueurActif().getPatrimoine().entrySet().iterator();
+                        if (getJoueurActif().getPatrimoine().isEmpty())
+                        {
+                            System.out.println(  "Vous ne possèdez aucun terrain nu, vous ne pouvez donc pas en vendre. \n");
+                            fonctionne3=true;
+                        }//if(aPatrimoine.isEmpty())
+                        else {
+
+                            while (iterator.hasNext())
+                            {
+                                Map.Entry terrain = (Map.Entry) iterator.next();
+                                Patrimoine terrain2 = (Patrimoine) terrain.getValue();
+                                if(terrain2.getNbCase()!=12 &&terrain2.getNbCase()!=28 && (terrain2.getNbCase()%5)!=0)
+                                {
+                                    Rue terrain3 = (Rue) terrain;
+                                    if(terrain3.getNbMaison()[0]==0 && terrain3.getNbMaison()[1]==0)
+                                    {
+                                        listPatrimoineVente[positionListPatrimoine]=terrain3.getNbCase();
+                                        positionListPatrimoine+=1;
+                                    }
+                                }
+                                else {
+                                    listPatrimoineVente[positionListPatrimoine]=terrain2.getNbCase();
+                                    positionListPatrimoine+=1;
+                                }
+                            }//while()
+                        }
+                        while(!fonctionne3)
+                        {
+                            for(int i =0;i<positionListPatrimoine;i++)
+                            {
+                                System.out.println("Tapez " + i + " pour proposer la vente du terrain : " + getJoueurActif().getPatrimoine().get(listPatrimoineVente[i]).getNomCase() + " pour le prix de " + getJoueurActif().getPatrimoine().get(listPatrimoineVente[i]).getPrixAchat() + "\n");
+                            }
+                            System.out.println("Tapez 'retour' pour revenir en arriere\n");
+                            String temp3 = this.aInterface.getCommand();
+                            if(Integer.valueOf(temp3)>=0 && Integer.valueOf(temp3)<positionListPatrimoine)
+                            {
+                                Patrimoine vTerrainChoisi = getJoueurActif().getPatrimoine().get(Integer.valueOf(temp3));
+                                if(joueurEchange.getArgent()-vTerrainChoisi.getPrixAchat()<0)
+                                {
+                                    System.out.println(joueurEchange.getNomJoueur() + " ne possède pas assez d'argent pour acheter ce terrain.\n");
+                                }
+                                else
+                                {
+                                    boolean fonctionne4=false;
+                                    while(!fonctionne4)
+                                    {
+                                        System.out.println(joueurEchange.getNomJoueur() + " , " + getJoueurActif().getNomJoueur() + " souhaite vous vendre le terrain " + vTerrainChoisi.getNomCase() + " pour une somme de " + vTerrainChoisi.getPrixAchat() + "\n");
+                                        System.out.println(" Tapez  'accepter' pour achter ce terrain, Tapez ' refuser' pour refuser l'offre .\n");
+                                        String temp4 = this.aInterface.getCommand();
+
+                                        if(temp4.equals("accepter"))
+                                        {
+                                            joueurEchange.ajouteArgent(-vTerrainChoisi.getPrixAchat());
+                                            getJoueurActif().ajouteArgent(vTerrainChoisi.getPrixAchat());
+                                            vTerrainChoisi.setJoueurBoss(listJoueur[Integer.valueOf(temp2)]);
+                                            getJoueurActif().ajouterPatrimoine(vTerrainChoisi,-1);
+                                            joueurEchange.ajouterPatrimoine(vTerrainChoisi,1);
+                                            fonctionne3 = true;
+
+                                        }
+                                        else if(temp.equals("refuser"))
+                                        {
+                                            System.out.println(" L'offre a été rejetée\n");
+                                            fonctionne3=true;
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Je n'ai pas compris votre commande \n");
+                                        }
+                                    }
+                                }
+                            }
+                            else if(temp.equals("retour"))
+                            {
+                                fonctionne3=true;
+                            }
+                            else
+                            {
+                                System.out.println("Je n'ai pas compris votre commande \n");
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        System.out.println("Je n'ai pas compris votre commande \n");
+                    }
+                }
+            }
+            else if(temp.equals("retour"))
+            {
+                fonctionne=true;
+                return;
+            }
+            else
+            {
+                System.out.println("Je n'ai pas compris votre commande \n");
             }
         }
 
     }
+
     /**
      * Méthode de gestion de la revente d'hotel ou de maison à la banque
      */
-    public void venteMaison()
+    public void venteMaison() /////////////////////////////////////////////////////////////////////////////////////////////////////
     {
+        int[] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
+        int positionListPatrimoine = 0;
+        Iterator iterator = joueurEchange.getPatrimoine().entrySet().iterator();
+        if (joueurEchange.getPatrimoine().isEmpty()) {
+            System.out.println(joueurEchange.getNomJoueur() + " ne possède aucun terrain, vous ne pouvez donc pas lui en acheter. \n");
+            fonctionne3 = true;
+        }//if(aPatrimoine.isEmpty())
+        else {
 
-    }
+            while (iterator.hasNext()) {
+                Map.Entry terrain = (Map.Entry) iterator.next();
+                Patrimoine terrain2 = (Patrimoine) terrain.getValue();
+                if (terrain2.getNbCase() != 12 && terrain2.getNbCase() != 28 && (terrain2.getNbCase() % 5) != 0) {
+                    Rue terrain3 = (Rue) terrain;
+
+                }
+                if((temp.equals("marron") ||temp.equals("cyan") ||temp.equals("rose") ||temp.equals("orange") ||temp.equals("rouge") ||temp.equals("jaune") ||temp.equals("vert") ||temp.equals("bleu"))&& this.getJoueurActif().getMonopole(temp))
+                {
+
+                    int[] listVille=villeCouleurCorrespondance(temp);
+                    int vPrixMaison;
+                    if(listVille[0]<10)
+                    {
+                        vPrixMaison=50;
+                    }
+                    else if(listVille[0]<20)
+                    {
+                        vPrixMaison=100;
+                    }
+                    else if(listVille[0]<30)
+                    {
+                        vPrixMaison=150;
+                    }
+                    else
+                    {
+                        vPrixMaison=200;
+                    }
+
 
     /**
      * Méthode de gestion de tour des joueurs

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="fonction achat maison ajouté">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="reparation de certaines fonction+ optimisation et confirmation du fonctionnement du deplacment de joueur">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676388200253</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="reparation de certaines fonction+ optimisation et confirmation du fonctionnement du deplacment de joueur">
+      <created>1676394105858</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676394105858</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -102,6 +108,7 @@
     <MESSAGE value="ajout monopole( potentiellment fonction à ajouter)" />
     <MESSAGE value="pour Klhaimands( fonction = getNbMaisonHotel)" />
     <MESSAGE value="fonction achat maison ajouté" />
-    <option name="LAST_COMMIT_MESSAGE" value="fonction achat maison ajouté" />
+    <MESSAGE value="reparation de certaines fonction+ optimisation et confirmation du fonctionnement du deplacment de joueur" />
+    <option name="LAST_COMMIT_MESSAGE" value="reparation de certaines fonction+ optimisation et confirmation du fonctionnement du deplacment de joueur" />
   </component>
 </project>
