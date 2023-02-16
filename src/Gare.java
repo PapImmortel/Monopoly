@@ -2,9 +2,9 @@ import java.util.HashMap;
 
 public class Gare extends Patrimoine{
 
-    public Gare(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss)
+    public Gare(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss, int pHypotheque)
     {
-        super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,"gare");
+        super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,"gare", pHypotheque);
     }
 
     /*

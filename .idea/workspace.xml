@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="il manque plsu que 1 fonction + le boulot des loustiques">
-      <change afterPath="$PROJECT_DIR$/src/CaseEffet.java" afterDir="false" />
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ajout des fonctions de klhaimands + video game fini">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compagnie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compagnie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676537542689</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ajout des fonctions de klhaimands + video game fini">
+      <created>1676562261165</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676562261165</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -118,6 +128,7 @@
     <MESSAGE value="fonction achat maison ajouté" />
     <MESSAGE value="reparation de certaines fonction+ optimisation et confirmation du fonctionnement du deplacment de joueur" />
     <MESSAGE value="il manque plsu que 1 fonction + le boulot des loustiques" />
-    <option name="LAST_COMMIT_MESSAGE" value="il manque plsu que 1 fonction + le boulot des loustiques" />
+    <MESSAGE value="ajout des fonctions de klhaimands + video game fini" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout des fonctions de klhaimands + video game fini" />
   </component>
 </project>

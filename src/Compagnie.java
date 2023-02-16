@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
 public class Compagnie extends Patrimoine{
-    public Compagnie(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss)
+    public Compagnie(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,int pHypotheque)
     {
-        super(pNomPatrimoine,pIdPropriete,pPrixAchat, pJoueurBoss,"compagnie");
+        super(pNomPatrimoine,pIdPropriete,pPrixAchat, pJoueurBoss,"compagnie",pHypotheque);
     }
 
 

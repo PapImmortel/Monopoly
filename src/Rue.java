@@ -10,9 +10,9 @@ public class Rue extends Patrimoine
     private int [] aPrixRente;
 
 
-    public Rue(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,int pNbMaison, int pHotel, String pColor, int[] pPrixPassage)
+    public Rue(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,int pNbMaison, int pHotel, String pColor, int[] pPrixPassage, int pHypotheque)
     {
-        super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,pColor);
+        super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,pColor,pHypotheque);
         this.aNbMaison= pNbMaison;
         this.aHotel=pHotel;
 
