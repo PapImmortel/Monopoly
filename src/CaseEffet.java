@@ -38,6 +38,14 @@ public class CaseEffet extends Cases_Plateau{
     {
         this.aEffet=pEffet;
     }
+    /**
+     * Accesseur du type de caseEffet( carte communautée ou chance)
+     * @return aNumeroEffet
+     */
+    public int getNumeroEffet()
+    {
+        return this.aNumeroEffet;
+    }
 
     /**
      * Accesseur de aEffet
@@ -103,8 +111,8 @@ public class CaseEffet extends Cases_Plateau{
                 this.setaEffet("Va BOULEVARD DE LA VILLETTE si tu passes par la case depart, tu reçois 200euros ");
 
             case 4:
-                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*40);
-                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[2]*115);
+                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[0]*40);
+                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*115);
                 this.setaEffet("Vous êtes imposés pour les réparations de voirie à raison de F4 000 par maison et F11 500 par hôtel.");
             case 5:
                 if(pJoueur.getPosition().getNbCase()-15>0)
@@ -131,8 +139,8 @@ public class CaseEffet extends Cases_Plateau{
                 pJoueur.setEstPrisonnier(1);
                 this.setaEffet("Va en prison sans passer par la case depart");
             case 11:
-                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*25);
-                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[2]*100);
+                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[0]*25);
+                pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*100);
                 this.setaEffet("Faites des réparations dans toutes vos maisons. Versez pour chaque maison 25euros. Versez pour chaque hôtel 100euro");
             case 12:
                 pJoueur.ajouteArgent(-15);

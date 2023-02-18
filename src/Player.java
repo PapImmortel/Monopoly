@@ -22,13 +22,7 @@ public class Player
     private int aPrisonnier;
     private int[] aListPossession=new int[10];
 
-    /**
-     * Contructeur par Défaut de la classe Player
-     */
-    public Player()
-    {
-        this(1500,"Didier","Rouge");
-    }//Player()
+
 
     /**
      *  Constructeur à 3 paramètre de la classe Player
@@ -36,7 +30,7 @@ public class Player
      * @param pNomJoueur Nom du joueur
      * @param pCouleur Couleur choisis par le joueur
      */
-    public Player(int pArgent,String pNomJoueur, String pCouleur)
+    public Player(int pArgent,String pNomJoueur, String pCouleur,Cases_Plateau pPosition)
     {
         this.aArgent = pArgent;
         this.aNomJoueur = pNomJoueur;
@@ -56,6 +50,7 @@ public class Player
         this.aListPossession[7]=2;
         this.aListPossession[8]=4;
         this.aListPossession[9]=2;
+        this.aPosition=pPosition;
 
     }//Player(.,.,.)
 
@@ -69,7 +64,7 @@ public class Player
     }//setArgent(.)
 
     /**
-     * Assesseur de l'argent du joueur
+     * Accesseur de l'argent du joueur
      * @return aArgent retourne l'argent du joueur
      */
     public int getArgent()
@@ -78,7 +73,7 @@ public class Player
     }//getArgent()
 
     /**
-     * Assesseur du nom du joueur
+     * Accesseur du nom du joueur
      * @return aNomJoueur nom du joueur
      */
     public String getNomJoueur()
@@ -87,7 +82,7 @@ public class Player
     }//getNomJoueur()
 
     /**
-     * Asseseur de la Couleur du joueur
+     * Accesseur de la Couleur du joueur
      * @return aCouleur Couleur du joueur
      */
     public String getCouleur()
@@ -117,7 +112,7 @@ public class Player
     }//setPosition(.)
 
     /**
-     * Assesseur de la position d'un joueur
+     * Accesseur de la position d'un joueur
      * @return aPosition Case actuel du joueur
      */
     public Cases_Plateau getPosition() {
@@ -134,7 +129,7 @@ public class Player
     }//setNbMonopole(.)
 
     /**
-     * Assesseur du nombre de monopole du joueur
+     * Accesseur du nombre de monopole du joueur
      * @return aNbMonopole nombre de monopole du joueur
      */
     public int getNbMonopole()
@@ -152,7 +147,7 @@ public class Player
     }//setSoritiePrison(.)
 
     /**
-     * Assesseur du nombre de tour fait en prison
+     * Accesseur du nombre de tour fait en prison
      * @return aSortiePrison
      */
     public int getSortiePrison()
@@ -180,7 +175,7 @@ public class Player
 
 
     /**
-     * assesseur de la liste du patrimoine d'un joueur
+     * accesseur de la liste du patrimoine d'un joueur
      * @return aPatrimoine la liste des ses propriété
      */
     public HashMap<Integer,Patrimoine> getPatrimoine()

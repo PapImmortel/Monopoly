@@ -29,17 +29,18 @@ public class VideoGame
         this.aGame = new GameFrame("Javapoly");
         this.aListPlayer = new HashMap<Integer,Player>();
         this.aListeCase = new HashMap<Integer,Cases_Plateau>();
+        remplirCase();
         String[]vCouleur = {"RED","BLUE","GREEN","YELLOW"};
         int vPositionListCouleur=0;
         Iterator iteratorP = pListPlayer.entrySet().iterator();
         while (iteratorP.hasNext())
         {
             Map.Entry PlayerEntry = (Map.Entry) iteratorP.next();
-            Player PlayerTemp = new Player(1500,PlayerEntry.getValue().toString(),vCouleur[vPositionListCouleur] );
-            this.aListPlayer.put(vPositionListCouleur+1,PlayerTemp);
+            Player PlayerTemp = new Player(1500,PlayerEntry.getValue().toString(),vCouleur[vPositionListCouleur],getCase(0) );
+            this.aListPlayer.put((vPositionListCouleur+1),PlayerTemp);
+            vPositionListCouleur+=1;
         }//while(.)
         this.aNumJoueurActif = 1;
-        remplirCase();
         tourJoueur();
         //début du tour du joueur1
     }//VideoGame(.,.,.)
@@ -203,7 +204,7 @@ public class VideoGame
         int prix = vTerrain.getPrixAchat();
         int vGagnant = 0;
         int vJoueurActuel=getNumJoueurActif();
-        for(int i=0; i<this.aNbJoueur;i++)
+        for(int i=0; i<getNbJoueur();i++)
         {
             if(this.aListPlayer.get(vJoueurActuel).getArgent()-prix>=0)
             {
@@ -211,7 +212,7 @@ public class VideoGame
                 boolean fonctionne = false;
                 while(!fonctionne)
                 {
-                    getaGame().PrintMSG("Le terrain coute actuellement" + vTerrain.getPrixAchat());
+                    getaGame().PrintMSG("Le terrain coute actuellement " + vTerrain.getPrixAchat());
                     getaGame().PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites l'acheter tape acheter, sinon tape laisser");
                     String temp = getaGame().getCommand();
                     if(temp.equals("acheter"))
@@ -253,11 +254,20 @@ public class VideoGame
                         getaGame().PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites encherir tape le prix que tu souhaites encherir ");
                         getaGame().PrintMSG("sinon tape laisser\n");
                         String temp = getaGame().getCommand();
-
-                        if (Integer.valueOf(temp)>prix) {
-                            if (this.aListPlayer.get(vJoueurActuel).getArgent() - Integer.valueOf(temp) >= 0) {
-                                getaGame().PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + "a enchéri pour " + Integer.valueOf(temp));
-                                prix = Integer.valueOf(temp);
+                        boolean valeurEntiere = true;
+                        try {
+                            int valEnInt = Integer.parseInt(temp);
+                        } catch (NumberFormatException e) {
+                            valeurEntiere = false;
+                        }
+                        if (temp.equals("laisser"))
+                        {
+                            fonctionne = true;
+                        }
+                        else if (valeurEntiere && Integer.parseInt(temp)>prix) {
+                            if (this.aListPlayer.get(vJoueurActuel).getArgent() - Integer.parseInt(temp) >= 0) {
+                                getaGame().PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + "a enchéri pour " + Integer.parseInt(temp));
+                                prix = Integer.parseInt(temp);
                                 vGagnant = vJoueurActuel;
                                 fonctionne = true;
                             }
@@ -265,10 +275,6 @@ public class VideoGame
                             {
                                 getaGame().PrintMSG("Tu ne possèdes pas autant d'argent\n");
                             }
-                        }
-                        else if (temp.equals("laisser"))
-                        {
-                            fonctionne = true;
                         }
                         else
                         {
@@ -461,14 +467,14 @@ public class VideoGame
      * Méthode de gestion de l'achat et de vente de terrain nu avec les autres joueurs
      */
     public void businessJoueur() {
-        int[] listJoueur = new int[this.aNbJoueur-1];
-        for (int i = 1; i <= this.aNbJoueur; i++)
+        int[] listJoueur = new int[getNbJoueur()-1];
+        for (int i = 1; i <= getNbJoueur(); i++)
         {
             listJoueur[i]=-1;
 
         }
         int positionList=0;
-        for (int i = 1; i <= this.aNbJoueur; i++) {
+        for (int i = 1; i <= getNbJoueur(); i++) {
             if (this.aListPlayer.get(i).getArgent() >= 0 && this.aListPlayer.get(i)!=getJoueurActif())
             {
                 listJoueur[positionList]=i;
@@ -497,10 +503,10 @@ public class VideoGame
                     {
                         fonctionne2 = true;
                     }
-                    else if (Integer.valueOf(temp2) >= 0 && Integer.valueOf(temp2) < positionList)
+                    else if (Integer.parseInt(temp2) >= 0 && Integer.parseInt(temp2) < positionList)
                     {
                         boolean fonctionne3 = false;
-                        Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.valueOf(temp2)]);
+                        Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.parseInt(temp2)]);
                         int[] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
                         listPatrimoineVente[0]=-1;
                         int positionListPatrimoine = 0;
@@ -539,8 +545,8 @@ public class VideoGame
                             }
                             getaGame().PrintMSG("Tapez 'retour' pour revenir en arriere\n");
                             String temp3 = getaGame().getCommand();
-                            if (Integer.valueOf(temp3) >= 0 && Integer.valueOf(temp3) < positionListPatrimoine) {
-                                Patrimoine vTerrainChoisi = joueurEchange.getPatrimoine().get(Integer.valueOf(temp3));
+                            if (Integer.parseInt(temp3) >= 0 && Integer.parseInt(temp3) < positionListPatrimoine) {
+                                Patrimoine vTerrainChoisi = joueurEchange.getPatrimoine().get(Integer.parseInt(temp3));
                                 if (getJoueurActif().getArgent() - vTerrainChoisi.getPrixAchat() < 0) {
                                     getaGame().PrintMSG(" Vous n'avez pas assez d'argent pour acheter ce terrain.\n");
                                 }
@@ -1001,7 +1007,7 @@ public class VideoGame
                                 {
                                     getaGame().PrintMSG("Tu n'as pas fait de double, tu ne sors donc pas de la prison");
                                     getaGame().PrintMSG(" Tu peux dépenser 50 ou utiliser un passe afin de sortir de prison maintenant");
-                                    getaGame().PrintMSG("Tape sortir, si tu veux sortir maitenant et tape rester, si tu ne veux pas sortir");
+                                    getaGame().PrintMSG("Tape sortir, si tu veux sortir maintenant et tape rester, si tu ne veux pas sortir");
                                     String temp2 = getaGame().getCommand();
                                     if (temp2.equals("sortir"))
                                     {
@@ -1009,9 +1015,15 @@ public class VideoGame
                                             getaGame().PrintMSG(" Tu utilises ton passe pour sortir de prison.");
                                             getJoueurActif().setSortiePrison(getJoueurActif().getSortiePrison() - 1);
                                             getJoueurActif().setEstPrisonnier(0);
-                                        } else {
+                                            fonctionne=true;
+
+                                        }
+                                        else
+                                        {
                                             getaGame().PrintMSG(" Tu payes 50 pour pouvoir sortir de prison.");
                                             getJoueurActif().ajouteArgent(- 50);
+                                            getJoueurActif().setEstPrisonnier(0);
+                                            fonctionne=true;
                                             if(getJoueurActif().getArgent()<0)
                                             {
                                                 hypothequer();
@@ -1021,13 +1033,13 @@ public class VideoGame
                                                     break;
                                                 }
                                             }
-                                            getJoueurActif().setEstPrisonnier(0);
 
                                         }
                                     }
                                     else if (temp2.equals("rester")) {
                                         nbEffetCaseEffectue += 1;
                                         vEffetCaseEffectue = true;
+                                        fonctionne=true;
                                         getJoueurActif().setEstPrisonnier(getJoueurActif().getEstPrisonnier() + 1);
                                     }
                                     else
@@ -1049,20 +1061,27 @@ public class VideoGame
                                 }
                                 else
                                 {
+                                    getJoueurActif().setEstPrisonnier(0);
                                     getaGame().PrintMSG(" Tu payes 50 pour pouvoir sortir de prison.");
                                     getJoueurActif().ajouteArgent( - 50);
                                     if(getJoueurActif().getArgent()<0)
                                     {
-                                        getaGame().PrintMSG("Vous etes ruinés, vous avez perdu");
-                                        finTourAutorise=true;
-                                        break;
+                                        hypothequer();
+                                        if(getJoueurActif().getArgent()<0)
+                                        {
+                                            getaGame().PrintMSG("Vous etes ruinés, vous avez perdu");
+                                            finTourAutorise=true;
+                                            break;
+                                        }
                                     }
-                                    getJoueurActif().setEstPrisonnier(0);
 
                                 }
+
                             }
 
-                        } else {
+                        }
+                        else if(lancedes1 == lancedes2)
+                        {
                             getaGame().PrintMSG("Bravo tu as fait un double");
                             ++nbDouble;
                             if (getJoueurActif().getEstPrisonnier() != 0) {
@@ -1103,7 +1122,7 @@ public class VideoGame
                             {
                                 Patrimoine terrain = (Patrimoine) getJoueurActif().getPosition();
                                 if (terrain.getJoueurBoss() == 0) {
-                                    getaGame().PrintMSG("Tu es sur une case propriété sans propriétaire, tu peux donc l'acheter avec la commande acheter ");
+                                    getaGame().PrintMSG("Tu es sur une case propriété sans propriétaire,\n tu peux donc l'acheter avec la commande acheter ");
                                     getaGame().PrintMSG("ou la mettre en enchère avec la commande enchere");
                                 } else if (terrain.getJoueurBoss() == getNumJoueurActif()) {
                                     getaGame().PrintMSG("Ceci est une de tes propriétés");
@@ -1172,21 +1191,34 @@ public class VideoGame
                                 CaseEffet terrain = (CaseEffet) getJoueurActif().getPosition();
 
                                 int vChoix =terrain.effetCase(getJoueurActif(),this.aListPlayer,this.aListeCase);
+
+                                if(terrain.getNumeroEffet()==1)
+                                {
+                                    getaGame().PrintMSG(" Vous piochez une carte Chance : ");
+                                }
+                                else
+                                {
+                                    getaGame().PrintMSG(" Vous piochez une carte communautée : ");
+                                }
+                                getaGame().PrintMSG(terrain.getaEffet());
+
                                 if(vChoix==1)
                                 {
                                     while(vChoix!=0)
                                     {
                                         String temp3 = getaGame().getCommand();
-                                        getaGame().PrintMSG(" Tu as le choix entre piocher une carte chance ou perdre 10.\n");
                                         getaGame().PrintMSG(" Tape 'chance' si tu veux piocher une carte chance, sinon '10' pour depenser 10 \n");
 
                                         if(temp3.equals("chance"))
                                         {
+                                            getaGame().PrintMSG(" Vous avez décidé de piocher une carte chance \n");
                                             terrain.caseChance(getJoueurActif(),aListPlayer,aListeCase);
+                                            getaGame().PrintMSG(terrain.getaEffet());
                                             vChoix=0;
                                         }
                                         else if(temp3.equals("10"))
                                         {
+                                            getaGame().PrintMSG(" Vous avez décidé de payer 10 \n");
                                             getJoueurActif().ajouteArgent(-10);
                                             vChoix=0;
                                         }
@@ -1228,7 +1260,13 @@ public class VideoGame
 
                     if (nbEffetCaseEffectue == nbDouble + 1) {
                         finTourAutorise = true;
-                    } else {
+                    }
+                    else if(nbEffetCaseEffectue==nbDouble)
+                    {
+                        getaGame().PrintMSG(" Vous devez relancer les dés avant de finir votre tour");
+                    }
+                    else
+                    {
                         getaGame().PrintMSG(" Vous devez d'abord acheter le terrain actuel ou le mettre en enchère avant de finir votre tour");
                     }
 
@@ -1259,7 +1297,7 @@ public class VideoGame
     public void finDeTour()
     {
         int nbJoueurVivant =0;
-        for (int i=1; i<=this.aNbJoueur;i++)
+        for (int i=1; i<=getNbJoueur();i++)
         {
             if(this.aListPlayer.get(i).getArgent()>=0)
             {
@@ -1268,7 +1306,7 @@ public class VideoGame
         }
         if(nbJoueurVivant==1)
         {
-            for (int i=1; i<=this.aNbJoueur;i++) {
+            for (int i=1; i<=getNbJoueur();i++) {
                 if (this.aListPlayer.get(i).getArgent() >= 0) {
                     getaGame().PrintMSG("Fin de la partie, " + this.aListPlayer.get(i).getNomJoueur() + " a gagné la partie. Bravo!"); // FIN DE LA PARTIE
                     break;
