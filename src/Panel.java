@@ -23,7 +23,7 @@ public class Panel extends JPanel {
         return isFinish;
     }
 
-    public static HashMap getPlayerList(){
+    public static HashMap<Integer, String> getPlayerList(){
         return ListJoueur;
     }
     public static int getIndexPlayer(){

@@ -809,12 +809,15 @@ public class VideoGame
                     getJoueurActif().ajouteArgent(getPrixMaison(terrain.getNbCase()));
                     getBanque().setNbMaison(getBanque().getNbMaison() + 1);
                     System.out.println("Vous avez vendu une maison sur " + terrain.getNomCase() + "( " + terrain.getNbMaison()[0] + " restante(s) ) ");
+                    terrain.suprimeMaison(1);
                     System.out.println("Vous avez gagnez " + getPrixMaison(terrain.getNbCase()) + "\n");
                 } else {
                     getJoueurActif().ajouteArgent(getPrixMaison(terrain.getNbCase()) * 5);
                     getBanque().setNbHotel(getBanque().getNbHotel() + 1);
                     System.out.println("Vous avez vendu un hotel sur " + terrain.getNomCase() + " .");
                     System.out.println("Vous avez gagnez " + getPrixMaison(terrain.getNbCase()) * 5 + "\n");
+                    terrain.suprimeMaison(1);
+
 
                 }
                 listPatrimoinePossede = new int[getJoueurActif().getPatrimoine().size()];
@@ -850,7 +853,76 @@ public class VideoGame
             }
         }
     }
+    public int hypothequer() {
+        Player pJoueur = this.getJoueurActif();
+        this.getJoueurActif().affichePatrimoine();
+        int test[] = new int[pJoueur.getPatrimoine().size()];
+        int k = 0;
+        Iterator iterator = pJoueur.getPatrimoine().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry joueur = (Map.Entry) iterator.next();
 
+            test[k] = (int) joueur.getKey();
+            k=k+1;
+        }
+        String temp = this.aInterface.getCommand();//!\\ Ã  modifier
+        int val=Integer.parseInt(temp);
+
+        if(val<test.length)
+        {
+            Patrimoine pPat=pJoueur.getPatrimoine().get(test[val]);
+            if(pPat.getColor().equals("gare"))
+            {
+                pJoueur.ajouteArgent(pPat.getHypotheque());
+                pJoueur.getPatrimoine().get(test[val]).setJoueurBoss(0);
+                pJoueur.getPatrimoine().remove(test[val]);
+                System.out.println(pJoueur.getArgent());
+            }
+            else if(pPat.getColor().equals("compagnie"))
+            {
+                pJoueur.ajouteArgent(pPat.getHypotheque());
+                pJoueur.getPatrimoine().get(test[val]).setJoueurBoss(0);
+                pJoueur.getPatrimoine().remove(test[val]);
+                System.out.println(pJoueur.getArgent());
+            }
+            else
+            {
+
+                Rue pRue=(Rue)pPat;
+                if(pRue.getNbMaison()[0]==0 && pRue.getNbMaison()[1]==0)
+                {
+                    pJoueur.ajouteArgent(pRue.getHypotheque());
+                    pJoueur.getPatrimoine().get(test[val]).setJoueurBoss(0);
+                    pJoueur.getPatrimoine().remove(test[val]);
+                    System.out.println(pJoueur.getArgent());
+                }
+                else
+                {
+                    int prixM = getPrixMaison(pPat.getNbCase());
+                    int nb = pRue.getNbMaison()[0];
+
+                    while (nb < 0 && pJoueur.getArgent() < 0) {
+                        pJoueur.ajouteArgent(prixM);
+                        pRue.suprimeMaison(1);
+                        nb--;
+                    }
+                    if(pRue.getNbMaison()[1]==1)
+                    {
+                        pJoueur.ajouteArgent(prixM*);
+                        pRue.suprimeMaison(1);
+                    }
+
+                    System.out.println(pJoueur.getArgent());
+                }
+            }
+        }
+
+        if(pJoueur.getArgent() < 0)
+        {
+            hypothequer();
+        }
+
+    }
     /**
      * Méthode de gestion de tour des joueurs
      */

@@ -120,8 +120,8 @@ public class CaseEffet extends Cases_Plateau{
                 Iterator iterator = pListPlayer.entrySet().iterator();
                 while (iterator.hasNext())
                 {
-                    Map.Entry joeur = (Map.Entry) iterator.next();
-                    Player joueur = (Player) joeur.getValue();
+                    Map.Entry joujoueur = (Map.Entry) iterator.next();
+                    Player joueur = (Player) joujoueur.getValue();
                     if(!(pJoueur.getNomJoueur().equals(joueur.getNomJoueur()))&& joueur.getArgent()<0)
                     {
                         joueur.ajouteArgent(-10);

@@ -56,10 +56,25 @@ public class Rue extends Patrimoine
         }
     }
 
+
     public int[] getNbMaison()
     {
         int [] vNbMaison= {this.aNbMaison,this.aHotel};
         return vNbMaison;
+    }
+    public void suprimeMaison(int pNbMaison)
+    {
+        if(aNbMaison==0 && aHotel==0)
+        {System.out.println("erreur");}
+        else if (pNbMaison>aNbMaison && aHotel==0) {
+            System.out.println("tu peux pas");
+        }
+        else if (aHotel==1) {aHotel=0;}
+        else {
+            aNbMaison-=pNbMaison;
+        }
+
+
     }
 
 
