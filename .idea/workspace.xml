@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="j'ai envie de canner">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="je sais meme pas ce que j'ai modifié mais bon je commit et flute">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676737599526</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="je sais meme pas ce que j'ai modifié mais bon je commit et flute">
+      <created>1676740243780</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1676740243780</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -179,6 +187,7 @@
     <MESSAGE value="ajout de code" />
     <MESSAGE value="plus de bug" />
     <MESSAGE value="j'ai envie de canner" />
-    <option name="LAST_COMMIT_MESSAGE" value="j'ai envie de canner" />
+    <MESSAGE value="je sais meme pas ce que j'ai modifié mais bon je commit et flute" />
+    <option name="LAST_COMMIT_MESSAGE" value="je sais meme pas ce que j'ai modifié mais bon je commit et flute" />
   </component>
 </project>

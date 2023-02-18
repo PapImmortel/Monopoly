@@ -26,6 +26,7 @@ public class GameFrame extends JFrame {
     }
 
     public static String getCommand(){
+
         return panel.getCommand();
     }
 

@@ -29,7 +29,7 @@ public class GamePanel extends JPanel {
 
     public static String getCommand(){
         while(!isType){
-            lastCommand = lastCommand;
+            System.out.print("");
         }
         return getLastCommand();
     }
