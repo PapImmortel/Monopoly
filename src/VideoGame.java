@@ -960,6 +960,7 @@ public class VideoGame
 
         while(!finTourAutorise) {
             getaGame().PrintMSG("Que veux tu faire ?");
+            getaGame().PrintMSG(" Commande : 'acheter', 'enchere' , 'lancerdes,'construction','findetour','vente','business'");
             temp = this.aGame.getCommand();
             switch (temp) {
                 case "acheter":
@@ -1014,7 +1015,7 @@ public class VideoGame
                         getaGame().PrintMSG("Ceci n'est pas une case achetable, tu ne peux donc pas la mettre en enchère");
                     }
                     break;
-                case "LancerDes":
+                case "lancerdes":
 
                     if (nbEffetCaseEffectue == nbDouble && vEffetCaseEffectue) {
                         int lancedes1 = random.nextInt(6) + 1;
@@ -1224,7 +1225,6 @@ public class VideoGame
                                         }
                                     }
                                 }
-                                //faire effet de la case( voir avec Klhaimands
                                 nbEffetCaseEffectue += 1;
                                 vEffetCaseEffectue = true;
 
@@ -1253,7 +1253,7 @@ public class VideoGame
 
                     construction();
                     break;
-                case "finDeTour":
+                case "findetour":
 
                     if (nbEffetCaseEffectue == nbDouble + 1) {
                         finTourAutorise = true;
@@ -1262,7 +1262,7 @@ public class VideoGame
                     }
 
                     break;
-                case "Vente":
+                case "vente":
 
                     venteMaison();
                     break;
