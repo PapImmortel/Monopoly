@@ -8,10 +8,12 @@ public class Main {
         int Joueur;
 
         while(!Menu.isFinish()){
+            System.out.println("");
         }
 
         ListJoueur = Menu.getPlayerList();
         Joueur = Menu.getIndex();
+        Menu.setVisible(false);
         VideoGame jeux = new VideoGame(Joueur,ListJoueur);//Constructeur paramétrique de VideoGame
 
 

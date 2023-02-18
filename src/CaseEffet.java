@@ -3,13 +3,23 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Classe pour les effets des cartes communauté et chances
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ * @date (2023/02/18)
+ */
 public class CaseEffet extends Cases_Plateau{
 
 
+
     private int aNumeroEffet;//0=depart 1=chance 2=communauter
+    private String aEffet;
 
     /**
-     *constructeur de la classe CaseEffet
+     *
      * @param pNomCase String le nom de la case
      * @param pNbCase  int le numero de la case
      * @param pNumeroEffet int le numero du type
@@ -19,6 +29,32 @@ public class CaseEffet extends Cases_Plateau{
         super(pNomCase,pNbCase,false);
         this.aNumeroEffet=pNumeroEffet;
     }
+
+    /**
+     * Mutateur de aEffet
+     * @param pEffet
+     */
+    public void setaEffet(String pEffet)
+    {
+        this.aEffet=pEffet;
+    }
+
+    /**
+     * Accesseur de aEffet
+     * @return aEffet
+     */
+    public String getaEffet()
+    {
+        return this.aEffet;
+    }
+
+    /**
+     * Fonction générale pour les effets des cartes à effets
+     * @param pJoueur Player le joueur actif
+     * @param pListPlayer Hashmap la liste des joueurs
+     * @param pListCase Hashmap la liste des cases
+     * @return
+     */
     public int effetCase(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         if(this.aNumeroEffet==1)
@@ -31,75 +67,87 @@ public class CaseEffet extends Cases_Plateau{
             int a=this.caseCommunauter(pJoueur,pListPlayer,pListCase);
             return a;
         }
-        return -1;
+        return 0;
     }
+
     /**
-     * Effet des cartes chances
+     * Effet des cartes chance
      * @param pJoueur Player le joueur actif
-     * @param pListPlayer HashMap<Integer,Player> la liste des joueurs
-     * @param pListCase HashMap<Integer,Cases_Plateau> la liste des cases
-     * @return
+     * @param pListPlayer Hashmap la liste des joueurs
+     * @param pListCase Hashmap la liste des cases
      */
     public void caseChance(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
-        int vNumEffet= random.nextInt(16);
+        int vNumEffet= random.nextInt(6) + 1;
         switch (vNumEffet){
             case 0:
                 pJoueur.setPosition(pListCase.get(39));
+                this.setaEffet("Va à la case RUE DE LA PAIX");
             case 1:
                 pJoueur.setPosition(pListCase.get(0));
                 depart(pJoueur);
+                this.setaEffet("Retourne a la case depart");
             case 2:
                 if(pJoueur.getPosition().getNbCase()-24>0)
                 {
                     depart(pJoueur);
                 }
                 pJoueur.setPosition(pListCase.get(24));
+                this.setaEffet("Va Avenue Henry-Martin si tu passes par la case depart, tu reçois 200euros ");
             case 3:
-                if(pJoueur.getPosition().getNbCase()-11>0)
-                {
+                if(pJoueur.getPosition().getNbCase()-11>0) {
                     depart(pJoueur);
                 }
                 pJoueur.setPosition((pListCase.get(11)));
+                this.setaEffet("Va BOULEVARD DE LA VILLETTE si tu passes par la case depart, tu reçois 200euros ");
+
             case 4:
                 pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*40);
                 pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[2]*115);
-
-                //Vous êtes imposé pour les réparations de voirie à raison de F4 000 par maison et F11 500 par hôtel.
+                this.setaEffet("Vous êtes imposés pour les réparations de voirie à raison de F4 000 par maison et F11 500 par hôtel.");
             case 5:
                 if(pJoueur.getPosition().getNbCase()-15>0)
                 {
                     depart(pJoueur);
                 }
                 pJoueur.setPosition((pListCase.get(15)));
+                this.setaEffet("Va GARE DE LYON si tu passes par la case depart, reçoit 200euros ");
             case 6:
                 pJoueur.ajouteArgent(100);
+                this.setaEffet("Reçois 100 euros");
             case 7:
                 pJoueur.ajouteArgent(50);
+                this.setaEffet("Reçois 50 euros");
             case 8:
-                //Vous êtes libéré de prison. Cette carte peut être conservée jusqu’à ce qu’elle soit utilisée ou vendue.
                 pJoueur.setSortiePrison(pJoueur.getSortiePrison()+1);
+                this.setaEffet("Vous êtes libérés de prison. Cette carte est conservée jusqu'à utilisation. ");
             case 9:
                 int pos =pJoueur.getPosition().getNbCase()-3;
                 pJoueur.setPosition(pListCase.get(pos));
+                this.setaEffet("Recule de trois cases ");
             case 10:
                 pJoueur.setPosition(pListCase.get(10));
                 pJoueur.setEstPrisonnier(1);
-                //Aller en prison. Rendez-vous directement en prison. Ne franchissez pas par la case départ, ne touchez pas F20 000
+                this.setaEffet("Va en prison sans passer par la case depart");
             case 11:
                 pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*25);
                 pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[2]*100);
-                //Faites des réparations dans toutes vos maisons. Versez pour chaque maison F2 500. Versez pour chaque hôtel F10 000
+                this.setaEffet("Faites des réparations dans toutes vos maisons. Versez pour chaque maison 25euros. Versez pour chaque hôtel 100euro");
             case 12:
                 pJoueur.ajouteArgent(-15);
+                this.setaEffet("Perds 15 euros");
             case 13:
                 pJoueur.ajouteArgent(-150);
+                this.setaEffet("Perds 150 euros");
+
             case 14:
                 pJoueur.ajouteArgent(-20);
+                this.setaEffet("Perds 20 euros");
+
             case 15:
                 pJoueur.ajouteArgent(150);
-
+                this.setaEffet("Reçois 150 euros");
 
 
         }
@@ -111,60 +159,82 @@ public class CaseEffet extends Cases_Plateau{
      * @param pJoueur Player le joueur actif
      * @param pListPlayer Hashmap la liste des joueurs
      * @param pListCase Hashmap la liste des cases
-     * @return
+     * @return 1 si une tombe sur la case pioche une carte chance ou paye
      */
     public int caseCommunauter(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
-        int vNumEffet= random.nextInt(16);
+        int vNumEffet= random.nextInt(6) + 1;
         switch (vNumEffet){
 
             case 0:
                 pJoueur.setPosition(pListCase.get(0));
                 depart(pJoueur);
+                this.setaEffet("retourne à la case depart");
             case 1:
                 pJoueur.ajouteArgent(200);
+                this.setaEffet("Reçois 200 euros");
             case 2:
                 pJoueur.ajouteArgent(-50);
-
+                this.setaEffet("Perds 50 euros");
             case 3:
                 pJoueur.ajouteArgent(50);
+                this.setaEffet("Perds 20 euros");
             case 4:
                 pJoueur.setSortiePrison(pJoueur.getSortiePrison()+1);
+                this.setaEffet("Vous êtes libérés de prison. Cette carte est conservée jusqu'à utilisation.");
+
             case 5:
                 pJoueur.setPosition(pListCase.get(10));
                 pJoueur.setEstPrisonnier(1);
+                this.setaEffet("Va en prison sans passer par la case depart");
+
             case 6:
                 pJoueur.setPosition(pListCase.get(1));
+                this.setaEffet("Retourne à BELLEVILLE");
             case 7:
                 pJoueur.ajouteArgent(100);
+                this.setaEffet("Reçois 100 euros");
+
             case 8:
                 Iterator iterator = pListPlayer.entrySet().iterator();
                 while (iterator.hasNext())
                 {
                     Map.Entry joujoueur = (Map.Entry) iterator.next();
                     Player joueur = (Player) joujoueur.getValue();
-                    if(!(pJoueur.getNomJoueur().equals(joueur.getNomJoueur()))&& joueur.getArgent()<0)
+                    if(!(pJoueur.getNomJoueur()==joueur.getNomJoueur())&& joueur.getArgent()<0)
                     {
                         joueur.ajouteArgent(-10);
                         pJoueur.ajouteArgent(10);
                     }
 
                 }//while()
-                //tout les joueurs vous donn 10
+                this.setaEffet("tous les joueurs vous donnent 10 euros");
+
             case 9:
                 pJoueur.ajouteArgent(20);
+                this.setaEffet("Reçois 20 euros");
             case 10:
                 pJoueur.ajouteArgent(25);
+                this.setaEffet("Reçois 25 euros");
             case 11:
                 pJoueur.ajouteArgent(-50);
+                this.setaEffet("Perds 50 euros");
+
             case 12:
+                this.setaEffet("Paye 10 ou pioche une carte chance");
                 return 1;
+
+
             // Payer 10 ou carte chance
             case 13:
                 int cPos=pJoueur.getPosition().getNbCase();
                 if(35<cPos || cPos<5)
                 {
+                    if(cPos>35)
+                    {
+                        depart(pJoueur);
+                    }
                     pJoueur.setPosition(pListCase.get(5));
                 }
                 else if (5<cPos && cPos<15)
@@ -173,16 +243,20 @@ public class CaseEffet extends Cases_Plateau{
                 }
                 else if (15<cPos && cPos<25)
                 {
-                    pJoueur.setPosition(pListCase.get(15));
+                    pJoueur.setPosition(pListCase.get(25));
                 }
                 else if (25<cPos && cPos<35)
                 {
-                    pJoueur.setPosition(pListCase.get(25));
+                    pJoueur.setPosition(pListCase.get(35));
                 }
+                this.setaEffet("Va a la Gare la plus proche");
             case 14:
                 pJoueur.ajouteArgent(10);
+                this.setaEffet("Reçois 10 euros");
+
             case 15:
                 pJoueur.ajouteArgent(100);
+                this.setaEffet("Reçois 100 euros");
 
 
 
