@@ -29,7 +29,7 @@ public class CaseEffet extends Cases_Plateau{
     public void caseChance(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
-        int vNumEffet= random.nextInt(6) + 1;
+        int vNumEffet= random.nextInt(16);
         switch (vNumEffet){
             case 0:
                 pJoueur.setPosition(pListCase.get(39));
@@ -94,7 +94,7 @@ public class CaseEffet extends Cases_Plateau{
     public int caseCommunauter(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
-        int vNumEffet= random.nextInt(6) + 1;
+        int vNumEffet= random.nextInt(16);
         switch (vNumEffet){
 
             case 0:
@@ -122,7 +122,7 @@ public class CaseEffet extends Cases_Plateau{
                 {
                     Map.Entry joeur = (Map.Entry) iterator.next();
                     Player joueur = (Player) joeur.getValue();
-                    if(!(pJoueur.getNomJoueur()==joueur.getNomJoueur())&& joueur.getArgent()<0)
+                    if(!(pJoueur.getNomJoueur().equals(joueur.getNomJoueur()))&& joueur.getArgent()<0)
                     {
                         joueur.ajouteArgent(-10);
                         pJoueur.ajouteArgent(10);
@@ -145,15 +145,15 @@ public class CaseEffet extends Cases_Plateau{
                 {
                     pJoueur.setPosition(pListCase.get(5));
                 }
-                else if (5<cPos || cPos<15)
+                else if (5<cPos && cPos<15)
                 {
                     pJoueur.setPosition(pListCase.get(15));
                 }
-                else if (15<cPos || cPos<25)
+                else if (15<cPos && cPos<25)
                 {
                     pJoueur.setPosition(pListCase.get(15));
                 }
-                else if (25<cPos || cPos<35)
+                else if (25<cPos && cPos<35)
                 {
                     pJoueur.setPosition(pListCase.get(25));
                 }

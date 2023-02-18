@@ -6,7 +6,6 @@ public class Main {
     {
         Scanner scanner = new Scanner(System.in);
         HashMap<Integer, String> ListJoueur = new HashMap<>();
-        HashMap<Integer, String> ListCouleur = new HashMap<>();
         System.out.println("Bienvenue dans le Monopoly java \n");
         System.out.println("Tapez le nombre de joueur entre 2 et 4 ou  0 pour quitter \n");
         int Joueur = scanner.nextInt();
@@ -34,9 +33,8 @@ public class Main {
                 System.out.println("Entrez la couleur du Joueur numeros " + i);
                 String Couleur = scanner.nextLine();
                 System.out.println("Bonjour " + Joueur1 + ", ta couleur est : " + Couleur);
-                ListCouleur.put(i,Couleur);
             }
-            VideoGame jeux = new VideoGame(Joueur,ListJoueur, ListCouleur);//Constructeur paramétrique de VideoGame
+            VideoGame jeux = new VideoGame(Joueur,ListJoueur);//Constructeur paramétrique de VideoGame
 
         }//else
 

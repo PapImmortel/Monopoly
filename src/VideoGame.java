@@ -21,28 +21,22 @@ public class VideoGame
      * Constructeur à 3 paramètre de la Classe VideoGame
      * @param pNbJoueur aNbJoueur nombre de joueur actif pour la partie à venir
      * @param pListPlayer aListPlayer HashMap de la liste des joueurs
-     * @param pCouleur aListCouleur HashMap de la liste des couleurs des joueurs
      */
-    public VideoGame(int pNbJoueur,HashMap pListPlayer,HashMap pCouleur)
+    public VideoGame(int pNbJoueur,HashMap<Integer,String> pListPlayer)
     {
         this.aNbJoueur = pNbJoueur;
         this.aBanque = new Banque();
         this.aInterface = new Interface();
         this.aListPlayer = new HashMap<Integer,Player>();
         this.aListeCase = new HashMap<Integer,Cases_Plateau>();
-        if (pListPlayer.size() != pCouleur.size())
-        {
-            System.out.println("Pas la même taille ");
-            System.exit(0);
-        }
+        String[]vCouleur = {"RED","BLUE","GREEN","YELLOW"};
+        int vPositionListCouleur=0;
         Iterator iteratorP = pListPlayer.entrySet().iterator();
-        Iterator iteratorC = pCouleur.entrySet().iterator();
         while (iteratorP.hasNext())
         {
             Map.Entry PlayerEntry = (Map.Entry) iteratorP.next();
-            Map.Entry CouleurEntry = (Map.Entry) iteratorC.next();
-            Player PlayerTemp = new Player(1500,PlayerEntry.getValue().toString(), CouleurEntry.getValue().toString());
-            this.aListPlayer.put(1,PlayerTemp);
+            Player PlayerTemp = new Player(1500,PlayerEntry.getValue().toString(),vCouleur[vPositionListCouleur] );
+            this.aListPlayer.put(vPositionListCouleur+1,PlayerTemp);
         }//while(.)
         this.aNumJoueurActif = 1;
         remplirCase();
@@ -1031,6 +1025,10 @@ public class VideoGame
                             }
                             System.out.println("Tu avances de " + (lancedes1 + lancedes2) + " car tu as fait " + lancedes1 + "et " + lancedes2 + ".");
                             System.out.println("Tu atterris sur la case : " + getJoueurActif().getPosition().getNomCase());
+                            if(getJoueurActif().getPosition().getNbCase()==10)
+                            {
+                                System.out.println("(simple visite)");
+                            }
 
 
                             if (getJoueurActif().getPosition().getTypeCase())//verifier si la case est bien une case propriétée
@@ -1073,9 +1071,35 @@ public class VideoGame
                                     }
 
                                 }
-                            } else {
+                            }
+                            else if(getJoueurActif().getPosition().getNbCase() %10==0)
+                            {
+                                if(getJoueurActif().getPosition().getNbCase()==20)
+                                {
+                                    System.out.println("Tu gagnes le gros lot, tu réccuperes tout l'argent des impots : " + getBanque().getBenefice());
+                                    getJoueurActif().ajouteArgent(getBanque().getBenefice());
+                                    getBanque().setBenefice(0);
+                                    nbEffetCaseEffectue += 1;
+                                    vEffetCaseEffectue = true;
+
+                                }
+                                else if(getJoueurActif().getPosition().getNbCase()==30)
+                                {
+                                    getJoueurActif().setPosition(getCase(10));
+                                    getJoueurActif().setEstPrisonnier(1);
+                                    nbEffetCaseEffectue = 4;
+                                    vEffetCaseEffectue = true;
+
+                                }
+                                else {
+                                    nbEffetCaseEffectue += 1;
+                                    vEffetCaseEffectue = true;
+                                }
+                            }
+                            else
+                            {
                                 CaseEffet terrain = (CaseEffet) getJoueurActif().getPosition();
-                                //faire effet de la case voir avec Klhaimands tien Thymau-Thaie
+
                                 int vChoix =terrain.effetCase(getJoueurActif(),this.aListPlayer,this.aListeCase);
                                 if(vChoix==1)
                                 {
@@ -1096,7 +1120,7 @@ public class VideoGame
                                             vChoix=0;
                                         }
                                         else if (!temp3.isEmpty()) {
-                                            System.out.println("ta dit quoi la ");
+                                            System.out.println("tu as dit quoi la ");
                                         }
                                     }
                                 }

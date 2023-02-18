@@ -1,7 +1,7 @@
 public class Cases_Plateau
 {
     /**
-     * Classe abstraite pour les informations des cases
+     * Classe pour les informations des cases
      * @author Arvind Tangavelou
      * @author Quentin Guyot
      * @author Timothée Royer
@@ -22,7 +22,7 @@ public class Cases_Plateau
     }
     /**
      * Mutateur du type de la Case
-     * @param pTypeCase
+     * @param pTypeCase reccupere le type de case(si cest un lieu ou une carte achetable
      */
     public void setTypeCase(boolean pTypeCase)
     {
@@ -37,17 +37,7 @@ public class Cases_Plateau
         return this.aTypeCase;
     }//getTypeCase()
 
-    /**
-     * Mutateur du propriétaire de la case
-     * @param pPossesseur aPossesseur nouveau possesseur de la case
-     */
-    //public abstract void setPossesseur(Player pPossesseur);
 
-    /**
-     * Assesseur du posseusseeur de la case
-     * @return aPossesseur retourne le propriétaire de la case
-     */
-    //public abstract  Player getPossesseur();
     /**
      * Mutateur du numéros de la case
      * @param pNbCase nouveau numéros de la case
@@ -82,41 +72,5 @@ public class Cases_Plateau
     {
         return this.aNomCase;
     }//getNomCase()
-
-    /**
-     * Mutateur du prix de la propriété
-     * @param pPrix nouveau prix de la propriété
-     */
-    /*public void setPrix(int pPrix)
-    {
-        this.aPrix = pPrix;
-    }//setPrix(.)*/
-
-    /**
-     * assesseur du prix de la propriété
-     * @return prix de la propriété
-     */
-    /*public int getPrix()
-    {
-        return this.aPrix;
-    }//getPrix()*/
-
-    /**
-     * Mutateur du type de case
-     * @param pAchetable boolean indiquant si la case est achetable
-     */
-    /*public void setAchetable(boolean pAchetable)
-    {
-        this.aAchetable = pAchetable;
-    }//setAchetable(.)*/
-
-    /**
-     * Assesseur permetant de savoir si la case est achetable
-     * @return aAchetable boolean indiquant si la case est achetable
-     */
-    /*public boolean getAchetable()
-    {
-        return this.aAchetable;
-    }//getAchetable()*/
 
 }//Cases_Plateau

@@ -82,7 +82,7 @@ public class Banque
      */
     public String informationMaisonHotel()
     {
-        String retS = "";
+        String retS;
         if (this.aNbHotel > 0 && this.aNbMaison > 0)
         {
             retS = "Il est possible de construire encore " + this.aNbMaison + " maison et encore " + this.aNbHotel + " Hôtel.\n";

@@ -15,7 +15,6 @@ public class Player
     private int aArgent;
     private String aNomJoueur;
     private String aCouleur;
-    private ItemList aAtribute;
     private Cases_Plateau aPosition;
     private  int aNbMonopole;
     private int aSortiePrison;
@@ -42,7 +41,6 @@ public class Player
         this.aArgent = pArgent;
         this.aNomJoueur = pNomJoueur;
         this.aCouleur = pCouleur;
-        this.aAtribute = new ItemList();
         //this.aPosition = Depart;
         this.aNbMonopole = 0;
         this.aSortiePrison = 0;
@@ -97,14 +95,7 @@ public class Player
         return aCouleur;
     }//getCouleur
 
-    /**
-     * Mutateur de Atribute
-     * @param pAtribute aAtribute Nouvel list de Possesion du joueur
-     */
-    public void setAtribute(ItemList pAtribute)
-    {
-        this.aAtribute = pAtribute;
-    }//setAtribute(.)
+
 
     public void ajouteArgent(int pArgent)
     {
@@ -115,14 +106,7 @@ public class Player
         }
     }
 
-    /**
-     * Assesseur d'attribut du joueur
-     * @return aAttribut liste des attributs d'un joueur
-     */
-    public ItemList getAtribute()
-    {
-        return  this.aAtribute;
-    }//getAtribute()
+
 
     /**
      * Mutateur de la position d'un joueur
@@ -183,10 +167,6 @@ public class Player
      */
     public void ajouterPatrimoine(Patrimoine pPatrimoine,int pChange)
     {
-        /*List<Integer> list = new ArrayList<>(this.aPatrimoine.keySet());
-        Collections.sort(list);
-        int last = list.size();
-        this.aPatrimoine.put(last,pCase);*/
         if(pChange==1)
         {
             this.aPatrimoine.put(pPatrimoine.getNbCase(),pPatrimoine);
