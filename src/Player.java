@@ -96,14 +96,13 @@ public class Player
     }//getCouleur
 
 
-
+    /**
+     * fonction pour ajouter de l'argent avec un chiffre positif ou supprimer avec un chiffre négatif
+     * @param pArgent
+     */
     public void ajouteArgent(int pArgent)
     {
         this.aArgent += pArgent;
-        if(this.aArgent<0)
-        {
-            hypothequer();
-        }
     }
 
 
@@ -378,6 +377,10 @@ public class Player
         return 2-this.aListPossession[9];
     }
 
+    /**
+     *
+     * @return un tableau avec le nombre de maisons puis le nombre d'hotel
+     */
     public int[] getNbMaisonHotel()
     {
         Iterator iterator = aPatrimoine.entrySet().iterator();

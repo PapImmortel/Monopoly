@@ -1,18 +1,18 @@
 import java.util.*;
-
+/**
+ * Classe de base du jeux avec toutes les informations du monopoly
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ * @date (2023/01/12)
+ */
 public class VideoGame
 {
-    /**
-     * Classe de base du jeux avec toutes les informations du monopoly
-     * @author Arvind Tangavelou
-     * @author Quentin Guyot
-     * @author Timothée Royer
-     * @author Clément Lavie
-     * @date (2023/01/12)
-     */
+
     private int aNbJoueur;
     private Banque aBanque;
-    private Interface aInterface;
+    private GameFrame aGame ;
     private int aNumJoueurActif;
     private HashMap<Integer,Player> aListPlayer;
     private HashMap<Integer,Cases_Plateau> aListeCase;
@@ -26,7 +26,7 @@ public class VideoGame
     {
         this.aNbJoueur = pNbJoueur;
         this.aBanque = new Banque();
-        this.aInterface = new Interface();
+        this.aGame = new GameFrame("Javapoly");
         this.aListPlayer = new HashMap<Integer,Player>();
         this.aListeCase = new HashMap<Integer,Cases_Plateau>();
         String[]vCouleur = {"RED","BLUE","GREEN","YELLOW"};
@@ -82,20 +82,20 @@ public class VideoGame
 
     /**
      * Mutateur d'interface
-     * @param pInterface aInterface interface à changer
+     * @param pGame interface à changer
      */
-    public void setInterface(Interface pInterface)
+    public void setInterface(GameFrame pGame)
     {
-        this.aInterface = pInterface;
+        this.aGame = pGame;
     }//setInterface(.)
 
     /**
      * Assesseur d'Interface
      * @return aInterface
      */
-    public Interface getInterface()
+    public GameFrame getaGame()
     {
-        return this.aInterface;
+        return this.aGame;
     }//getInterface()
 
 
@@ -241,7 +241,7 @@ public class VideoGame
                 {
                     System.out.println("Le terrain coute actuellement" + vTerrain.getPrixAchat());
                     System.out.println(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites l'acheter tape acheter, sinon tape laisser");
-                    String temp = this.aInterface.getCommand();//!\\ à modifier
+                    String temp = this.aGame.getCommand();
                     if(temp.equals("acheter"))
                     {
                         vGagnant=vJoueurActuel;
@@ -256,7 +256,7 @@ public class VideoGame
                     {
                         fonctionne=true;
                     }
-                    else if(!temp.isEmpty())
+                    else
                     {
                         System.out.println("Je n'ai pas compris votre commande, tape acheter pour acheter le terrain, sinon tape laisser");
                     }
@@ -275,32 +275,32 @@ public class VideoGame
             while (vGagnant != vJoueurActuel) {
                 if (this.aListPlayer.get(vJoueurActuel).getArgent() - prix > 0) {
                     System.out.println("Le terrain coute actuellement" + prix);
-                    System.out.println(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites encherir tape enchere ");
-                    System.out.println("ainsi que la valeur dont tu souhaites enchérir, sinon tape laisser\n");
-                    String temp = this.aInterface.getCommand();//!\\ à modifier
+                    System.out.println(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites encherir tape le prix que tu souhaites encherir ");
+                    System.out.println("sinon tape laisser\n");
+                    String temp = this.aGame.getCommand();
                     boolean fonctionne = false;
                     while (!fonctionne) {
-                        if (temp.equals("enchere") && tempVALEUR > prix) {
-                            if (this.aListPlayer.get(vJoueurActuel).getArgent() - tempVALEUR >= 0) {
-                                System.out.println(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + "a enchéri pour " + tempVALEUR);
-                                prix = tempVALEUR;
+                        if (Integer.valueOf(temp)>prix) {
+                            if (this.aListPlayer.get(vJoueurActuel).getArgent() - Integer.valueOf(temp) >= 0) {
+                                System.out.println(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + "a enchéri pour " + Integer.valueOf(temp));
+                                prix = Integer.valueOf(temp);
                                 vGagnant = vJoueurActuel;
                                 fonctionne = true;
                             }
                             else
                             {
                                 System.out.println("Tu ne possèdes pas autant d'argent\n");
-                                temp = this.aInterface.getCommand();
+                                temp = this.aGame.getCommand();
                             }
                         }
                         else if (temp.equals("laisser"))
                         {
                             fonctionne = true;
                         }
-                        else if(!temp.isEmpty())
+                        else
                         {
                             System.out.println("Je n'ai pas compris votre commande\n");
-                            temp = this.aInterface.getCommand();//!\\ à modifier
+                            temp = this.aGame.getCommand();
                         }
                     }
 
@@ -386,7 +386,7 @@ public class VideoGame
             System.out.println(getJoueurActif().afficheMonopole());
             System.out.println("Tapez le nom de la couleur où vous souhaitez construire des maisons\n");
             System.out.println(" Sinon, vous pouvez taper 'retour' pour arretez de construire \n");
-            String temp = this.aInterface.getCommand();
+            String temp = this.aGame.getCommand();
             if((temp.equals("marron") ||temp.equals("cyan") ||temp.equals("rose") ||temp.equals("orange") ||temp.equals("rouge") ||temp.equals("jaune") ||temp.equals("vert") ||temp.equals("bleu"))&& this.getJoueurActif().getMonopole(temp))
             {
 
@@ -404,7 +404,7 @@ public class VideoGame
                         }
                     }
                     System.out.println("Tapez 'retour' pour revenir en arriere\n");
-                    temp = this.aInterface.getCommand();
+                    temp = this.aGame.getCommand();
                     if(temp.equals("1") || temp.equals("2") || (temp.equals("3") && listVille[2]!=-1))
                     {
                         int idTerrain = Integer.valueOf(temp)-1;
@@ -466,7 +466,7 @@ public class VideoGame
                     {
                         fonctionne2=true;
                     }
-                    else if(!temp.isEmpty())
+                    else
                     {
                         System.out.println("Je n'ai pas compris votre commande \n");
                     }
@@ -477,7 +477,7 @@ public class VideoGame
                 fonctionne=true;
                 return;
             }
-            else if (!temp.isEmpty())
+            else
             {
                 System.out.println("Je n'ai pas compris votre commande \n");
             }
@@ -509,7 +509,7 @@ public class VideoGame
             System.out.println("Tapez 'achat' si vous souhaitez racheter des terrains à d'autres joueurs.\n");
             System.out.println("Tapez 'vendre' si vous souhaitez vendre des terrains à d'autres joueurs.\n");
             System.out.println(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
-            String temp = this.aInterface.getCommand();
+            String temp = this.aGame.getCommand();
             if(temp.equals("achat")) {
 
 
@@ -520,10 +520,13 @@ public class VideoGame
                     }
                     System.out.println(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
 
-                    String temp2 = this.aInterface.getCommand();
-                    if (temp2.equals("retour")) {
+                    String temp2 = this.aGame.getCommand();
+                    if (temp2.equals("retour"))
+                    {
                         fonctionne2 = true;
-                    } else if (Integer.valueOf(temp2) >= 0 && Integer.valueOf(temp2) < positionList) {
+                    }
+                    else if (Integer.valueOf(temp2) >= 0 && Integer.valueOf(temp2) < positionList)
+                    {
                         boolean fonctionne3 = false;
                         Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.valueOf(temp2)]);
                         int[] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
@@ -563,17 +566,19 @@ public class VideoGame
                                 System.out.println("Tapez " + i + " pour demander l'autorisation d'acheter : " + joueurEchange.getPatrimoine().get(listPatrimoineVente[i]).getNomCase() + " pour le prix de " + joueurEchange.getPatrimoine().get(listPatrimoineVente[i]).getPrixAchat() + "\n");
                             }
                             System.out.println("Tapez 'retour' pour revenir en arriere\n");
-                            String temp3 = this.aInterface.getCommand();
+                            String temp3 = this.aGame.getCommand();
                             if (Integer.valueOf(temp3) >= 0 && Integer.valueOf(temp3) < positionListPatrimoine) {
                                 Patrimoine vTerrainChoisi = joueurEchange.getPatrimoine().get(Integer.valueOf(temp3));
                                 if (getJoueurActif().getArgent() - vTerrainChoisi.getPrixAchat() < 0) {
                                     System.out.println(" Vous n'avez pas assez d'argent pour acheter ce terrain.\n");
-                                } else {
+                                }
+                                else
+                                {
                                     boolean fonctionne4 = false;
                                     while (!fonctionne4) {
                                         System.out.println(joueurEchange.getNomJoueur() + " , " + getJoueurActif().getNomJoueur() + " souhaite acheter votre terrain " + vTerrainChoisi.getNomCase() + " pour une somme de " + vTerrainChoisi.getPrixAchat() + "\n");
                                         System.out.println(" Tapez  'accepter' pour vendre votre terrain, Tapez ' refuser' pour refuser l'offre .\n");
-                                        String temp4 = this.aInterface.getCommand();
+                                        String temp4 = this.aGame.getCommand();
 
                                         if (temp4.equals("accepter")) {
                                             joueurEchange.ajouteArgent(vTerrainChoisi.getPrixAchat());
@@ -584,26 +589,32 @@ public class VideoGame
                                             fonctionne3 = true;
 
 
-                                        } else if (temp.equals("refuser")) {
+                                        }
+                                        else if (temp.equals("refuser"))
+                                        {
                                             System.out.println(" L'offre a été rejetée\n");
                                             fonctionne3 = true;
                                         }
-                                        else if(!temp.isEmpty())
+                                        else
                                         {
                                             System.out.println("Je n'ai pas compris votre commande \n");
                                         }
                                     }
                                 }
-                            } else if (temp.equals("retour")) {
+                            }
+                            else if (temp.equals("retour"))
+                            {
                                 fonctionne3 = true;
                             }
-                            else if (!temp.isEmpty())
+                            else
                             {
                                 System.out.println("Je n'ai pas compris votre commande \n");
                             }
                         }
 
-                    } else {
+                    }
+                    else
+                    {
                         System.out.println("Je n'ai pas compris votre commande \n");
                     }
                 }
@@ -619,7 +630,7 @@ public class VideoGame
                     }
                     System.out.println(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
 
-                    String temp2 = this.aInterface.getCommand();
+                    String temp2 = this.aGame.getCommand();
                     if(temp2.equals("retour"))
                     {
                         fonctionne2=true;
@@ -671,7 +682,7 @@ public class VideoGame
                                 System.out.println("Tapez " + i + " pour proposer la vente du terrain : " + getJoueurActif().getPatrimoine().get(listPatrimoineVente[i]).getNomCase() + " pour le prix de " + getJoueurActif().getPatrimoine().get(listPatrimoineVente[i]).getPrixAchat() + "\n");
                             }
                             System.out.println("Tapez 'retour' pour revenir en arriere\n");
-                            String temp3 = this.aInterface.getCommand();
+                            String temp3 = this.aGame.getCommand();
                             if(Integer.valueOf(temp3)>=0 && Integer.valueOf(temp3)<positionListPatrimoine)
                             {
                                 Patrimoine vTerrainChoisi = getJoueurActif().getPatrimoine().get(Integer.valueOf(temp3));
@@ -686,7 +697,7 @@ public class VideoGame
                                     {
                                         System.out.println(joueurEchange.getNomJoueur() + " , " + getJoueurActif().getNomJoueur() + " souhaite vous vendre le terrain " + vTerrainChoisi.getNomCase() + " pour une somme de " + vTerrainChoisi.getPrixAchat() + "\n");
                                         System.out.println(" Tapez  'accepter' pour achter ce terrain, Tapez ' refuser' pour refuser l'offre .\n");
-                                        String temp4 = this.aInterface.getCommand();
+                                        String temp4 = this.aGame.getCommand();
 
                                         if(temp4.equals("accepter"))
                                         {
@@ -703,7 +714,7 @@ public class VideoGame
                                             System.out.println(" L'offre a été rejetée\n");
                                             fonctionne3=true;
                                         }
-                                        else if(!temp.isEmpty())
+                                        else
                                         {
                                             System.out.println("Je n'ai pas compris votre commande \n");
                                         }
@@ -714,14 +725,14 @@ public class VideoGame
                             {
                                 fonctionne3=true;
                             }
-                            else if(!temp.isEmpty())
+                            else
                             {
                                 System.out.println("Je n'ai pas compris votre commande \n");
                             }
                         }
 
                     }
-                    else if(!temp.isEmpty())
+                    else
                     {
                         System.out.println("Je n'ai pas compris votre commande \n");
                     }
@@ -732,7 +743,7 @@ public class VideoGame
                 fonctionne=true;
                 return;
             }
-            else if(!temp.isEmpty())
+            else
             {
                 System.out.println("Je n'ai pas compris votre commande \n");
             }
@@ -802,7 +813,7 @@ public class VideoGame
 
             }
             System.out.println("Tapez 'retour' si vous souhaitez revenir en arrière.");
-            String temp = this.aInterface.getCommand();
+            String temp = this.aGame.getCommand();
             if (Integer.valueOf(temp) >= 0 && Integer.valueOf((temp)) < positionListPatrimoine) {
                 Rue terrain = (Rue) getJoueurActif().getPatrimoine().get(Integer.valueOf(temp));
                 if (terrain.getNbMaison()[0] != 0) {
@@ -811,7 +822,9 @@ public class VideoGame
                     System.out.println("Vous avez vendu une maison sur " + terrain.getNomCase() + "( " + terrain.getNbMaison()[0] + " restante(s) ) ");
                     terrain.suprimeMaison(1);
                     System.out.println("Vous avez gagnez " + getPrixMaison(terrain.getNbCase()) + "\n");
-                } else {
+                }
+                else
+                {
                     getJoueurActif().ajouteArgent(getPrixMaison(terrain.getNbCase()) * 5);
                     getBanque().setNbHotel(getBanque().getNbHotel() + 1);
                     System.out.println("Vous avez vendu un hotel sur " + terrain.getNomCase() + " .");
@@ -843,20 +856,23 @@ public class VideoGame
                     System.out.println("Vous ne possédez  plus aucun hotel ni maison, vous n'avez donc rien à vendre.' \n");
                     return;
                 }
-            } else if (temp.equals("retour")) {
+            }
+            else if (temp.equals("retour"))
+            {
                 fonctionne = true;
                 return;
             }
-            else if(!temp.isEmpty())
+            else
             {
                 System.out.println("Je n'ai pas compris votre requete.\n");
             }
         }
     }
-    public int hypothequer() {
+    public void hypothequer() {
         Player pJoueur = this.getJoueurActif();
         this.getJoueurActif().affichePatrimoine();
         int test[] = new int[pJoueur.getPatrimoine().size()];
+        test[0]=-1;
         int k = 0;
         Iterator iterator = pJoueur.getPatrimoine().entrySet().iterator();
         while (iterator.hasNext()) {
@@ -865,10 +881,15 @@ public class VideoGame
             test[k] = (int) joueur.getKey();
             k=k+1;
         }
-        String temp = this.aInterface.getCommand();//!\\ Ã  modifier
+        if(test[0]==-1)
+        {
+            System.out.println(" Vous etes ruinés, vous avez perdu");
+            return;
+        }
+        String temp = this.aGame.getCommand();
         int val=Integer.parseInt(temp);
 
-        if(val<test.length)
+        if(val >= 0 &&val<test.length)
         {
             Patrimoine pPat=pJoueur.getPatrimoine().get(test[val]);
             if(pPat.getColor().equals("gare"))
@@ -908,7 +929,7 @@ public class VideoGame
                     }
                     if(pRue.getNbMaison()[1]==1)
                     {
-                        pJoueur.ajouteArgent(prixM*);
+                        pJoueur.ajouteArgent(prixM*5);
                         pRue.suprimeMaison(1);
                     }
 
@@ -939,7 +960,7 @@ public class VideoGame
 
         while(!finTourAutorise) {
             System.out.println("Que veux tu faire ?");
-            temp = this.aInterface.getCommand();//!\\ à modifier
+            temp = this.aGame.getCommand();
             switch (temp) {
                 case "acheter":
 
@@ -1009,7 +1030,7 @@ public class VideoGame
                                     System.out.println("Tu n'as pas fait de double, tu ne sors donc pas de la prison");
                                     System.out.println(" Tu peux dépenser 50 ou utiliser un passe afin de sortir de prison maintenant");
                                     System.out.println("Tape sortir, si tu veux sortir maitenant et tape rester, si tu ne veux pas sortir");
-                                    String temp2 = this.aInterface.getCommand();//!\\ à modifier
+                                    String temp2 = this.aGame.getCommand();
                                     if (temp2.equals("sortir"))
                                     {
                                         if (getJoueurActif().getSortiePrison() > 0) {
@@ -1021,9 +1042,12 @@ public class VideoGame
                                             getJoueurActif().ajouteArgent(- 50);
                                             if(getJoueurActif().getArgent()<0)
                                             {
-                                                System.out.println("Vous etes ruinés, vous avez perdu");
-                                                finTourAutorise=true;
-                                                break;
+                                                hypothequer();
+                                                if(getJoueurActif().getArgent()<0)
+                                                {
+                                                    finTourAutorise=true;
+                                                    break;
+                                                }
                                             }
                                             getJoueurActif().setEstPrisonnier(0);
 
@@ -1034,7 +1058,7 @@ public class VideoGame
                                         vEffetCaseEffectue = true;
                                         getJoueurActif().setEstPrisonnier(getJoueurActif().getEstPrisonnier() + 1);
                                     }
-                                    else if (!temp.isEmpty())
+                                    else
                                     {
                                         System.out.println(" Je n'ai pas compris , veux tu rester? ou sortir? ");
                                     }
@@ -1137,9 +1161,12 @@ public class VideoGame
                                     vEffetCaseEffectue = true;
                                     if(getJoueurActif().getArgent()<0)
                                     {
-                                        System.out.println("Vous etes ruinés, vous avez perdu");
-                                        finTourAutorise=true;
-                                        break;
+                                        hypothequer();
+                                        if(getJoueurActif().getArgent()<0)
+                                        {
+                                            finTourAutorise=true;
+                                            break;
+                                        }
                                     }
 
                                 }
@@ -1177,7 +1204,7 @@ public class VideoGame
                                 {
                                     while(vChoix!=0)
                                     {
-                                        String temp3 = this.aInterface.getCommand();//!\\ à modifier
+                                        String temp3 = this.aGame.getCommand();
                                         System.out.println(" Tu as le choix entre piocher une carte chance ou perdre 10.\n");
                                         System.out.println(" Tape 'chance' si tu veux piocher une carte chance, sinon '10' pour depenser 10 \n");
 
@@ -1191,7 +1218,8 @@ public class VideoGame
                                             getJoueurActif().ajouteArgent(-10);
                                             vChoix=0;
                                         }
-                                        else if (!temp3.isEmpty()) {
+                                        else
+                                        {
                                             System.out.println("tu as dit quoi la ");
                                         }
                                     }
@@ -1200,6 +1228,15 @@ public class VideoGame
                                 nbEffetCaseEffectue += 1;
                                 vEffetCaseEffectue = true;
 
+                                if(getJoueurActif().getArgent()<0)
+                                {
+                                    hypothequer();
+                                    if(getJoueurActif().getArgent()<0)
+                                    {
+                                        finTourAutorise=true;
+                                        break;
+                                    }
+                                }
 
                             }
                         }

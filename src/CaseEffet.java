@@ -7,6 +7,13 @@ public class CaseEffet extends Cases_Plateau{
 
 
     private int aNumeroEffet;//0=depart 1=chance 2=communauter
+
+    /**
+     *constructeur de la classe CaseEffet
+     * @param pNomCase String le nom de la case
+     * @param pNbCase  int le numero de la case
+     * @param pNumeroEffet int le numero du type
+     */
     public CaseEffet(String pNomCase,int pNbCase,int pNumeroEffet)
     {
         super(pNomCase,pNbCase,false);
@@ -26,6 +33,13 @@ public class CaseEffet extends Cases_Plateau{
         }
         return -1;
     }
+    /**
+     * Effet des cartes chances
+     * @param pJoueur Player le joueur actif
+     * @param pListPlayer HashMap<Integer,Player> la liste des joueurs
+     * @param pListCase HashMap<Integer,Cases_Plateau> la liste des cases
+     * @return
+     */
     public void caseChance(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
@@ -35,6 +49,7 @@ public class CaseEffet extends Cases_Plateau{
                 pJoueur.setPosition(pListCase.get(39));
             case 1:
                 pJoueur.setPosition(pListCase.get(0));
+                depart(pJoueur);
             case 2:
                 if(pJoueur.getPosition().getNbCase()-24>0)
                 {
@@ -91,6 +106,13 @@ public class CaseEffet extends Cases_Plateau{
 
 
     }
+    /**
+     * Effet des cartes communautés
+     * @param pJoueur Player le joueur actif
+     * @param pListPlayer Hashmap la liste des joueurs
+     * @param pListCase Hashmap la liste des cases
+     * @return
+     */
     public int caseCommunauter(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
@@ -129,7 +151,7 @@ public class CaseEffet extends Cases_Plateau{
                     }
 
                 }//while()
-                //tout les joeur vous donn 10
+                //tout les joueurs vous donn 10
             case 9:
                 pJoueur.ajouteArgent(20);
             case 10:
