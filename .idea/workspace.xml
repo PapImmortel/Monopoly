@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ajout des fonctions de klhaimands + video game fini">
-      <change afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CaseEffet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseEffet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cases_Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cases_Plateau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ajout code quentin + debug">
+      <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676567899318</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ajout code quentin + debug">
+      <created>1676723418096</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1676723418096</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -142,6 +141,7 @@
     <MESSAGE value="reparation de certaines fonction+ optimisation et confirmation du fonctionnement du deplacment de joueur" />
     <MESSAGE value="il manque plsu que 1 fonction + le boulot des loustiques" />
     <MESSAGE value="ajout des fonctions de klhaimands + video game fini" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout des fonctions de klhaimands + video game fini" />
+    <MESSAGE value="ajout code quentin + debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout code quentin + debug" />
   </component>
 </project>

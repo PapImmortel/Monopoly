@@ -6,7 +6,7 @@ public class Patrimoine extends Cases_Plateau{
     private int aPrixAchat;
     private int aJoueurBoss;
     private String aColor;
-    private int aPrixHypotheque
+    private int aPrixHypotheque;
     public Patrimoine(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,String pColor, int pPrixHypotheque)
 
     {
