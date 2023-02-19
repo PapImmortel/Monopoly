@@ -87,7 +87,7 @@ public class CaseEffet extends Cases_Plateau{
     public void caseChance(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
-        int vNumEffet= random.nextInt(6) + 1;
+        int vNumEffet= random.nextInt(16);
         switch (vNumEffet){
             case 0:
                 pJoueur.setPosition(pListCase.get(39));
@@ -172,7 +172,7 @@ public class CaseEffet extends Cases_Plateau{
     public int caseCommunauter(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
-        int vNumEffet= random.nextInt(6) + 1;
+        int vNumEffet= random.nextInt(16) ;
         switch (vNumEffet){
 
             case 0:

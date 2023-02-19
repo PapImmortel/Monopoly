@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
         return isType;
     }
     public static String getLastCommand(){
-        if(isType) {//si une commande tapÃ©e est en attente de lecture
+        if(isType) {//si une commande tapee est en attente de lecture
             String temp = lastCommand;
             lastCommand = "";
             isType = false;
@@ -35,6 +35,8 @@ public class GamePanel extends JPanel {
     }
     public static void PrintMSG(String text){
         textArea.append(text + "\n");
+        textArea.setCaretPosition(textArea.getDocument().getLength());
+
     }
 
 
@@ -44,6 +46,8 @@ public class GamePanel extends JPanel {
 
         //Boite de dialogue du jeu
         textArea.setBounds(670,200, 550, 300);
+        textArea.setEditable(false);
+        textArea.setAutoscrolls(true);
 
         //Zone de commande pour le joueur
         JTextField CMD = new JTextField(30);

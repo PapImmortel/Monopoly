@@ -27,6 +27,9 @@ public class Frame extends JFrame{
     public static HashMap getPlayerList(){
         return panel.getPlayerList();
     }
+    public static String[] getColorList(){
+        return panel.getColorList();
+    }
     public static int getIndex(){
         return panel.getIndexPlayer();
     }

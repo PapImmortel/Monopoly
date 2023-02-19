@@ -19,6 +19,8 @@ public class Panel extends JPanel {
 
     private static HashMap<Integer, String> ListJoueur = new HashMap<>();
 
+    private static String[] ListCouleur = new String[4];
+
     public static boolean getIsFinish(){
         return isFinish;
     }
@@ -26,6 +28,11 @@ public class Panel extends JPanel {
     public static HashMap<Integer, String> getPlayerList(){
         return ListJoueur;
     }
+
+    public static String[] getColorList(){
+        return ListCouleur;
+    }
+
     public static int getIndexPlayer(){
         return IndexPlayer;
     }
@@ -33,28 +40,39 @@ public class Panel extends JPanel {
         //Initialisation du bouton
         JButton button = new JButton ("Confirmer");
 
-        //LABEL
-        JLabel label = new JLabel("Choisir le nom des joueurs :");
+        //LABELs
+        JLabel label = new JLabel("Choisir le nom du joueur :");
         label.setForeground(Color.WHITE);
+
+        JLabel label2 = new JLabel("et sa couleur :");
+        label2.setForeground(Color.WHITE);
 
         //Boite de dialogue
         JTextArea textArea = new JTextArea(10,30);
+        textArea.setAutoscrolls(true);
+        textArea.setEditable(false);
 
         //Phrase d'introduction
         textArea.append("Bienvenue dans le Monopoly java ! \n");
-        textArea.append("Veuillez saisir le nom des joueurs. \n");
+        textArea.append("Veuillez saisir le nom d'un joueur, choisir sa couleur. \nPuis appuyer sur entrer \n");
 
         //Champ nom Joueur
         JTextField nomJoueur = new JTextField(10);
+
+        //ComboBox pour choisir la couleur du joueur
+        String[] couleurs = new String[]{"ROUGE","BLEU","JAUNE","VERT"};
+        JComboBox <String> Couleur = new JComboBox<String>(couleurs);
 
         //Logique du bouton
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(IndexPlayer <2){
                     textArea.append("Le jeu accepte 2 joueurs minimum.\n");
+                    textArea.setCaretPosition(textArea.getDocument().getLength());
                 }
                 else{
                     textArea.append("Lancement du jeu !\n");
+                    textArea.setCaretPosition(textArea.getDocument().getLength());
                     isFinish = true;
                 }
             }
@@ -70,12 +88,20 @@ public class Panel extends JPanel {
                 if(e.getKeyCode()==10 && nomJoueur.getText() != null){
                     if(IndexPlayer<4){
                         IndexPlayer++;
-                        textArea.append("Bonjour " + nomJoueur.getText() + ", tu es le joueur n°" + IndexPlayer + " ! \n");
+
+                        String temp = Couleur.getItemAt(Couleur.getSelectedIndex());
+                        textArea.append("Bonjour " + nomJoueur.getText() + ", tu es le joueur n°" + IndexPlayer + " de couleur " + temp +" ! \n");
+                        textArea.setCaretPosition(textArea.getDocument().getLength());
+
+                        ListCouleur[IndexPlayer-1]=temp;
                         ListJoueur.put(IndexPlayer,nomJoueur.getText());
+
+                        Couleur.removeItem(Couleur.getSelectedItem());
                         nomJoueur.setText("");
                     }
                     else{
                         textArea.append("Le jeu accepte 4 joueurs maximum.\n");
+                        textArea.setCaretPosition(textArea.getDocument().getLength());
                         nomJoueur.setText("");
                     }
 
@@ -92,6 +118,8 @@ public class Panel extends JPanel {
         //Ajout des éléments au panel
         add(label);
         add(nomJoueur);
+        add(label2);
+        add(Couleur);
         add(new JScrollPane(textArea));//Ajout d'une scrollbar
         add(button);
     }

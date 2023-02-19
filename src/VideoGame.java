@@ -22,7 +22,7 @@ public class VideoGame
      * @param pNbJoueur aNbJoueur nombre de joueur actif pour la partie à venir
      * @param pListPlayer aListPlayer HashMap de la liste des joueurs
      */
-    public VideoGame(int pNbJoueur,HashMap<Integer,String> pListPlayer)
+    public VideoGame(int pNbJoueur,HashMap<Integer,String> pListPlayer,String[] pListCouleur)
     {
         this.aNbJoueur = pNbJoueur;
         this.aBanque = new Banque();
@@ -30,7 +30,7 @@ public class VideoGame
         this.aListPlayer = new HashMap<Integer,Player>();
         this.aListeCase = new HashMap<Integer,Cases_Plateau>();
         remplirCase();
-        String[]vCouleur = {"RED","BLUE","GREEN","YELLOW"};
+        String[]vCouleur = pListCouleur;
         int vPositionListCouleur=0;
         Iterator iteratorP = pListPlayer.entrySet().iterator();
         while (iteratorP.hasNext())
@@ -134,43 +134,43 @@ public class VideoGame
         this.aListeCase.put( 0,new Cases_Plateau("DEPART",0,false));
         this.aListeCase.put( 1,new Rue("BOULEVARD DE BELLEVILLE",1, 60,0,0, 0, "marron",new int[]{2,10,30,90,160,250},30));
         this.aListeCase.put( 2,new CaseEffet("CAISSE DE COMMUNAUTE", 2,2));
-        this.aListeCase.put( 3,new Rue("RUE LECOURBE",3, 60,0,0, 0, "marron",new int[]{2,10,30,90,160,250,50},30));
+        this.aListeCase.put( 3,new Rue("RUE LECOURBE",3, 60,0,0, 0, "marron",new int[]{4,20,60,180,320,450},30));
         this.aListeCase.put( 4,new Cases_Plateau("IMPOTS SUR LE REVENU",4,false));
         this.aListeCase.put( 5,new Gare("GARE MONTPARNASSE",5, 200,0,100));
-        this.aListeCase.put( 6,new Rue("RUE DE VAUGIRARD",6, 100,0,0, 0, "cyan",new int[]{2,10,30,90,160,250},50));
+        this.aListeCase.put( 6,new Rue("RUE DE VAUGIRARD",6, 100,0,0, 0, "cyan",new int[]{6,30,90,270,400,550},50));
         this.aListeCase.put( 7,new CaseEffet("CHANCE",7,1));
-        this.aListeCase.put( 8,new Rue("RUE DE COURCELLES",8, 100,0,0, 0, "cyan",new int[]{2,10,30,90,160,250},50));
-        this.aListeCase.put( 9,new Rue("AVENUE DE LA REPUBLIQUE",9, 120,0,0, 0, "cyan",new int[]{2,10,30,90,160,250},60));
+        this.aListeCase.put( 8,new Rue("RUE DE COURCELLES",8, 100,0,0, 0, "cyan",new int[]{6,30,90,270,400,550},50));
+        this.aListeCase.put( 9,new Rue("AVENUE DE LA REPUBLIQUE",9, 120,0,0, 0, "cyan",new int[]{8,40,100,300,450,600},60));
         this.aListeCase.put(10,new Cases_Plateau("Prison",10,false));
-        this.aListeCase.put(11,new Rue("BOULEVARD DE LA VILLETTE",11, 140,0,0, 0, "rose",new int[]{2,10,30,90,160,250},70));
+        this.aListeCase.put(11,new Rue("BOULEVARD DE LA VILLETTE",11, 140,0,0, 0, "rose",new int[]{10,50,150,450,625,750},70));
         this.aListeCase.put(12,new Compagnie("COMPAGNIE DE La DISTRIBUTION D'ELECTRICITE",12, 150,0,75));
-        this.aListeCase.put(13,new Rue("AVENUE DE NEUILLY",13, 140,0,0, 0, "rose",new int[]{2,10,30,90,160,250},70));
-        this.aListeCase.put(14,new Rue("RUE DU PARADIS",14, 160,0,0, 0, "rose",new int[]{2,10,30,90,160,250},80));
+        this.aListeCase.put(13,new Rue("AVENUE DE NEUILLY",13, 140,0,0, 0, "rose",new int[]{10,50,150,450,625,750},70));
+        this.aListeCase.put(14,new Rue("RUE DU PARADIS",14, 160,0,0, 0, "rose",new int[]{12,60,180,500,700,900},80));
         this.aListeCase.put(15,new Gare("GARE DE LYON",15, 200,0,100));
-        this.aListeCase.put(16,new Rue("AVENUE DE MOZART",16, 180,0,0, 0, "orange",new int[]{2,10,30,90,160,250},90));
+        this.aListeCase.put(16,new Rue("AVENUE DE MOZART",16, 180,0,0, 0, "orange",new int[]{14,70,200,550,750,950},90));
         this.aListeCase.put(17,new CaseEffet("CAISSE DE COMMUNAUTE",17,2));
-        this.aListeCase.put(18,new Rue("BOULEVARD SAINT-MICHEL",18, 180,0,0, 0, "orange",new int[]{2,10,30,90,160,250},90));
-        this.aListeCase.put(19,new Rue("PLACE DE PIGALLE",19, 200,0,0, 0, "orange",new int[]{2,10,30,90,160,250},100));
+        this.aListeCase.put(18,new Rue("BOULEVARD SAINT-MICHEL",18, 180,0,0, 0, "orange",new int[]{14,70,200,550,750,950},90));
+        this.aListeCase.put(19,new Rue("PLACE DE PIGALLE",19, 200,0,0, 0, "orange",new int[]{16,80,220,600,800,1000},100));
         this.aListeCase.put(20,new Cases_Plateau("PARC GRATUIT",20,false));
-        this.aListeCase.put(21,new Rue("AVENUE DE MATIGNON",21, 220,0,0, 0, "rouge",new int[]{2,10,30,90,160,250},110));
+        this.aListeCase.put(21,new Rue("AVENUE DE MATIGNON",21, 220,0,0, 0, "rouge",new int[]{18,90,250,700,875,1050},110));
         this.aListeCase.put(22,new CaseEffet("CHANCE",22,1));
-        this.aListeCase.put(23,new Rue("BOULEVARD MALESHERBES",23, 220,0,0, 0, "rouge",new int[]{2,10,30,90,160,250},110));
-        this.aListeCase.put(24,new Rue("AVENUE HENRY-MARTIN",24, 240,0,0, 0, "rouge",new int[]{2,10,30,90,160,250},120));
+        this.aListeCase.put(23,new Rue("BOULEVARD MALESHERBES",23, 220,0,0, 0, "rouge",new int[]{18,90,250,700,875,1050},110));
+        this.aListeCase.put(24,new Rue("AVENUE HENRY-MARTIN",24, 240,0,0, 0, "rouge",new int[]{20,100,300,750,925,1100},120));
         this.aListeCase.put(25,new Gare("GARE DU NORD",25, 200,0,100));
-        this.aListeCase.put(26,new Rue("FAUBOURG SAINT-HONORE",26, 260,0,0, 0, "jaune",new int[]{2,10,30,90,160,250},130));
-        this.aListeCase.put(27,new Rue("PlACE DE LA BOURSE",27, 260,0,0, 0, "jaune",new int[]{2,10,30,90,160,250},130));
+        this.aListeCase.put(26,new Rue("FAUBOURG SAINT-HONORE",26, 260,0,0, 0, "jaune",new int[]{22,110,330,800,975,1150},130));
+        this.aListeCase.put(27,new Rue("PlACE DE LA BOURSE",27, 260,0,0, 0, "jaune",new int[]{22,110,330,800,975,1150},130));
         this.aListeCase.put(28,new Compagnie("COMPAGNIE DE la DISTRIBUTION DES EAUX",28, 150,0,75));
-        this.aListeCase.put(29,new Rue("RUE DE LA FAYETTE",29, 280,0,0, 0, "jaune",new int[]{2,10,30,90,160,250},140));
+        this.aListeCase.put(29,new Rue("RUE DE LA FAYETTE",29, 280,0,0, 0, "jaune",new int[]{24,120,360,850,1025,1200},140));
         this.aListeCase.put(30,new Cases_Plateau("EN ALLEZ PRISON",30,false));
-        this.aListeCase.put(31,new Rue("AVENUE de BRETEUIL",31, 300,0,0, 0, "vert",new int[]{2,10,30,90,160,250},150));
-        this.aListeCase.put(32,new Rue("AVENUE FOCH",32, 300,0,0, 0, "vert",new int[]{2,10,30,90,160,250},150));
+        this.aListeCase.put(31,new Rue("AVENUE de BRETEUIL",31, 300,0,0, 0, "vert",new int[]{26,130,390,900,1100,1275},150));
+        this.aListeCase.put(32,new Rue("AVENUE FOCH",32, 300,0,0, 0, "vert",new int[]{26,130,390,900,1100,1275},150));
         this.aListeCase.put(33,new CaseEffet("CAISSE DE COMMUNAUTE",33,2));
-        this.aListeCase.put(34,new Rue("BOULEVARD DES CAPUCINES",34, 320,0,0, 0, "vert",new int[]{2,10,30,90,160,250},160));
+        this.aListeCase.put(34,new Rue("BOULEVARD DES CAPUCINES",34, 320,0,0, 0, "vert",new int[]{28,150,450,1000,1200,1400},160));
         this.aListeCase.put(35,new Gare("GARE SAINT-LAZARE",35, 200,0,100));
         this.aListeCase.put(36,new CaseEffet("CHANCE",36,1));
-        this.aListeCase.put(37,new Rue("AVENUE DES CHAMPS-ELYSEES",37, 350,0,0, 0, "bleu",new int[]{2,10,30,90,160,250},175));
+        this.aListeCase.put(37,new Rue("AVENUE DES CHAMPS-ELYSEES",37, 350,0,0, 0, "bleu",new int[]{35,175,500,1100,1300,1500},175));
         this.aListeCase.put(38,new Cases_Plateau("TAXE DE LUXE",38,false));
-        this.aListeCase.put(39,new Rue("RUE DE LA PAIX",39, 400,0,0, 0, "bleu",new int[]{2,10,30,90,160,250},200));
+        this.aListeCase.put(39,new Rue("RUE DE LA PAIX",39, 400,0,0, 0, "bleu",new int[]{50,200,600,1400,1700,2000},200));
     }//remplirCase()
 
     /**
@@ -186,6 +186,9 @@ public class VideoGame
             getJoueurActif().ajouteArgent(- vTerrain.getPrixAchat());
             vTerrain.setJoueurBoss(getNumJoueurActif());
             getJoueurActif().ajouterPatrimoine(vTerrain,1);
+            getJoueurActif().getPatrimoine().get(vTerrain.getNbCase()).setJoueurBoss(getNumJoueurActif());
+            Patrimoine vCaseSetting= (Patrimoine) this.aListeCase.get(vTerrain.getNbCase());
+            vCaseSetting.setJoueurBoss(getNumJoueurActif());
             return true;
         }
         else {
@@ -243,6 +246,10 @@ public class VideoGame
                     vJoueurActuel+=1;
                 }
             }
+            else
+            {
+                break;
+            }
         }
         if(vGagnant!=0) {
             while (vGagnant != vJoueurActuel) {
@@ -250,7 +257,7 @@ public class VideoGame
 
                     boolean fonctionne = false;
                     while (!fonctionne) {
-                        getaGame().PrintMSG("Le terrain coute actuellement" + prix);
+                        getaGame().PrintMSG("Le terrain coute actuellement " + prix);
                         getaGame().PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites encherir tape le prix que tu souhaites encherir ");
                         getaGame().PrintMSG("sinon tape laisser\n");
                         String temp = getaGame().getCommand();
@@ -264,8 +271,8 @@ public class VideoGame
                         {
                             fonctionne = true;
                         }
-                        else if (valeurEntiere && Integer.parseInt(temp)>prix) {
-                            if (this.aListPlayer.get(vJoueurActuel).getArgent() - Integer.parseInt(temp) >= 0) {
+                        else if (valeurEntiere) {
+                            if (this.aListPlayer.get(vJoueurActuel).getArgent() - Integer.parseInt(temp) >= 0 && Integer.parseInt(temp)>prix) {
                                 getaGame().PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + "a enchéri pour " + Integer.parseInt(temp));
                                 prix = Integer.parseInt(temp);
                                 vGagnant = vJoueurActuel;
@@ -288,10 +295,18 @@ public class VideoGame
                     vJoueurActuel += 1;
                 }
             }
+            getaGame().PrintMSG(this.aListPlayer.get(vGagnant).getNomJoueur() + " emporte l'enchère et achete le terrain " + vTerrain.getNomCase());
+            getaGame().PrintMSG(" pour un prix de " + prix);
+            this.aListPlayer.get(vGagnant).ajouteArgent(-prix);
+            this.aListPlayer.get(vGagnant).ajouterPatrimoine(vTerrain,1);
+            this.aListPlayer.get(vGagnant).getPatrimoine().get(vTerrain.getNbCase()).setJoueurBoss(vGagnant);
+            Patrimoine vCaseSetting= (Patrimoine) this.aListeCase.get(vTerrain.getNbCase());
+            vCaseSetting.setJoueurBoss(vGagnant);
         }
-        getaGame().PrintMSG(this.aListPlayer.get(vGagnant).getNomJoueur() + " emporte l'enchère et achete le terrain " + vTerrain.getNomCase());
-        getaGame().PrintMSG(" pour un prix de " + prix);
-        this.aListPlayer.get(vGagnant).ajouteArgent(-prix);
+        else {
+            getaGame().PrintMSG(" Personne n'a acheté ce terrain :( .");
+        }
+
     }
 
     public int[] villeCouleurCorrespondance(String pCouleur)
@@ -468,7 +483,7 @@ public class VideoGame
      */
     public void businessJoueur() {
         int[] listJoueur = new int[getNbJoueur()-1];
-        for (int i = 1; i <= getNbJoueur(); i++)
+        for (int i = 0; i < getNbJoueur()-1; i++)
         {
             listJoueur[i]=-1;
 
@@ -559,12 +574,15 @@ public class VideoGame
                                         String temp4 = getaGame().getCommand();
 
                                         if (temp4.equals("accepter")) {
+                                            getaGame().PrintMSG(getJoueurActif().getNomJoueur() + " a acheté " + vTerrainChoisi.getNomCase() + " à " + joueurEchange.getNomJoueur());
                                             joueurEchange.ajouteArgent(vTerrainChoisi.getPrixAchat());
                                             getJoueurActif().ajouteArgent(-vTerrainChoisi.getPrixAchat());
                                             vTerrainChoisi.setJoueurBoss(getNumJoueurActif());
                                             getJoueurActif().ajouterPatrimoine(vTerrainChoisi, 1);
                                             joueurEchange.ajouterPatrimoine(vTerrainChoisi, -1);
                                             fonctionne4 = true;
+                                            Patrimoine vCaseSetting= (Patrimoine) this.aListeCase.get(vTerrainChoisi.getNbCase());
+                                            vCaseSetting.setJoueurBoss(getNumJoueurActif());
 
 
                                         }
@@ -679,12 +697,15 @@ public class VideoGame
 
                                         if(temp4.equals("accepter"))
                                         {
+                                            getaGame().PrintMSG(getJoueurActif().getNomJoueur() + " a vendu " + vTerrainChoisi.getNomCase() + " à " + joueurEchange.getNomJoueur());
                                             joueurEchange.ajouteArgent(-vTerrainChoisi.getPrixAchat());
                                             getJoueurActif().ajouteArgent(vTerrainChoisi.getPrixAchat());
                                             vTerrainChoisi.setJoueurBoss(listJoueur[Integer.parseInt(temp2)]);
                                             getJoueurActif().ajouterPatrimoine(vTerrainChoisi,-1);
                                             joueurEchange.ajouterPatrimoine(vTerrainChoisi,1);
                                             fonctionne4 = true;
+                                            Patrimoine vCaseSetting=(Patrimoine) this.aListeCase.get(vTerrainChoisi.getNbCase());
+                                            vCaseSetting.setJoueurBoss(listJoueur[Integer.parseInt(temp2)]);
 
                                         }
                                         else if(temp4.equals("refuser"))
@@ -981,14 +1002,17 @@ public class VideoGame
                             nbEffetCaseEffectue += 1;
                             vEffetCaseEffectue = true;
 
-                        } else if (terrain.getJoueurBoss() == this.getNumJoueurActif()) {
+                        }
+                        else if (terrain.getJoueurBoss() == this.getNumJoueurActif()) {
                             getaGame().PrintMSG("Tu es propriétaire de ce terrain, tu ne peux donc pas le mettre en enchere");
                             getaGame().PrintMSG("Utilise la commande business si tu veux le revendre à un autre joueur");
-                        } else {
-                            getaGame().PrintMSG("Ce terrain appartient  à " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
-                            getaGame().PrintMSG("Tu ne êux donc pas le mettre en enchère");
                         }
-                    } else {
+                        else {
+                            getaGame().PrintMSG("Ce terrain appartient  à " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
+                            getaGame().PrintMSG("Tu ne peux donc pas le mettre en enchère");
+                        }
+                    }
+                    else {
                         getaGame().PrintMSG("Ceci n'est pas une case achetable, tu ne peux donc pas la mettre en enchère");
                     }
                     break;
@@ -1206,8 +1230,8 @@ public class VideoGame
                                 {
                                     while(vChoix!=0)
                                     {
-                                        String temp3 = getaGame().getCommand();
                                         getaGame().PrintMSG(" Tape 'chance' si tu veux piocher une carte chance, sinon '10' pour depenser 10 \n");
+                                        String temp3 = getaGame().getCommand();
 
                                         if(temp3.equals("chance"))
                                         {
