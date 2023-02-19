@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -15,14 +14,14 @@ public class CaseEffet extends Cases_Plateau{
 
 
 
-    private int aNumeroEffet;//0=depart 1=chance 2=communauter
+    private final int aNumeroEffet;//0=depart 1=chance 2=communauté
     private String aEffet;
 
     /**
      *
      * @param pNomCase String le nom de la case
-     * @param pNbCase  int le numero de la case
-     * @param pNumeroEffet int le numero du type
+     * @param pNbCase  int le numéro de la case
+     * @param pNumeroEffet int le numéro du type
      */
     public CaseEffet(String pNomCase,int pNbCase,int pNumeroEffet)
     {
@@ -31,15 +30,15 @@ public class CaseEffet extends Cases_Plateau{
     }
 
     /**
-     * Mutateur de aEffet
-     * @param pEffet
+     * Mutateur de l'attribue aEffet
+     * @param pEffet récupère le texte indiquant l'effet de la case
      */
     public void setaEffet(String pEffet)
     {
         this.aEffet=pEffet;
     }
     /**
-     * Accesseur du type de caseEffet( carte communautée ou chance)
+     * Accesseur du type de caseEffet (carte communauté ou chance)
      * @return aNumeroEffet
      */
     public int getNumeroEffet()
@@ -48,7 +47,7 @@ public class CaseEffet extends Cases_Plateau{
     }
 
     /**
-     * Accesseur de aEffet
+     * Accesseur de l'attribue aEffet
      * @return aEffet
      */
     public String getaEffet()
@@ -61,19 +60,18 @@ public class CaseEffet extends Cases_Plateau{
      * @param pJoueur Player le joueur actif
      * @param pListPlayer Hashmap la liste des joueurs
      * @param pListCase Hashmap la liste des cases
-     * @return
+     * @return renvoie 0 sauf si c'est la carte chance donnant un choix à l'utilisateur
      */
     public int effetCase(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         if(this.aNumeroEffet==1)
         {
-            this.caseChance(pJoueur,pListPlayer,pListCase);
+            this.caseChance(pJoueur,pListCase);
             return 0;
         }
         else if (this.aNumeroEffet==2)
         {
-            int a=this.caseCommunauter(pJoueur,pListPlayer,pListCase);
-            return a;
+            return this.caseCommunaute(pJoueur,pListPlayer,pListCase);
         }
         return 0;
     }
@@ -81,10 +79,9 @@ public class CaseEffet extends Cases_Plateau{
     /**
      * Effet des cartes chance
      * @param pJoueur Player le joueur actif
-     * @param pListPlayer Hashmap la liste des joueurs
      * @param pListCase Hashmap la liste des cases
      */
-    public void caseChance(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
+    public void caseChance(Player pJoueur, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
         int vNumEffet= random.nextInt(16);
@@ -169,7 +166,7 @@ public class CaseEffet extends Cases_Plateau{
      * @param pListCase Hashmap la liste des cases
      * @return 1 si une tombe sur la case pioche une carte chance ou paye
      */
-    public int caseCommunauter(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
+    public int caseCommunaute(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
         Random random=new Random();
         int vNumEffet= random.nextInt(16) ;
@@ -205,12 +202,11 @@ public class CaseEffet extends Cases_Plateau{
                 this.setaEffet("Reçois 100 euros");
 
             case 8:
-                Iterator iterator = pListPlayer.entrySet().iterator();
-                while (iterator.hasNext())
+
+                for (Map.Entry<Integer,Player> PlayerEntry : pListPlayer.entrySet())
                 {
-                    Map.Entry joujoueur = (Map.Entry) iterator.next();
-                    Player joueur = (Player) joujoueur.getValue();
-                    if(!(pJoueur.getNomJoueur()==joueur.getNomJoueur())&& joueur.getArgent()<0)
+                    Player joueur =PlayerEntry.getValue();
+                    if(!(pJoueur.getNomJoueur().equals(joueur.getNomJoueur()))&& joueur.getArgent()<0)
                     {
                         joueur.ajouteArgent(-10);
                         pJoueur.ajouteArgent(10);
@@ -233,8 +229,6 @@ public class CaseEffet extends Cases_Plateau{
                 this.setaEffet("Paye 10 ou pioche une carte chance");
                 return 1;
 
-
-            // Payer 10 ou carte chance
             case 13:
                 int cPos=pJoueur.getPosition().getNbCase();
                 if(35<cPos || cPos<5)
@@ -269,7 +263,6 @@ public class CaseEffet extends Cases_Plateau{
 
 
         }
-
         return 0;
     }
     public void depart(Player pJoueur)

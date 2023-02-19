@@ -5,7 +5,7 @@ public class Frame extends JFrame{
 
     private static Panel panel = new Panel();
     public Frame(String title){
-        //Titre de la fenetre
+        //Titre de la fenêtre
         setTitle(title);
 
 

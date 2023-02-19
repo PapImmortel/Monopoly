@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ca commence à ressmebler à quelquechose">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Banque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CaseEffet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseEffet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cases_Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cases_Plateau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compagnie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compagnie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676818625780</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé">
+      <created>1676826343766</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1676826343766</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -212,6 +230,7 @@
     <MESSAGE value="rien fonctionne ff je veux crever ca fait 8h que je fais ca" />
     <MESSAGE value="on a enfin des trucs mais mon cerveau est hs car j'ai commencé à bosser il ya 10h" />
     <MESSAGE value="ca commence à ressmebler à quelquechose" />
-    <option name="LAST_COMMIT_MESSAGE" value="ca commence à ressmebler à quelquechose" />
+    <MESSAGE value="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé" />
+    <option name="LAST_COMMIT_MESSAGE" value="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé" />
   </component>
 </project>

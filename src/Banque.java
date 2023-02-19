@@ -1,13 +1,14 @@
+/**
+ * Classe de la Banque
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ * @date (2023/19/02)
+ */
 public class Banque
 {
-    /**
-     * Classe de la Banque
-     * @author Arvind Tangavelou
-     * @author Quentin Guyot
-     * @author Timothée Royer
-     * @author Clément Lavie
-     * @date (2023/01/12)
-     */
+
     private int aNbMaison;
     private int aNbHotel;
     private int aBenefice;
@@ -23,8 +24,8 @@ public class Banque
     }//Banque()
 
     /**
-     * Mutateur du nombre de maison
-     * @param pNbMaison aNbmaison modification du nombre de maison restante
+     * Mutateur du nombre de maisons
+     * @param pNbMaison aNbMaison modification du nombre de maisons restantes
      */
     public void setNbMaison(int pNbMaison)
     {
@@ -32,8 +33,8 @@ public class Banque
     }//setNbMaison(.)
 
     /**
-     * Assesseur du nombre de maison restante
-     * @return aNbMaison nombre de maison restante dans la banque
+     * Assesseur du nombre de maisons restantes
+     * @return aNbMaison nombre de maisons restantes dans la banque
      */
     public int getNbMaison()
     {
@@ -60,7 +61,7 @@ public class Banque
 
     /**
      * Mutateur du Benefice de la banque
-     * @param pBenefice aBenefice montant en banque venant des impots et taxes
+     * @param pBenefice aBenefice montant en banque venant des impôts et taxes
      */
     public void setBenefice(int pBenefice)
     {
@@ -68,8 +69,8 @@ public class Banque
     }//setBenefice(.)
 
     /**
-     * Assesseur du Benedice de la banque
-     * @return aBenefice montant en banque venant des impots et taxes
+     * Assesseur du bénéfice de la banque
+     * @return aBenefice montant en banque venant des impôts et taxes
      */
     public int getBenefice()
     {
@@ -77,15 +78,15 @@ public class Banque
     }//getBenefice()
 
     /**
-     * Chaine de caractère à afficher pour que les joueurs ait les informations sur le nombre de maison et d'hôtel disponible
-     * @return String avec nombre d'hôtel et de maison disponible.
+     * Chaine de caractère à afficher pour que les joueurs aient les informations sur le nombre de maisons et d'hôtels disponibles
+     * @return String avec nombre d'hôtels et de maisons disponibles.
      */
     public String informationMaisonHotel()
     {
         String retS;
         if (this.aNbHotel > 0 && this.aNbMaison > 0)
         {
-            retS = "Il est possible de construire encore " + this.aNbMaison + " maison et encore " + this.aNbHotel + " Hôtel.\n";
+            retS = "Il est possible de construire encore " + this.aNbMaison + " maison(s) et encore " + this.aNbHotel + " hôtel(s).\n";
         }
         else if (this.aNbMaison == 0 && this.aNbHotel == 0)
         {
@@ -93,11 +94,11 @@ public class Banque
         }
         else if (this.aNbHotel > 0 && this.aNbMaison == 0)
         {
-            retS =  "Il n'y a plus que "+ this.aNbHotel + " hôtel constructible mais il n'y a plus de maison disponible.\n";
+            retS =  "Il n'y a plus que "+ this.aNbHotel + " hôtel(s) constructible(s) mais il n'y a plus de maison disponible.\n";
         }
         else if (this.aNbHotel == 0 && this.aNbMaison > 0)
         {
-            retS = "Il n'y a plus que "+ this.aNbMaison + " maison constructible mais il n'y a plus d'hôtel disponible.\n";
+            retS = "Il n'y a plus que "+ this.aNbMaison + " maison(s) constructible(s) mais il n'y a plus d'hôtel disponible.\n";
         }
         else
         {

@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args)
     {
         Frame Menu = new Frame("Menu Javapoly");
-        HashMap<Integer, String> ListJoueur = new HashMap<>();
         String[] ListCouleur;
 
         int Joueur;
@@ -13,7 +12,7 @@ public class Main {
             System.out.print("");
         }
 
-        ListJoueur = Menu.getPlayerList();
+        HashMap<Integer, String> ListJoueur = Menu.getPlayerList();
         ListCouleur = Menu.getColorList();
         Joueur = Menu.getIndex();
         Menu.setVisible(false);

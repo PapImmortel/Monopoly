@@ -7,7 +7,7 @@ public class Rue extends Patrimoine
 
 
 
-    private int [] aPrixRente;
+    private final int [] aPrixRente;
 
 
     public Rue(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,int pNbMaison, int pHotel, String pColor, int[] pPrixPassage, int pHypotheque)
@@ -59,19 +59,21 @@ public class Rue extends Patrimoine
 
     public int[] getNbMaison()
     {
-        int [] vNbMaison= {this.aNbMaison,this.aHotel};
-        return vNbMaison;
+
+        return new int [] {this.aNbMaison,this.aHotel};
     }
-    public void suprimeMaison(int pNbMaison)
+    public void supprimeMaison()
     {
-        if(aNbMaison==0 && aHotel==0)
-        {System.out.println("erreur");}
-        else if (pNbMaison>aNbMaison && aHotel==0) {
-            System.out.println("tu peux pas");
+        if(this.aHotel==1)
+        {
+            this.aHotel=0;
         }
-        else if (aHotel==1) {aHotel=0;}
+        else if(this.aNbMaison>0)
+        {
+            this.aNbMaison-=1;
+        }
         else {
-            aNbMaison-=pNbMaison;
+            System.out.println("ERREUR");
         }
 
 

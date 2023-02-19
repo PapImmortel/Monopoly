@@ -7,14 +7,14 @@ public class Gare extends Patrimoine{
         super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,"gare", pHypotheque);
     }
 
-    /*
+    /**
     accesseur
-    renvoie le prix à payer en fonction du nombre de gare mis en entrée
+    renvoie le prix à payer en fonction du nombre de gares mis en entrée
      */
     @Override public int getPrixPayer(HashMap<Integer,Player> vListPlayer)
     {
         int vJoueur = getJoueurBoss();
-        int vNbGarePossede = vListPlayer.get(vJoueur).getNbGare(); // nbgare cest monopole(non resolu)
+        int vNbGarePossede = vListPlayer.get(vJoueur).getNbGare();
         int vPrixAPayer=0;
         for(int i =0;i<vNbGarePossede;i++)
         {

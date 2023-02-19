@@ -38,9 +38,4 @@ public class GameFrame extends JFrame {
     public static boolean isType(){
         return panel.getIsType();
     }
-    /*
-    public static void debug(){
-    System.out.println(panel.getIsType());
-    }
-     */
 }

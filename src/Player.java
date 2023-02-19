@@ -1,26 +1,25 @@
 import java.util.*;
 
-import static java.util.Collection.*;
-
+/**
+ * Classe du Joueur avec toutes les informations du joueur
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ * @date (2023/01/12)
+ */
 public class Player
 {
-    /**
-     * Classe du Joueur avec toutes les informations du joueur
-     * @author Arvind Tangavelou
-     * @author Quentin Guyot
-     * @author Timothée Royer
-     * @author Clément Lavie
-     * @date (2023/01/12)
-     */
+
     private int aArgent;
-    private String aNomJoueur;
-    private String aCouleur;
+    private final String aNomJoueur;
+    private final String aCouleur;
     private Cases_Plateau aPosition;
     private  int aNbMonopole;
     private int aSortiePrison;
-    private HashMap<Integer,Patrimoine> aPatrimoine; // int , Case
+    private final HashMap<Integer,Patrimoine> aPatrimoine; // int , Case
     private int aPrisonnier;
-    private int[] aListPossession=new int[10];
+    private final int[] aListPossession=new int[10];
 
 
 
@@ -28,7 +27,7 @@ public class Player
      *  Constructeur à 3 paramètre de la classe Player
      * @param pArgent Argent de départ du joueur
      * @param pNomJoueur Nom du joueur
-     * @param pCouleur Couleur choisis par le joueur
+     * @param pCouleur Couleur choisie par le joueur
      */
     public Player(int pArgent,String pNomJoueur, String pCouleur,Cases_Plateau pPosition)
     {
@@ -38,7 +37,7 @@ public class Player
         //this.aPosition = Depart;
         this.aNbMonopole = 0;
         this.aSortiePrison = 0;
-        this.aPatrimoine = new HashMap<Integer,Patrimoine>();
+        this.aPatrimoine = new HashMap<>();
         this.aPrisonnier =0;
         this.aListPossession[0]=2;
         this.aListPossession[1]=3;
@@ -54,14 +53,6 @@ public class Player
 
     }//Player(.,.,.)
 
-    /**
-     * Mutateur d'argent
-     * @param pArgent aArgent nouveau montant du joueur
-     */
-    public void setArgent(int pArgent)
-    {
-        this.aArgent = pArgent;
-    }//setArgent(.)
 
     /**
      * Accesseur de l'argent du joueur
@@ -93,7 +84,7 @@ public class Player
 
     /**
      * fonction pour ajouter de l'argent avec un chiffre positif ou supprimer avec un chiffre négatif
-     * @param pArgent
+     * @param pArgent la valeur d'argent à ajouter au joueur (négative ou positive)
      */
     public void ajouteArgent(int pArgent)
     {
@@ -113,15 +104,15 @@ public class Player
 
     /**
      * Accesseur de la position d'un joueur
-     * @return aPosition Case actuel du joueur
+     * @return aPosition Case actuelle du joueur
      */
     public Cases_Plateau getPosition() {
         return this.aPosition;
     }//getPosition()
 
     /**
-     * Mutateur du nombre de monopole du joueur
-     * @param pNbMonopole aNbMonopole nombre de monopole du joueur
+     * Mutateur du nombre de monopoles du joueur
+     * @param pNbMonopole aNbMonopole nombre de monopoles du joueur
      */
     public void setNbMonopole(int pNbMonopole)
     {
@@ -129,8 +120,8 @@ public class Player
     }//setNbMonopole(.)
 
     /**
-     * Accesseur du nombre de monopole du joueur
-     * @return aNbMonopole nombre de monopole du joueur
+     * Accesseur du nombre de monopoles du joueur
+     * @return aNbMonopole nombre de monopoles du joueur
      */
     public int getNbMonopole()
     {
@@ -139,15 +130,15 @@ public class Player
 
     /**
      * Mutateur du nombre de pSortiePrison
-     * @param pSortiePrison nouvelle valeur de aSortiePrison
+     * @param pSortiePrison nouvelle valeur de l'attribue aSortiePrison
      */
     public void setSortiePrison(int pSortiePrison)
     {
         this.aSortiePrison = pSortiePrison;
-    }//setSoritiePrison(.)
+    }//setSortiePrison(.)
 
     /**
-     * Accesseur du nombre de tour fait en prison
+     * Accesseur du nombre de tours fait en prison
      * @return aSortiePrison
      */
     public int getSortiePrison()
@@ -169,14 +160,13 @@ public class Player
         else {
             this.aPatrimoine.remove(pPatrimoine.getNbCase());
             this.setMonopole(pPatrimoine.getColor(),-1);
-
         }
     }//ajouterPatrimoine()
 
 
     /**
      * accesseur de la liste du patrimoine d'un joueur
-     * @return aPatrimoine la liste des ses propriété
+     * @return aPatrimoine la liste de ses propriétés
      */
     public HashMap<Integer,Patrimoine> getPatrimoine()
     {
@@ -184,23 +174,36 @@ public class Player
     }
 
     /**
-     * retourne une String contenant la liste des propriètés du joueur
-     * @return PatrimoineJoueur sous forme de String avec le nom du joueur et son nombre de monopole ainsi qye la liste de ses patrimoines
+     * retourne un String contenant la liste des propriétés du joueur
+     * @return PatrimoineJoueur sous forme de String avec le nom du joueur et son nombre de monopoles ainsi qye la liste de ses patrimoines
      */
     public String affichePatrimoine()
     {
-        Iterator iterator = aPatrimoine.entrySet().iterator();
-        String PatrimoineJoueur = aNomJoueur + "possede " + aNbMonopole + ".\n";
+        Iterator<Map.Entry<Integer,Patrimoine>> iterator = aPatrimoine.entrySet().iterator();
+        String PatrimoineJoueur = aNomJoueur + "possède " + aNbMonopole + " monopole(s).\n";
         if (aPatrimoine.isEmpty())
         {
+            PatrimoineJoueur+= " et 0 patrimoines.";
             return PatrimoineJoueur;
         }//if(aPatrimoine.isEmpty())
-        PatrimoineJoueur = PatrimoineJoueur + aNomJoueur + " possede les propriétés suivante : \n";
+        PatrimoineJoueur += aNomJoueur + " possède les propriétés suivantes : ";
         while (iterator.hasNext())
         {
-            Map.Entry terrain = (Map.Entry) iterator.next();
-            Patrimoine Case1 = (Patrimoine) terrain.getValue();
-            PatrimoineJoueur = PatrimoineJoueur + Case1.getNomCase() + "\n";
+            Map.Entry<Integer,Patrimoine> terrain = iterator.next();
+            Patrimoine Case1 = terrain.getValue();
+            PatrimoineJoueur  += " \n" + Case1.getNomCase() ;
+            if(!Case1.getColor().equals("gare")||!Case1.getColor().equals("compagnie"))
+            {
+                Rue Case2 = (Rue) Case1;
+                if(Case2.getNbMaison()[0]>0)
+                {
+                    PatrimoineJoueur += "(" + Case2.getNbMaison()[0] + " maison(s))";
+                }
+                else if(Case2.getNbMaison()[1]>0)
+                {
+                    PatrimoineJoueur += "(" + Case2.getNbMaison()[0] + " hôtel)";
+                }
+            }
         }//while()
         return  PatrimoineJoueur;
     }//affichePatrimoine()
@@ -211,8 +214,8 @@ public class Player
         this.aPrisonnier=pPrisonnier;
     }
     /**
-     * retourne une  int avec la valeur du nombre de tour ou on a été prisonnier
-     * @return aPrisonnier sous forme d'entier avec la valeur du nombre de tour passé en prison
+     * retourne une int avec la valeur du nombre de tours ou on a été prisonnier
+     * @return aPrisonnier sous forme d'entier avec la valeur du nombre de tours passés en prison
      */
     public int getEstPrisonnier()
     {
@@ -333,7 +336,7 @@ public class Player
     {
         if(getNbMonopole()==0)
         {
-            return " Vous ne possedez aucun monopole , vous ne pouvez donc pas construire.\n";
+            return " Vous ne possédez aucun monopole , vous ne pouvez donc pas construire.\n";
         }
         else {
             String vListMonopole = " Vous possédez toutes les rues de couleur :   ";
@@ -378,18 +381,16 @@ public class Player
      */
     public int[] getNbMaisonHotel()
     {
-        Iterator iterator = aPatrimoine.entrySet().iterator();
-        int [] nbResultat=new int[2];
+        Iterator<Map.Entry<Integer,Patrimoine>> iterator = aPatrimoine.entrySet().iterator();
+        int [] nbResultat= {0,0};
         if (aPatrimoine.isEmpty())
         {
-            nbResultat[0]=0;
-            nbResultat[1]=0;
             return nbResultat;
         }//if(aPatrimoine.isEmpty())
         while (iterator.hasNext())
         {
-            Map.Entry Monopole = (Map.Entry) iterator.next();
-            Patrimoine terrain = (Patrimoine) Monopole.getValue();
+            Map.Entry<Integer,Patrimoine> Monopole = iterator.next();
+            Patrimoine terrain = Monopole.getValue();
             if(terrain.getNbCase()!=12 &&terrain.getNbCase()!=28 && (terrain.getNbCase()%5)!=0)
             {
                 Rue terrain2 = (Rue)terrain;

@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.tools.DocumentationTool;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,9 +16,9 @@ public class Panel extends JPanel {
 
     private static boolean isFinish = false;
 
-    private static HashMap<Integer, String> ListJoueur = new HashMap<>();
+    private static final HashMap<Integer, String> ListJoueur = new HashMap<>();
 
-    private static String[] ListCouleur = new String[4];
+    private static final String[] ListCouleur = new String[4];
 
     public static boolean getIsFinish(){
         return isFinish;
@@ -40,7 +39,7 @@ public class Panel extends JPanel {
         //Initialisation du bouton
         JButton button = new JButton ("Confirmer");
 
-        //LABELs
+        //LABELS
         JLabel label = new JLabel("Choisir le nom du joueur :");
         label.setForeground(Color.WHITE);
 
@@ -61,7 +60,7 @@ public class Panel extends JPanel {
 
         //ComboBox pour choisir la couleur du joueur
         String[] couleurs = new String[]{"ROUGE","BLEU","JAUNE","VERT"};
-        JComboBox <String> Couleur = new JComboBox<String>(couleurs);
+        JComboBox <String> Couleur = new JComboBox<>(couleurs);
 
         //Logique du bouton
         button.addActionListener(new ActionListener() {

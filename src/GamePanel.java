@@ -64,9 +64,9 @@ public class GamePanel extends JPanel {
             }
 
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==10){//Quand le joueur fait enter
+                if(e.getKeyCode()==10){//Quand le joueur utilise la touche entrée
                     lastCommand = CMD.getText();//On stock sa commande
-                    isType = true;//On met la valeur a true pour pour signifier que le joueur a envoyer une information non lue
+                    isType = true;//On met la valeur a true pour signifier que le joueur a envoyé une information non lue
                     CMD.setText("");//on efface la commande
                 }
 
@@ -101,7 +101,7 @@ public class GamePanel extends JPanel {
 
             g.setFont(font);
             g.setColor(Color.WHITE);
-            g.drawString("Ecrire les commandes ici :",680,595);
+            g.drawString("écrire les commandes ici :",680,595);
         }
         catch(IOException e){
             e.printStackTrace();

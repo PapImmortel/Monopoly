@@ -9,7 +9,7 @@ public class Compagnie extends Patrimoine{
 
     /*
     accesseur
-    renvoie le prix à payer en fonction de notre lancé de dé:
+    renvoie le prix à payer en fonction de notre lancé de dé
      */
     @Override public int getPrixPayer(HashMap<Integer,Player> vListPlayer,int vScoreDes)
     {

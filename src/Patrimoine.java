@@ -1,12 +1,10 @@
 import java.util.HashMap;
 
 public class Patrimoine extends Cases_Plateau{
-    private String aNomPatrimoine;
-    private int aIdPropriete;
-    private int aPrixAchat;
+    private final int aPrixAchat;
     private int aJoueurBoss;
-    private String aColor;
-    private int aPrixHypotheque;
+    private final String aColor;
+    private final int aPrixHypotheque;
     public Patrimoine(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,String pColor, int pPrixHypotheque)
 
     {
