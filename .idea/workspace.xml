@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CaseEffet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseEffet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cases_Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cases_Plateau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compagnie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compagnie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -210,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676826343766</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)">
+      <created>1676844041736</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1676844041736</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -231,6 +226,7 @@
     <MESSAGE value="on a enfin des trucs mais mon cerveau est hs car j'ai commencé à bosser il ya 10h" />
     <MESSAGE value="ca commence à ressmebler à quelquechose" />
     <MESSAGE value="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé" />
+    <MESSAGE value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)" />
+    <option name="LAST_COMMIT_MESSAGE" value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)" />
   </component>
 </project>

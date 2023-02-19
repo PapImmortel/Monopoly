@@ -180,7 +180,7 @@ public class Player
     public String affichePatrimoine()
     {
         Iterator<Map.Entry<Integer,Patrimoine>> iterator = aPatrimoine.entrySet().iterator();
-        String PatrimoineJoueur = aNomJoueur + "possède " + aNbMonopole + " monopole(s).\n";
+        String PatrimoineJoueur = aNomJoueur + " possède " + aNbMonopole + " monopole(s).\n";
         if (aPatrimoine.isEmpty())
         {
             PatrimoineJoueur+= " et 0 patrimoines.";

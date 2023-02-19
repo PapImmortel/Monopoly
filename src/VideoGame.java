@@ -1020,7 +1020,46 @@ public class VideoGame
 
     public void possessionsJoueur()
     {
+        int[] listJoueur = new int[getNbJoueur()];
+        int positionList=0;
+        for (int i = 1; i <= getNbJoueur(); i++) {
+            if (this.aListPlayer.get(i).getArgent() >= 0 )
+            {
+                listJoueur[positionList]=i;
+                positionList+=1;
+            }
 
+        }
+        boolean fonctionne=false;
+        while(!fonctionne)
+        {
+            for(int i=0;i<positionList;i++)
+            {
+                GameFrame.PrintMSG("Tape " + i + " si tu veux voir les possessions de " + this.aListPlayer.get(listJoueur[i]).getNomJoueur());
+            }
+            GameFrame.PrintMSG("Tape 'retour' sinon");
+            String temp=GameFrame.getCommand();
+            boolean valeurEntiere = true;
+            try {
+                Integer.parseInt(temp);
+            } catch (NumberFormatException e) {
+                valeurEntiere = false;
+            }
+            if(valeurEntiere && Integer.parseInt(temp)>=0 && Integer.parseInt(temp)<positionList)
+            {
+                fonctionne=true;
+                GameFrame.PrintMSG( this.aListPlayer.get(listJoueur[Integer.parseInt(temp)]).affichePatrimoine());
+            }
+            else if(temp.equals("retour"))
+            {
+                fonctionne=true;
+            }
+            else {
+                GameFrame.PrintMSG( "Commande invalide");
+
+            }
+
+        }
     }
     /**
      * Méthode de gestion de tour des joueurs
