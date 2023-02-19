@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
         return isType;
     }
     public static String getLastCommand(){
-        if(isType) {//si une commande tapee est en attente de lecture
+        if(isType ) {//si une commande tape est en attente de lecture
             String temp = lastCommand;
             lastCommand = "";
             isType = false;

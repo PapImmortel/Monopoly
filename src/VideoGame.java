@@ -514,16 +514,22 @@ public class VideoGame
                     getaGame().PrintMSG(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
 
                     String temp2 = getaGame().getCommand();
+                    boolean valeurEntiere = true;
+                    try {
+                        int valEnInt = Integer.parseInt(temp2);
+                    } catch (NumberFormatException e) {
+                        valeurEntiere = false;
+                    }
                     if (temp2.equals("retour"))
                     {
                         fonctionne2 = true;
                     }
-                    else if (Integer.parseInt(temp2) >= 0 && Integer.parseInt(temp2) < positionList)
+
+                    else if (valeurEntiere && Integer.parseInt(temp2) >= 0 && Integer.parseInt(temp2) < positionList)
                     {
                         boolean fonctionne3 = false;
                         Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.parseInt(temp2)]);
                         int[] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
-                        listPatrimoineVente[0]=-1;
                         int positionListPatrimoine = 0;
                         Iterator iterator = joueurEchange.getPatrimoine().entrySet().iterator();
                         if (joueurEchange.getPatrimoine().isEmpty()) {
@@ -536,7 +542,7 @@ public class VideoGame
                                 Map.Entry terrain = (Map.Entry) iterator.next();
                                 Patrimoine terrain2 = (Patrimoine) terrain.getValue();
                                 if (terrain2.getNbCase() != 12 && terrain2.getNbCase() != 28 && (terrain2.getNbCase() % 5) != 0) {
-                                    Rue terrain3 = (Rue) terrain;
+                                    Rue terrain3 = (Rue) terrain2;
                                     if (terrain3.getNbMaison()[0] == 0 && terrain3.getNbMaison()[1] == 0) {
                                         listPatrimoineVente[positionListPatrimoine] = terrain3.getNbCase();
                                         positionListPatrimoine += 1;
@@ -549,19 +555,21 @@ public class VideoGame
                                 }
                             }//while()
                         }
-                        if(listPatrimoineVente[0]==-1)
-                        {
-                            getaGame().PrintMSG(  "Vous ne possèdez aucun terrain nu, vous ne pouvez donc pas en vendre. \n");
-                            fonctionne3=true;
-                        }
+
                         while (!fonctionne3) {
                             for (int i = 0; i < positionListPatrimoine; i++) {
                                 getaGame().PrintMSG("Tapez " + i + " pour demander l'autorisation d'acheter : " + joueurEchange.getPatrimoine().get(listPatrimoineVente[i]).getNomCase() + " pour le prix de " + joueurEchange.getPatrimoine().get(listPatrimoineVente[i]).getPrixAchat() + "\n");
                             }
                             getaGame().PrintMSG("Tapez 'retour' pour revenir en arriere\n");
                             String temp3 = getaGame().getCommand();
-                            if (Integer.parseInt(temp3) >= 0 && Integer.parseInt(temp3) < positionListPatrimoine) {
-                                Patrimoine vTerrainChoisi = joueurEchange.getPatrimoine().get(Integer.parseInt(temp3));
+                            boolean valeurEntiere2 = true;
+                            try {
+                                int valEnInt = Integer.parseInt(temp3);
+                            } catch (NumberFormatException e) {
+                                valeurEntiere2 = false;
+                            }
+                            if (valeurEntiere2 && Integer.parseInt(temp3) >= 0 && Integer.parseInt(temp3) < positionListPatrimoine) {
+                                Patrimoine vTerrainChoisi = joueurEchange.getPatrimoine().get(listPatrimoineVente[Integer.parseInt(temp3)]);
                                 if (getJoueurActif().getArgent() - vTerrainChoisi.getPrixAchat() < 0) {
                                     getaGame().PrintMSG(" Vous n'avez pas assez d'argent pour acheter ce terrain.\n");
                                 }
@@ -581,6 +589,7 @@ public class VideoGame
                                             getJoueurActif().ajouterPatrimoine(vTerrainChoisi, 1);
                                             joueurEchange.ajouterPatrimoine(vTerrainChoisi, -1);
                                             fonctionne4 = true;
+                                            fonctionne3=true;
                                             Patrimoine vCaseSetting= (Patrimoine) this.aListeCase.get(vTerrainChoisi.getNbCase());
                                             vCaseSetting.setJoueurBoss(getNumJoueurActif());
 
@@ -627,16 +636,21 @@ public class VideoGame
                     getaGame().PrintMSG(" Sinon, vous pouvez taper 'retour' pour revenir en arriere.' \n");
 
                     String temp2 = getaGame().getCommand();
+                    boolean valeurEntiere = true;
+                    try {
+                        int valEnInt = Integer.parseInt(temp2);
+                    } catch (NumberFormatException e) {
+                        valeurEntiere = false;
+                    }
                     if(temp2.equals("retour"))
                     {
                         fonctionne2=true;
                     }
-                    else if(Integer.parseInt(temp2)>=0 && Integer.parseInt(temp2)<positionList)
+                    else if(valeurEntiere && Integer.parseInt(temp2)>=0 && Integer.parseInt(temp2)<positionList)
                     {
                         boolean fonctionne3 = false;
                         Player joueurEchange = this.aListPlayer.get(listJoueur[Integer.parseInt(temp2)]);
-                        int [] listPatrimoineVente = new int[joueurEchange.getPatrimoine().size()];
-                        listPatrimoineVente[0] =-1;
+                        int [] listPatrimoineVente = new int[getJoueurActif().getPatrimoine().size()];
 
                         int positionListPatrimoine = 0;
                         Iterator iterator = getJoueurActif().getPatrimoine().entrySet().iterator();
@@ -653,7 +667,7 @@ public class VideoGame
                                 Patrimoine terrain2 = (Patrimoine) terrain.getValue();
                                 if(terrain2.getNbCase()!=12 &&terrain2.getNbCase()!=28 && (terrain2.getNbCase()%5)!=0)
                                 {
-                                    Rue terrain3 = (Rue) terrain;
+                                    Rue terrain3 = (Rue) terrain2;
                                     if(terrain3.getNbMaison()[0]==0 && terrain3.getNbMaison()[1]==0)
                                     {
                                         listPatrimoineVente[positionListPatrimoine]=terrain3.getNbCase();
@@ -666,11 +680,7 @@ public class VideoGame
                                 }
                             }//while()
                         }
-                        if(listPatrimoineVente[0]==-1)
-                        {
-                            getaGame().PrintMSG(  "Vous ne possèdez aucun terrain nu, vous ne pouvez donc pas en vendre. \n");
-                            fonctionne3=true;
-                        }
+
                         while(!fonctionne3)
                         {
                             for(int i =0;i<positionListPatrimoine;i++)
@@ -679,9 +689,15 @@ public class VideoGame
                             }
                             getaGame().PrintMSG("Tapez 'retour' pour revenir en arriere\n");
                             String temp3 = getaGame().getCommand();
-                            if(Integer.parseInt(temp3)>=0 && Integer.parseInt(temp3)<positionListPatrimoine)
+                            boolean valeurEntiere2 = true;
+                            try {
+                                int valEnInt = Integer.parseInt(temp3);
+                            } catch (NumberFormatException e) {
+                                valeurEntiere2 = false;
+                            }
+                            if(valeurEntiere2 && Integer.parseInt(temp3)>=0 && Integer.parseInt(temp3)<positionListPatrimoine)
                             {
-                                Patrimoine vTerrainChoisi = getJoueurActif().getPatrimoine().get(Integer.parseInt(temp3));
+                                Patrimoine vTerrainChoisi = getJoueurActif().getPatrimoine().get(listPatrimoineVente[Integer.parseInt(temp3)]);
                                 if(joueurEchange.getArgent()-vTerrainChoisi.getPrixAchat()<0)
                                 {
                                     getaGame().PrintMSG(joueurEchange.getNomJoueur() + " ne possède pas assez d'argent pour acheter ce terrain.\n");
@@ -692,7 +708,7 @@ public class VideoGame
                                     while(!fonctionne4)
                                     {
                                         getaGame().PrintMSG(joueurEchange.getNomJoueur() + " , " + getJoueurActif().getNomJoueur() + " souhaite vous vendre le terrain " + vTerrainChoisi.getNomCase() + " pour une somme de " + vTerrainChoisi.getPrixAchat() + "\n");
-                                        getaGame().PrintMSG(" Tapez  'accepter' pour achter ce terrain, Tapez ' refuser' pour refuser l'offre .\n");
+                                        getaGame().PrintMSG(" Tapez  'accepter' pour acheter ce terrain, Tapez ' refuser' pour refuser l'offre .\n");
                                         String temp4 = getaGame().getCommand();
 
                                         if(temp4.equals("accepter"))
@@ -704,6 +720,7 @@ public class VideoGame
                                             getJoueurActif().ajouterPatrimoine(vTerrainChoisi,-1);
                                             joueurEchange.ajouterPatrimoine(vTerrainChoisi,1);
                                             fonctionne4 = true;
+                                            fonctionne3=true;
                                             Patrimoine vCaseSetting=(Patrimoine) this.aListeCase.get(vTerrainChoisi.getNbCase());
                                             vCaseSetting.setJoueurBoss(listJoueur[Integer.parseInt(temp2)]);
 
@@ -962,35 +979,31 @@ public class VideoGame
             String temp = getaGame().getCommand();
             switch (temp) {
                 case "acheter":
-
-                    if (getJoueurActif().getPosition().getTypeCase())//verifier si la case est bien une case propriétée
-                    {
-                        Patrimoine terrain = (Patrimoine) getJoueurActif().getPosition();
-                        if (terrain.getJoueurBoss() == 0)//vérifier si le propriètaire est la banque
+                    if(!vEffetCaseEffectue) {
+                        if (getJoueurActif().getPosition().getTypeCase())//verifier si la case est bien une case propriétée
                         {
-                            if(acheterTerrain())
+                            Patrimoine terrain = (Patrimoine) getJoueurActif().getPosition();
+                            if (terrain.getJoueurBoss() == 0)//vérifier si le propriètaire est la banque
                             {
-                                nbEffetCaseEffectue += 1;
-                                vEffetCaseEffectue = true;
+                                if (acheterTerrain()) {
+                                    nbEffetCaseEffectue += 1;
+                                    vEffetCaseEffectue = true;
+                                }
+
+                            } else if (terrain.getJoueurBoss() == this.getNumJoueurActif()) {
+                                getaGame().PrintMSG("Tu es propriétaire de ce terrain, tu ne peux donc pas l'acheter");
+                            } else {
+                                getaGame().PrintMSG("Ce terrain appartient déjà à " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
+                                getaGame().PrintMSG(" utilise la commande business si tu veux lui acheter le terrain");
                             }
-
+                        } else {
+                            getaGame().PrintMSG("Ceci n'est pas une case achetable");
                         }
-                        else if (terrain.getJoueurBoss() == this.getNumJoueurActif())
-                        {
-                            getaGame().PrintMSG("Tu es propriétaire de ce terrain, tu ne peux donc pas l'acheter");
-                        }
-                        else
-                        {
-                            getaGame().PrintMSG("Ce terrain appartient déjà à " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
-                            getaGame().PrintMSG(" utilise la commande business si tu veux lui acheter le terrain");
-                        }
+                        break;
                     }
-                    else
-                    {
-                        getaGame().PrintMSG("Ceci n'est pas une case achetable");
+                    else {
+                        getaGame().PrintMSG("Vous ne pouvez pas utiliser cette commande actuellement");
                     }
-                    break;
-
                 case "enchere":
 
                     if (getJoueurActif().getPosition().getTypeCase())//verifier si la case est bien une case propriétée

@@ -85,7 +85,7 @@ public class Panel extends JPanel {
             }
 
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==10 && nomJoueur.getText() != null){
+                if(e.getKeyCode()==10 && !nomJoueur.getText().equals("")){
                     if(IndexPlayer<4){
                         IndexPlayer++;
 
