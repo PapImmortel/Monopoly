@@ -8,7 +8,6 @@ import java.util.Random;
  * @author Quentin Guyot
  * @author Timothée Royer
  * @author Clément Lavie
- * @date (2023/02/18)
  */
 public class CaseEffet extends Cases_Plateau{
     private final int aNumeroEffet;//0=depart 1=chance 2=communauté

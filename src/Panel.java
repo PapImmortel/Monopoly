@@ -7,7 +7,13 @@ import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * Classe Panel
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ */
 public class Panel extends JPanel {
 
     private static int IndexPlayer;
@@ -33,6 +39,10 @@ public class Panel extends JPanel {
     public static int getIndexPlayer(){
         return IndexPlayer;
     }
+
+    /**
+     * constructeur dee la classe Panel
+     */
     public Panel(){
         //Initialisation du bouton
         JButton button = new JButton ("Confirmer");
@@ -119,6 +129,11 @@ public class Panel extends JPanel {
         add(button);
     }
     //Partie Graphique
+
+    /**
+     * Partie Graphique
+     * @param g the <code>Graphics</code> object to protect
+     */
     public void paintComponent(Graphics g){
 
         try{

@@ -6,7 +6,6 @@ import java.util.*;
  * @author Quentin Guyot
  * @author Timothée Royer
  * @author Clément Lavie
- * @date (2023/01/12)
  */
 public class Player
 {

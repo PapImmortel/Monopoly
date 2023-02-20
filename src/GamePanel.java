@@ -8,7 +8,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Classe GamePanel
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ */
 public class GamePanel extends JPanel {
 
     private static HashMap<Integer, Player> ListJoueur = new HashMap<>();
@@ -25,14 +31,26 @@ public class GamePanel extends JPanel {
     private static final int[] CaseCoordX = new int []{600,530,480,430,380,330,280,226,173,126,59,59,59,59,59,59,59,59,59,59,59,124,174,230,277,328,380,430,482,532,600,600,600,600,600,600,600,600,600,600};
     private static final int[] CaseCoordY = new int []{600,600,600,600,600,600,600,600,600,600,610,533,480,434,380,330,280,230,180,130,58,50,50,50,50,50,50,50,50,50,50,125,180,230,280,330,380,430,480,530};
 
-
+    /**
+     * mutateur du hashmap des joueurs
+     * @param ListJoueurP HashMap<Integer, Player> le hashmap des joueurs
+     */
     public static void setPlayerList(HashMap<Integer, Player> ListJoueurP){
         ListJoueur = ListJoueurP;
     }
+
+    /**
+     * mutateur du nombre de joueurs
+     * @param n int nombre de joueurs
+     */
     public static void setNPlayer(int n){
         nJoueur = n;
     }
 
+    /**
+     * Renvoie la dernière commande en attente
+     * @return String la dernière commande tapée par l'utilisateur
+     */
     public static String getLastCommand(){
         if(isType ) {//si une commande tape est en attente de lecture
             String temp = lastCommand;
@@ -43,6 +61,10 @@ public class GamePanel extends JPanel {
         else return "";
     }
 
+    /**
+     * fonction bloquante attendant un message de l'utilisateur
+     * @return le message de l'utilisateur
+     */
     public static String getCommand(){
         while(!isType){
             System.out.print("");
@@ -50,12 +72,19 @@ public class GamePanel extends JPanel {
         return getLastCommand();
     }
 
-
+    /**
+     * Affiche un message dans la console
+     * @param text String le message à afficher dans la console
+     */
     public static void PrintMSG(String text){
         textArea.append(text + "\n");
         textArea.setCaretPosition(textArea.getDocument().getLength());
 
     }
+
+    /**
+     * mise à jour des affichages de l'argent des joueurs
+     */
     public static void UpdateMoneyGUI(){
         Joueur1.setText( ListJoueur.get(1).getNomJoueur() + " : " + ListJoueur.get(1).getArgent() + " € " + "("+ListJoueur.get(1).getCouleur()+")");
         Joueur2.setText( ListJoueur.get(2).getNomJoueur() + " : " + ListJoueur.get(2).getArgent() + " € " + "("+ListJoueur.get(2).getCouleur()+")");
@@ -68,6 +97,10 @@ public class GamePanel extends JPanel {
     }
 
     //Partie logique
+
+    /**
+     * Constructeur du GamePanel
+     */
     public GamePanel(){
         setLayout(null);
 
@@ -136,6 +169,11 @@ public class GamePanel extends JPanel {
     }
 
     //Partie Graphique
+
+    /**
+     * Partie Graphique
+     * @param g the <code>Graphics</code> object to protect
+     */
     public void paintComponent(Graphics g){
 
         try{

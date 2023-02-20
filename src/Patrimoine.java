@@ -6,7 +6,6 @@ import java.util.HashMap;
  * @author Quentin Guyot
  * @author Timothée Royer
  * @author Clément Lavie
- * @date (2023/19/02)
  */
 public class Patrimoine extends Cases_Plateau{
     private final int aPrixAchat;
