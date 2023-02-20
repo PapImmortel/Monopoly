@@ -11,14 +11,11 @@ import java.util.Random;
  * @date (2023/02/18)
  */
 public class CaseEffet extends Cases_Plateau{
-
-
-
     private final int aNumeroEffet;//0=depart 1=chance 2=communauté
     private String aEffet;
 
     /**
-     *
+     * constructeur de la classe CaseEffet
      * @param pNomCase String le nom de la case
      * @param pNbCase  int le numéro de la case
      * @param pNumeroEffet int le numéro du type
@@ -33,15 +30,16 @@ public class CaseEffet extends Cases_Plateau{
 
     /**
      * Mutateur de l'attribue aEffet
-     * @param pEffet récupère le texte indiquant l'effet de la case
+     * @param pEffet String récupère le texte indiquant l'effet de la case
      */
     public void setaEffet(String pEffet)
     {
         this.aEffet=pEffet;
     }
+
     /**
      * Accesseur du type de caseEffet (carte communauté ou chance)
-     * @return aNumeroEffet
+     * @return aNumeroEffet int retourne le type de caseEffet
      */
     public int getNumeroEffet()
     {
@@ -50,7 +48,7 @@ public class CaseEffet extends Cases_Plateau{
 
     /**
      * Accesseur de l'attribue aEffet
-     * @return aEffet
+     * @return aEffet String retourne le texte de l'effet de la carte
      */
     public String getaEffet()
     {
@@ -60,9 +58,9 @@ public class CaseEffet extends Cases_Plateau{
     /**
      * Fonction générale pour les effets des cartes à effets
      * @param pJoueur Player le joueur actif
-     * @param pListPlayer Hashmap la liste des joueurs
-     * @param pListCase Hashmap la liste des cases
-     * @return renvoie 0 sauf si c'est la carte chance donnant un choix à l'utilisateur
+     * @param pListPlayer Hashmap<Integer,Player> la liste des joueurs
+     * @param pListCase Hashmap<Integer,Cases_Plateau> la liste des cases
+     * @return Int renvoie 0 sauf si c'est la carte chance donnant un choix à l'utilisateur. Dans ce cas, retourne 1.
      */
     public int effetCase(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
@@ -79,9 +77,9 @@ public class CaseEffet extends Cases_Plateau{
     }
 
     /**
-     * Effet des cartes chance
+     * effets des cartes chances
      * @param pJoueur Player le joueur actif
-     * @param pListCase Hashmap la liste des cases
+     * @param pListCase HashMap<Integer,Cases_Plateau> la liste des cases
      */
     public void caseChance(Player pJoueur, HashMap<Integer,Cases_Plateau> pListCase)
     {
@@ -116,7 +114,7 @@ public class CaseEffet extends Cases_Plateau{
             case 4:
                 pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[0]*40);
                 pJoueur.ajouteArgent(-pJoueur.getNbMaisonHotel()[1]*115);
-                this.setaEffet("Vous êtes imposés pour les réparations de voirie à raison de 40 euros par maison \net 115 euros par hôtel.");
+                this.setaEffet("Vous êtes imposé pour les réparations de voirie à raison de 40 euros par maison \net 115 euros par hôtel.");
                 break;
             case 5:
                 if(pJoueur.getPosition().getNbCase()-15>0)
@@ -136,7 +134,7 @@ public class CaseEffet extends Cases_Plateau{
                 break;
             case 8:
                 pJoueur.setSortiePrison(pJoueur.getSortiePrison()+1);
-                this.setaEffet("Vous êtes libérés de prison. Cette carte est conservée jusqu'à utilisation. ");
+                this.setaEffet("Vous êtes libéré de prison. Cette carte est conservée jusqu'à utilisation. ");
                 break;
             case 9:
                 int pos =pJoueur.getPosition().getNbCase()-3;
@@ -155,7 +153,7 @@ public class CaseEffet extends Cases_Plateau{
                 break;
             case 12:
                 pJoueur.ajouteArgent(-15);
-                this.setaEffet("Amende pour excès de vitesse: tu perds 15 euros");
+                this.setaEffet("Amende pour excès de vitesse: vous perdez 15 euros");
                 break;
             case 13:
                 pJoueur.ajouteArgent(-150);
@@ -180,9 +178,9 @@ public class CaseEffet extends Cases_Plateau{
     /**
      * Effet des cartes communautés
      * @param pJoueur Player le joueur actif
-     * @param pListPlayer Hashmap la liste des joueurs
-     * @param pListCase Hashmap la liste des cases
-     * @return 1 si une tombe sur la case pioche une carte chance ou paye
+     * @param pListPlayer HashMap<Integer,Player> la liste des joueurs
+     * @param pListCase HashMap<Integer,Cases_Plateau> la liste des cases
+     * @return 1 si une tombe sur la case : piochez une carte chance ou payez
      */
     public int caseCommunaute(Player pJoueur,  HashMap<Integer,Player> pListPlayer, HashMap<Integer,Cases_Plateau> pListCase)
     {
@@ -209,7 +207,7 @@ public class CaseEffet extends Cases_Plateau{
                 break;
             case 4:
                 pJoueur.setSortiePrison(pJoueur.getSortiePrison()+1);
-                this.setaEffet("Vous êtes libérés de prison. Cette carte est conservée jusqu'à utilisation.");
+                this.setaEffet("Vous êtes libéré de prison. Cette carte est conservée jusqu'à utilisation.");
                 break;
 
             case 5:
@@ -278,6 +276,11 @@ public class CaseEffet extends Cases_Plateau{
         }
         return 0;
     }
+
+    /**
+     * methode ajoutant 200 euros à un joueur s'il passe par la case départ
+     * @param pJoueur Player le joueur qui passe par la case départ
+     */
     public void depart(Player pJoueur)
     {
         pJoueur.ajouteArgent(200);

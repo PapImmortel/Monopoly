@@ -25,7 +25,7 @@ public class Banque
 
     /**
      * Mutateur du nombre de maisons
-     * @param pNbMaison aNbMaison modification du nombre de maisons restantes
+     * @param pNbMaison int modification du nombre de maisons restantes
      */
     public void setNbMaison(int pNbMaison)
     {
@@ -33,7 +33,7 @@ public class Banque
     }//setNbMaison(.)
 
     /**
-     * Assesseur du nombre de maisons restantes
+     * Accesseur du nombre de maisons restantes
      * @return aNbMaison nombre de maisons restantes dans la banque
      */
     public int getNbMaison()
@@ -43,7 +43,7 @@ public class Banque
 
     /**
      * Mutateur du nombre d'hotel
-     * @param pNbHotel aHotel modification du nombre d'hotel restante
+     * @param pNbHotel int modification du nombre d'hotel restant
      */
     public void setNbHotel(int pNbHotel)
     {
@@ -51,8 +51,8 @@ public class Banque
     }//setNbHotel(.)
 
     /**
-     * Assesseur du nombre d'hotel
-     * @return aNbHotel nombre d'hotel restant dans la banque
+     * Accesseur du nombre d'hotel
+     * @return aNbHotel int nombre d'hotel restant dans la banque
      */
     public int getNbHotel()
     {
@@ -61,7 +61,8 @@ public class Banque
 
     /**
      * Mutateur du Benefice de la banque
-     * @param pBenefice aBenefice montant en banque venant des impôts et taxes
+     * @param pBenefice  int somme d'argent, venant des impôts et des taxes, et récupérable par le joueur
+     *                   s'il atterrit sur la case Parc gratuit
      */
     public void setBenefice(int pBenefice)
     {
@@ -69,8 +70,9 @@ public class Banque
     }//setBenefice(.)
 
     /**
-     * Assesseur du bénéfice de la banque
-     * @return aBenefice montant en banque venant des impôts et taxes
+     * Accesseur du bénéfice de la banque
+     * @return aBenefice int somme d'argent, venant des impôts et des taxes, et récupérable par le joueur
+     *                         s'il atterrit sur la case Parc gratuit
      */
     public int getBenefice()
     {
@@ -78,8 +80,8 @@ public class Banque
     }//getBenefice()
 
     /**
-     * Chaine de caractère à afficher pour que les joueurs aient les informations sur le nombre de maisons et d'hôtels disponibles
-     * @return String avec nombre d'hôtels et de maisons disponibles.
+     * Chaine de caractère à afficher pour que les joueurs aient les informations sur le nombre de maisons et d'hôtels disponibles en banques
+     * @return String contenant le nombre d'hôtels et de maisons disponibles.
      */
     public String informationMaisonHotel()
     {

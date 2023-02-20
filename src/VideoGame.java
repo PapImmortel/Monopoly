@@ -22,8 +22,9 @@ public class VideoGame
 
     /**
      * Constructeur à 3 paramètre de la Classe VideoGame
-     * @param pNbJoueur aNbJoueur nombre de joueurs actifs pour la partie à venir
-     * @param pListPlayer aListPlayer HashMap de la liste des joueurs
+     * @param pNbJoueur int nombre de joueurs actifs pour la partie à venir
+     * @param pListPlayer HashMap<Integer,String> HashMap de la liste des joueurs
+     * @param pListCouleur String[] liste des couleurs des joueurs
      */
     public VideoGame(int pNbJoueur,HashMap<Integer,String> pListPlayer,String[] pListCouleur)
     {
@@ -39,7 +40,7 @@ public class VideoGame
             Player PlayerTemp = new Player(1500,PlayerEntry.getValue(),pListCouleur[vPositionListCouleur],getCase(0) );
             this.aListPlayer.put((vPositionListCouleur+1),PlayerTemp);
             vPositionListCouleur+=1;
-        }//while(.)
+        }
         this.aNumJoueurActif = 1;
 
         GameFrame.setNPlayer(pNbJoueur);
@@ -48,14 +49,13 @@ public class VideoGame
 
         tourJoueur();
 
-        //début du tour du joueur1
     }//VideoGame(.,.,.)
 
 
 
     /**
      * Accesseur du nombre de joueurs dans la partie
-     * @return aNbJoueur nombre de joueurs dans la partie
+     * @return aNbJoueur int nombre de joueurs dans la partie
      */
     public int getNbJoueur()
     {
@@ -66,7 +66,7 @@ public class VideoGame
 
     /**
      * Accesseur de Banque
-     * @return aBanque Banque du jeu
+     * @return Banque aBanque Banque du jeu
      */
     public Banque getBanque()
     {
@@ -74,11 +74,9 @@ public class VideoGame
     }//getBanque()
 
 
-
-
     /**
      * Accesseur du Joueur actif
-     * @return JoueurActif le joueur actif
+     * @return Player le joueur actif
      */
     public Player getJoueurActif()
     {
@@ -86,7 +84,7 @@ public class VideoGame
     }//getJoueurActif()
     /**
      * Mutateur de numéro du joueur Actif
-     * @param pNumJoueurActif le numéro du joueurActif de la classe Player
+     * @param pNumJoueurActif int le numéro du joueurActif de la classe Player
      */
     public void setNumJoueurActif(int pNumJoueurActif)
     {
@@ -95,7 +93,7 @@ public class VideoGame
 
     /**
      * Accesseur du numéro du Joueur actif
-     * @return aNumJoueurActif joueur actif
+     * @return aNumJoueurActif int numéro du joueur actif
      */
     public int getNumJoueurActif()
     {
@@ -104,12 +102,10 @@ public class VideoGame
 
 
 
-
-
     /**
      * Permet d'obtenir une case en fonction de son numéro dans le plateau
-     * @param pNbCase numéros de la case à retourner
-     * @return case correspondant au numéros passé en paramètre
+     * @param pNbCase int numéro de la case à retourner
+     * @return Cases_Plateau retourne la case correspondante au numéro passé en paramètre
      */
     public Cases_Plateau getCase(int pNbCase)
     {
@@ -163,13 +159,19 @@ public class VideoGame
         this.aListeCase.put(39,new Rue("RUE DE LA PAIX",39, 400,0,0, 0, "bleu",new int[]{50,200,600,1400,1700,2000},200));
     }//remplirCase()
 
-
+    /**
+     * mutateur permettant d'ajouter ou retirer de l'argent à un joueur, puis mettre à jour les affichages du jeu
+     * @param pP Player le nom du joueur qui ajoute ou retire de l'argent
+     * @param pArgent int la valeur d'argent que l'on doit ajouter au joueur
+     */
     public void ajouteArgent(Player pP, int pArgent){
         pP.ajouteArgent(pArgent);
         GameFrame.UpdateMoneyGUI();
     }
+
     /**
      * Méthode de gestion de l'achat d'un terrain par un joueur
+     * @return boolean retourne true si on peut acheter le terrain et false sinon
      */
     public boolean acheterTerrain()
     {
@@ -177,7 +179,7 @@ public class VideoGame
 
         if(getJoueurActif().getArgent() - vTerrain.getPrixAchat()>=0)//si on a l'argent pour acheter le terrain
         {
-            GameFrame.PrintMSG("Tu achètes le titre de propriété : " + vTerrain.getNomCase());
+            GameFrame.PrintMSG("Vous achetez le titre de propriété : " + vTerrain.getNomCase());
             ajouteArgent(getJoueurActif(),- vTerrain.getPrixAchat());
             vTerrain.setJoueurBoss(getNumJoueurActif());
             getJoueurActif().ajouterPatrimoine(vTerrain,1);
@@ -187,12 +189,13 @@ public class VideoGame
             return true;
         }
         else {
-            GameFrame.PrintMSG("Tu n'as pas l'argent pour acheter le titre de propriété : " + vTerrain.getNomCase());
-            GameFrame.PrintMSG("Celui-ci coute : " + vTerrain.getPrixAchat() + " or tu n'as que " + getJoueurActif().getArgent());
-            GameFrame.PrintMSG("Tu dois donc le mettre en enchère ou revendre certaines de tes possessions pour l'acheter");
+            GameFrame.PrintMSG("Vous n'avez pas l'argent pour acheter le titre de propriété : " + vTerrain.getNomCase());
+            GameFrame.PrintMSG("Celui-ci coute : " + vTerrain.getPrixAchat() + " or vous n'avez que " + getJoueurActif().getArgent());
+            GameFrame.PrintMSG("Vous devez donc le mettre en enchère ou revendre certaines de vos possessions pour l'acheter");
             return false;
         }
     }
+
     /**
      * Méthode de gestion de l'enchère d'un terrain
      */
@@ -211,7 +214,7 @@ public class VideoGame
                 while(!fonctionne)
                 {
                     GameFrame.PrintMSG("Le terrain coute actuellement " + vTerrain.getPrixAchat());
-                    GameFrame.PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites l'acheter tape acheter, sinon tape laisser");
+                    GameFrame.PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si vous souhaitez l'acheter tapez 'acheter', sinon tapez 'laisser'");
                     String temp = GameFrame.getCommand();
                     if(temp.equals("acheter"))
                     {
@@ -229,7 +232,7 @@ public class VideoGame
                     }
                     else
                     {
-                        GameFrame.PrintMSG("Je n'ai pas compris votre commande, tape acheter pour acheter le terrain, sinon tape laisser");
+                        GameFrame.PrintMSG("Je n'ai pas compris votre commande, tapez acheter pour 'acheter' le terrain, sinon tapez 'laisser'");
                     }
                 }
             }
@@ -253,8 +256,8 @@ public class VideoGame
                     boolean fonctionne = false;
                     while (!fonctionne) {
                         GameFrame.PrintMSG("Le terrain coute actuellement " + prix);
-                        GameFrame.PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si tu souhaites enchérir tape le prix que tu souhaites enchérir ");
-                        GameFrame.PrintMSG("sinon tape laisser\n");
+                        GameFrame.PrintMSG(this.aListPlayer.get(vJoueurActuel).getNomJoueur() + ", si vous souhaitez enchérir tapez le prix que vous souhaitez enchérir ");
+                        GameFrame.PrintMSG("sinon tapez laisser\n");
                         String temp = GameFrame.getCommand();
                         boolean valeurEntiere = true;
                         try {
@@ -275,11 +278,11 @@ public class VideoGame
                             }
                             else if(Integer.parseInt(temp)<=prix)
                             {
-                                GameFrame.PrintMSG("Tu dois miser une somme supérieur si tu veux acquérir cette propriété\n");
+                                GameFrame.PrintMSG("Vous devez miser une somme supérieur si vous voulez acquérir cette propriété\n");
                             }
                             else
                             {
-                                GameFrame.PrintMSG("Tu ne possèdes pas autant d'argent\n");
+                                GameFrame.PrintMSG("Vous ne possédez pas autant d'argent\n");
                             }
                         }
                         else
@@ -308,6 +311,11 @@ public class VideoGame
 
     }
 
+    /**
+     * methode permettant de récupérer la liste des cases ayant une même couleur
+     * @param pCouleur String la couleur dont on souhaite obtenir la liste
+     * @return int[] la liste des cases de la couleur pCouleur
+     */
     public int[] villeCouleurCorrespondance(String pCouleur)
     {
         int[] vListCouleur = new int[3];
@@ -416,11 +424,11 @@ public class VideoGame
                             }
                             else if(terrain.getNbMaison()[0]<4 &&terrain.getNbMaison()[1]==0 && getBanque().getNbMaison()==0)
                             {
-                                GameFrame.PrintMSG(" La banque ne possède plus de maison à vendre, tu ne peux donc pas construire\n");
+                                GameFrame.PrintMSG(" La banque ne possède plus de maison à vendre, vous ne pouvez donc pas construire\n");
                             }
                             else if (terrain.getNbMaison()[1]==1 )
                             {
-                                GameFrame.PrintMSG(" Tu possèdes deja un hotel ici, tu ne peux plus rajouter de bâtiment\n");
+                                GameFrame.PrintMSG(" Vous possédez deja un hotel ici, vous ne pouvez plus rajouter de bâtiment\n");
                             }
                             else if(getBanque().getNbHotel()>0)
                             {
@@ -442,18 +450,18 @@ public class VideoGame
                                     GameFrame.PrintMSG(" Vous avez acheté une hotel sur : " + terrain.getNomCase() +"\n");
                                 }
                                 else {
-                                    GameFrame.PrintMSG(" Tu ne peux pas construire d'hotel ici, tu dois d'abord avoir au moins 4 maisons sur les autres rues de la meme couleur\n");
+                                    GameFrame.PrintMSG(" Vous ne pouvez pas construire d'hotel ici, vous devez d'abord avoir au moins 4 maisons sur les autres rues de la meme couleur\n");
                                 }
 
                             }
                             else {
-                                GameFrame.PrintMSG(" La banque ne possède plus d'Hotel' à vendre, tu ne peux donc pas construire\n");
+                                GameFrame.PrintMSG(" La banque ne possède plus d'Hotel' à vendre, vous ne pouvez donc pas construire\n");
 
                             }
                         }
                         else
                         {
-                            GameFrame.PrintMSG(" Tu n'as pas l'argent pour acheter une maison ici\n");
+                            GameFrame.PrintMSG(" Vous n'avez pas l'argent pour acheter une maison ici\n");
                             GameFrame.PrintMSG(" Celles-ci coutent : "+ vPrixMaison + "\n");
                             fonctionne2=true;
                         }
@@ -787,9 +795,9 @@ public class VideoGame
     }
 
     /**
-     * Méthode permettant de calculer le prix de fabrication d'une maison pour une rue
-     * @param  pVilleId l'identifiant de la ville dont on souhaite calculer le prix de construction
-     * @return le prix de la construction d'une maison
+     * Méthode permettant de calculer le prix de fabrication d'une maison pour un patrimoine
+     * @param  pVilleId int l'identifiant de la ville dont on souhaite calculer le prix de construction
+     * @return int le prix de la construction d'une maison
      */
     public int getPrixMaison(int pVilleId)
     {
@@ -881,7 +889,7 @@ public class VideoGame
             else if (temp.equals("retour"))
             {
                 fonctionne = true;
-                return;
+
             }
             else
             {
@@ -889,6 +897,10 @@ public class VideoGame
             }
         }
     }
+
+    /**
+     * methode permettant d'hypothéquer les possessions d'un joueur s'il est ruiné
+     */
     public void hypothequer() {
         Player pJoueur = this.getJoueurActif();
         GameFrame.PrintMSG(" Vous n'avez plus d'argent vous devez hypothéquer. Vous possédez actuellement :");
@@ -1006,6 +1018,13 @@ public class VideoGame
         }
 
     }
+
+    /**
+     * methode permettant d'afficher la liste des commandes
+     * @param pNbDouble int le nombre de doubles que l'on a fait en lançant les dés
+     * @param pNbEffetCaseEffectue int le nombre d'effets de case que l'on a effectué
+     * @param pEffectCaseEffectue boolean booléen indiquant si l'on a un effet à appliquer
+     */
     public void affichageCommandeUtilisable(int pNbDouble,int pNbEffetCaseEffectue,boolean pEffectCaseEffectue)
     {
         String vMessage= " Commande : ";
@@ -1025,7 +1044,9 @@ public class VideoGame
         GameFrame.PrintMSG(vMessage);
     }
 
-
+    /**
+     * methode permettant d'afficher les possessions d'un joueur
+     */
     public void possessionsJoueur()
     {
         int[] listJoueur = new int[getNbJoueur()];
@@ -1043,7 +1064,7 @@ public class VideoGame
         {
             for(int i=0;i<positionList;i++)
             {
-                GameFrame.PrintMSG("Tape " + i + " si tu veux voir les possessions de " + this.aListPlayer.get(listJoueur[i]).getNomJoueur());
+                GameFrame.PrintMSG("Tape " + i + " si vous voulez voir les possessions de " + this.aListPlayer.get(listJoueur[i]).getNomJoueur());
             }
             GameFrame.PrintMSG("Tape 'retour' sinon");
             String temp=GameFrame.getCommand();
@@ -1069,10 +1090,10 @@ public class VideoGame
 
         }
     }
-    /**
-     * Méthode de gestion de tour des joueurs
-     */
 
+    /**
+     * methode permettant d'indiquer les effets des commandes disponibles
+     */
     public void help()
     {
         GameFrame.PrintMSG(" La commande lancerdes vous permet de lancer les dés");
@@ -1087,6 +1108,9 @@ public class VideoGame
 
 
     }
+    /**
+     * Méthode de gestion de tour des joueurs
+     */
     public void tourJoueur() // il faut ajouter le fonctionnement d'un tour s'il y a un double
     {
         int nbDouble = 0;
@@ -1098,7 +1122,7 @@ public class VideoGame
         boolean finTourAutorise=false;
 
         while(!finTourAutorise) {
-            GameFrame.PrintMSG("Que veux tu faire ?");
+            GameFrame.PrintMSG("Que voulez-vous faire ?");
             affichageCommandeUtilisable(nbDouble,nbEffetCaseEffectue,vEffetCaseEffectue);
             String temp = GameFrame.getCommand();
             switch (temp) {
@@ -1115,10 +1139,10 @@ public class VideoGame
                                 }
 
                             } else if (terrain.getJoueurBoss() == this.getNumJoueurActif()) {
-                                GameFrame.PrintMSG("Tu es propriétaire de ce terrain, tu ne peux donc pas l'acheter");
+                                GameFrame.PrintMSG("Vous êtes propriétaire de ce terrain, Vous ne pouvez donc pas l'acheter");
                             } else {
                                 GameFrame.PrintMSG("Ce terrain appartient déjà à " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
-                                GameFrame.PrintMSG(" utilise la commande business si tu veux lui acheter le terrain");
+                                GameFrame.PrintMSG(" utilise la commande business si vous voulez lui acheter le terrain");
                             }
                         } else {
                             GameFrame.PrintMSG("Ceci n'est pas une case achetable");
@@ -1141,16 +1165,16 @@ public class VideoGame
 
                         }
                         else if (terrain.getJoueurBoss() == this.getNumJoueurActif()) {
-                            GameFrame.PrintMSG("Tu es propriétaire de ce terrain, tu ne peux donc pas le mettre en enchere");
-                            GameFrame.PrintMSG("Utilise la commande business si tu veux le revendre à un autre joueur");
+                            GameFrame.PrintMSG("Vous êtes propriétaire de ce terrain, Vous ne pouvez donc pas le mettre en enchère");
+                            GameFrame.PrintMSG("Utilisez la commande business si vous voulez le revendre à un autre joueur");
                         }
                         else {
                             GameFrame.PrintMSG("Ce terrain appartient  à " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
-                            GameFrame.PrintMSG("Tu ne peux donc pas le mettre en enchère");
+                            GameFrame.PrintMSG("Vous ne pouvez donc pas le mettre en enchère");
                         }
                     }
                     else {
-                        GameFrame.PrintMSG("Ceci n'est pas une case achetable, tu ne peux donc pas la mettre en enchère");
+                        GameFrame.PrintMSG("Ceci n'est pas une case achetable, vous ne pouvez donc pas la mettre en enchère");
                     }
                     break;
                 case "lancerdes":
@@ -1160,20 +1184,20 @@ public class VideoGame
                         int lancedes2 = random.nextInt(6) + 1;
                         vEffetCaseEffectue = false;
                         if (getJoueurActif().getEstPrisonnier() != 0 && lancedes1 != lancedes2) {
-                            GameFrame.PrintMSG("Tu obtiens " + lancedes1 + "et " + lancedes2 + ".");
+                            GameFrame.PrintMSG("Vous obtenez " + lancedes1 + "et " + lancedes2 + ".");
 
                             if (getJoueurActif().getEstPrisonnier() < 3) {
                                 boolean fonctionne = false;
                                 while(!fonctionne)
                                 {
-                                    GameFrame.PrintMSG("Tu n'as pas fait de double, tu ne sors donc pas de la prison");
-                                    GameFrame.PrintMSG(" Tu peux dépenser 50 ou utiliser un passe afin de sortir de prison maintenant");
-                                    GameFrame.PrintMSG("Tape sortir, si tu veux sortir maintenant et tape rester, si tu ne veux pas sortir");
+                                    GameFrame.PrintMSG("Vous n'avez pas fait de double, vous ne sortez donc pas de la prison");
+                                    GameFrame.PrintMSG(" Vous pouvez dépenser 50 ou utiliser un passe afin de sortir de prison maintenant");
+                                    GameFrame.PrintMSG("Tapez 'sortir', si vous voulez sortir maintenant et tapez 'rester', si vous ne voulez pas sortir");
                                     String temp2 = GameFrame.getCommand();
                                     if (temp2.equals("sortir"))
                                     {
                                         if (getJoueurActif().getSortiePrison() > 0) {
-                                            GameFrame.PrintMSG(" Tu utilises ton passe pour sortir de prison.");
+                                            GameFrame.PrintMSG(" Vous utilisez votre passe pour sortir de prison.");
                                             getJoueurActif().setSortiePrison(getJoueurActif().getSortiePrison() - 1);
                                             getJoueurActif().setEstPrisonnier(0);
                                             fonctionne=true;
@@ -1181,7 +1205,7 @@ public class VideoGame
                                         }
                                         else
                                         {
-                                            GameFrame.PrintMSG(" Tu payes 50 pour pouvoir sortir de prison.");
+                                            GameFrame.PrintMSG(" Vous payer 50 pour pouvoir sortir de prison.");
                                             ajouteArgent(getJoueurActif(),- 50);
                                             getJoueurActif().setEstPrisonnier(0);
                                             fonctionne=true;
@@ -1205,25 +1229,25 @@ public class VideoGame
                                     }
                                     else
                                     {
-                                        GameFrame.PrintMSG(" Je n'ai pas compris , veux tu rester? ou sortir? ");
+                                        GameFrame.PrintMSG(" Je n'ai pas compris , voulez-vous rester? ou sortir? ");
                                     }
                                 }
 
                             }
                             else
                             {
-                                GameFrame.PrintMSG("Tu es en prison depuis 3 tours et tu n'as toujours pas fait de double.");
+                                GameFrame.PrintMSG("Vous êtes en prison depuis 3 tours et vous n'avez toujours pas fait de double.");
 
-                                GameFrame.PrintMSG("Tu dois sortir obligatoirement en payant ou en utilisant un passe.");
+                                GameFrame.PrintMSG("Vous devez sortir obligatoirement en payant ou en utilisant un passe.");
                                 if (getJoueurActif().getSortiePrison() > 0) {
-                                    GameFrame.PrintMSG(" Tu utilises ton passe pour sortir de prison.");
+                                    GameFrame.PrintMSG(" Vous utilisez votre passe pour sortir de prison.");
                                     getJoueurActif().setSortiePrison(getJoueurActif().getSortiePrison() - 1);
                                     getJoueurActif().setEstPrisonnier(0);
                                 }
                                 else
                                 {
                                     getJoueurActif().setEstPrisonnier(0);
-                                    GameFrame.PrintMSG(" Tu payes 50 pour pouvoir sortir de prison.");
+                                    GameFrame.PrintMSG(" Vous payer 50 pour pouvoir sortir de prison.");
                                     ajouteArgent( getJoueurActif(),- 50);
                                     if(getJoueurActif().getArgent()<0)
                                     {
@@ -1243,15 +1267,15 @@ public class VideoGame
                         }
                         else if(lancedes1 == lancedes2)
                         {
-                            GameFrame.PrintMSG("Bravo tu as fait un double");
+                            GameFrame.PrintMSG("Bravo vous avez fait un double");
                             ++nbDouble;
                             if (getJoueurActif().getEstPrisonnier() != 0) {
                                 getJoueurActif().setEstPrisonnier(0);
-                                GameFrame.PrintMSG("Tu sors donc de prison");
+                                GameFrame.PrintMSG("Vous sortez donc de prison");
                             }
                             if (nbDouble == 3) {
-                                GameFrame.PrintMSG("C'est ton troisième double.");
-                                GameFrame.PrintMSG("Tu as trop de chance, tu vas directement en prison sans touché l'argent de la case départ.");
+                                GameFrame.PrintMSG("C'est votre troisième double.");
+                                GameFrame.PrintMSG("Vous avez trop de chance, vous allez directement en prison sans toucher l'argent de la case départ.");
                                 getJoueurActif().setPosition(getCase(10));
 
                                 getJoueurActif().setEstPrisonnier(1);
@@ -1266,7 +1290,7 @@ public class VideoGame
                             {
                                 getJoueurActif().setPosition(getCase( newCase- 40));
                                 ajouteArgent(getJoueurActif(),200);
-                                GameFrame.PrintMSG("Tu gagnes 200 car tu es passé par la case départ");
+                                GameFrame.PrintMSG("Vous gagnez 200 car vous êtes passé par la case départ");
                             }
                             else
                             {
@@ -1274,8 +1298,8 @@ public class VideoGame
 
                             }
                             SwingUtilities.updateComponentTreeUI(aGame);
-                            GameFrame.PrintMSG("Tu avances de " + (lancedes1 + lancedes2) + " car tu as fait " + lancedes1 + "et " + lancedes2 + ".");
-                            GameFrame.PrintMSG("Tu atterris sur la case : " + getJoueurActif().getPosition().getNomCase());
+                            GameFrame.PrintMSG("Vous avancez de " + (lancedes1 + lancedes2) + " car vous avez fait " + lancedes1 + "et " + lancedes2 + ".");
+                            GameFrame.PrintMSG("Vous atterrissez sur la case : " + getJoueurActif().getPosition().getNomCase());
                             if(getJoueurActif().getPosition().getNbCase()==10)
                             {
                                 GameFrame.PrintMSG("(simple visite)");
@@ -1286,28 +1310,28 @@ public class VideoGame
                             {
                                 Patrimoine terrain = (Patrimoine) getJoueurActif().getPosition();
                                 if (terrain.getJoueurBoss() == 0) {
-                                    GameFrame.PrintMSG("Tu es sur une case propriété sans propriétaire,\n tu peux donc l'acheter avec la commande acheter ");
-                                    GameFrame.PrintMSG("ou la mettre en enchère avec la commande enchère");
+                                    GameFrame.PrintMSG("Vous êtes sur une case propriété sans propriétaire,\n vous pouvez donc l'acheter avec la commande 'acheter' ");
+                                    GameFrame.PrintMSG("ou la mettre en enchère avec la commande 'enchère'");
                                     GameFrame.PrintMSG(" Cette propriété ("+ terrain.getColor()+  ") coute " + terrain.getPrixAchat() +" à acheter" );
                                 } else if (terrain.getJoueurBoss() == getNumJoueurActif()) {
-                                    GameFrame.PrintMSG("Ceci est une de tes propriétés");
+                                    GameFrame.PrintMSG("Ceci est une de vos propriétés");
                                     nbEffetCaseEffectue += 1;
                                     vEffetCaseEffectue = true;
 
                                 }
                                 else {
-                                    GameFrame.PrintMSG("Tu es sur la propriété de " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
+                                    GameFrame.PrintMSG("Vous êtes sur la propriété de " + this.aListPlayer.get(terrain.getJoueurBoss()).getNomJoueur());
                                     int prixAPayer;
                                     if(terrain.getNbCase()==12 || terrain.getNbCase()==28)
                                     {
                                         Compagnie terrain2 = (Compagnie)terrain;
                                         prixAPayer = terrain2.getPrixPayer(this.aListPlayer,lancedes1+lancedes2);
 
-                                        GameFrame.PrintMSG("Le loyer te coute donc : " + prixAPayer);
+                                        GameFrame.PrintMSG("Le loyer vous coute donc : " + prixAPayer);
                                     }
                                     else{
                                         prixAPayer = terrain.getPrixPayer(this.aListPlayer);
-                                        GameFrame.PrintMSG("Le loyer te coute donc : " + terrain.getPrixPayer(this.aListPlayer));
+                                        GameFrame.PrintMSG("Le loyer vous coute donc : " + terrain.getPrixPayer(this.aListPlayer));
                                     }
 
 
@@ -1332,7 +1356,7 @@ public class VideoGame
                             {
                                 if(getJoueurActif().getPosition().getNbCase()==20)
                                 {
-                                    GameFrame.PrintMSG("Tu gagnes le gros lot, tu récupères tout l'argent des impôts : " + getBanque().getBenefice());
+                                    GameFrame.PrintMSG("Vous gagnez le gros lot, vous récupérez tout l'argent des impôts : " + getBanque().getBenefice());
                                     ajouteArgent(getJoueurActif(),getBanque().getBenefice());
                                     getBanque().setBenefice(0);
                                     nbEffetCaseEffectue += 1;
@@ -1366,7 +1390,7 @@ public class VideoGame
                                     vTaxe=100;
                                 }
 
-                                GameFrame.PrintMSG("Tu perds " + vTaxe);
+                                GameFrame.PrintMSG("Vous perdez " + vTaxe);
                                 ajouteArgent(getJoueurActif(),-vTaxe);
                                 getBanque().setBenefice(getBanque().getBenefice()+vTaxe);
 
@@ -1405,7 +1429,7 @@ public class VideoGame
                                 {
                                     while(vChoix!=0)
                                     {
-                                        GameFrame.PrintMSG(" Tape 'chance' si tu veux piocher une carte chance, sinon '10' pour dépenser 10 \n");
+                                        GameFrame.PrintMSG(" Tape 'chance' si vous voulez piocher une carte chance, sinon '10' pour dépenser 10 \n");
                                         String temp3 = GameFrame.getCommand();
 
                                         if(temp3.equals("chance"))

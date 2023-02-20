@@ -22,12 +22,12 @@ public class Player
     private final int[] aListPossession=new int[10];
 
 
-
     /**
-     *  Constructeur à 3 paramètre de la classe Player
-     * @param pArgent Argent de départ du joueur
-     * @param pNomJoueur Nom du joueur
-     * @param pCouleur Couleur choisie par le joueur
+     * Constructeur de la classe Player
+     * @param pArgent int l'argent actuel du joueur
+     * @param pNomJoueur String le nom du joueur
+     * @param pCouleur String la couleur du joueur
+     * @param pPosition Cases_Plateau la case où se situe le joueur
      */
     public Player(int pArgent,String pNomJoueur, String pCouleur,Cases_Plateau pPosition)
     {
@@ -56,7 +56,7 @@ public class Player
 
     /**
      * Accesseur de l'argent du joueur
-     * @return aArgent retourne l'argent du joueur
+     * @return aArgent int retourne l'argent du joueur
      */
     public int getArgent()
     {
@@ -65,7 +65,7 @@ public class Player
 
     /**
      * Accesseur du nom du joueur
-     * @return aNomJoueur nom du joueur
+     * @return aNomJoueur String retourne le nom du joueur
      */
     public String getNomJoueur()
     {
@@ -74,7 +74,7 @@ public class Player
 
     /**
      * Accesseur de la Couleur du joueur
-     * @return aCouleur Couleur du joueur
+     * @return aCouleur String retourne la Couleur du joueur
      */
     public String getCouleur()
     {
@@ -83,8 +83,8 @@ public class Player
 
 
     /**
-     * fonction pour ajouter de l'argent avec un chiffre positif ou supprimer avec un chiffre négatif
-     * @param pArgent la valeur d'argent à ajouter au joueur (négative ou positive)
+     * fonction permettant d'ajouter de l'argent avec un chiffre positif ou d'en supprimer avec un chiffre négatif
+     * @param pArgent int la valeur d'argent à ajouter au joueur (négative ou positive)
      */
     public void ajouteArgent(int pArgent)
     {
@@ -95,7 +95,7 @@ public class Player
 
     /**
      * Mutateur de la position d'un joueur
-     * @param pCase aPosition Case où le joueur va se trouver
+     * @param pCase Cases_Plateau Case où le joueur va se situer
      */
     public void setPosition(Cases_Plateau pCase)
     {
@@ -104,7 +104,7 @@ public class Player
 
     /**
      * Accesseur de la position d'un joueur
-     * @return aPosition Case actuelle du joueur
+     * @return aPosition Cases_Plateau retourne la case actuelle du joueur
      */
     public Cases_Plateau getPosition() {
         return this.aPosition;
@@ -112,7 +112,7 @@ public class Player
 
     /**
      * Mutateur du nombre de monopoles du joueur
-     * @param pNbMonopole aNbMonopole nombre de monopoles du joueur
+     * @param pNbMonopole int nombre de monopoles du joueur
      */
     public void setNbMonopole(int pNbMonopole)
     {
@@ -121,7 +121,7 @@ public class Player
 
     /**
      * Accesseur du nombre de monopoles du joueur
-     * @return aNbMonopole nombre de monopoles du joueur
+     * @return aNbMonopole int retourne le nombre de monopoles du joueur
      */
     public int getNbMonopole()
     {
@@ -129,8 +129,8 @@ public class Player
     }//getNbMonopole()
 
     /**
-     * Mutateur du nombre de pSortiePrison
-     * @param pSortiePrison nouvelle valeur de l'attribue aSortiePrison
+     * Mutateur du nombre de tickets de sortie de prison encore utilisables
+     * @param pSortiePrison int nouvelle valeur de l'attribue aSortiePrison
      */
     public void setSortiePrison(int pSortiePrison)
     {
@@ -138,8 +138,8 @@ public class Player
     }//setSortiePrison(.)
 
     /**
-     * Accesseur du nombre de tours fait en prison
-     * @return aSortiePrison
+     * Accesseur du nombre de tours passé en prison
+     * @return aSortiePrison int retourne le nombre de tours passé en prison
      */
     public int getSortiePrison()
     {
@@ -148,7 +148,8 @@ public class Player
 
     /**
      * Mutateur du patrimoine d'un joueur
-     * @param pPatrimoine nouveau Patrimoine
+     * @param pPatrimoine Patrimoine le patrimoine que l'on souhaite ajouter ou supprimer
+     * @param pChange int si cette valeur vaut 1, on ajoute le patrimoine sinon on le supprime
      */
     public void ajouterPatrimoine(Patrimoine pPatrimoine,int pChange)
     {
@@ -166,7 +167,7 @@ public class Player
 
     /**
      * accesseur de la liste du patrimoine d'un joueur
-     * @return aPatrimoine la liste de ses propriétés
+     * @return aPatrimoine HashMap<Integer,Patrimoine> retourne la liste des patrimoines du joueur
      */
     public HashMap<Integer,Patrimoine> getPatrimoine()
     {
@@ -175,7 +176,7 @@ public class Player
 
     /**
      * retourne un String contenant la liste des propriétés du joueur
-     * @return PatrimoineJoueur sous forme de String avec le nom du joueur et son nombre de monopoles ainsi qye la liste de ses patrimoines
+     * @return PatrimoineJoueur String retourne toutes les possessions d'un joueur
      */
     public String affichePatrimoine()
     {
@@ -211,20 +212,28 @@ public class Player
         return PatrimoineJoueur.toString();
     }//affichePatrimoine()
 
-
+    /**
+     * mutateur permettant de modifier le nombre de tours passé en prison
+     * @param pPrisonnier int le nombre de tours passé en prison
+     */
     public void setEstPrisonnier(int pPrisonnier)
     {
         this.aPrisonnier=pPrisonnier;
     }
     /**
-     * retourne une int avec la valeur du nombre de tours ou on a été prisonnier
-     * @return aPrisonnier sous forme d'entier avec la valeur du nombre de tours passés en prison
+     * Accesseur du nombre de tours passé en prison
+     * @return aPrisonnier int le nombre de tours passés en prison
      */
     public int getEstPrisonnier()
     {
         return this.aPrisonnier;
     }
 
+    /**
+     * Accesseur permettant de savoir si l'on possède un monopole dans une couleur précise
+     * @param pCouleur String la couleur où l'on souhaite savoir s'il y a un monopole
+     * @return boolean renvoie un booleen indiquant si l'on a un monopole dans la couleur indiqué en entrée
+     */
     public boolean getMonopole(String pCouleur)
     {
         switch (pCouleur)
@@ -254,6 +263,11 @@ public class Player
         return false;
     }
 
+    /**
+     * mutateur de l'attribue listPossession permettant d'ajouter l'acquisition ou la suppression d'un patrimoine dans une certaine couleur
+     * @param pCouleur String la couleur du patrimoine à ajouter/supprimer
+     * @param pModif int prend la valeur 1 si l'on ajoute le patrimoine et -1 sinon
+     */
     public void setMonopole(String pCouleur,int pModif)
     {
         switch (pCouleur)
@@ -335,6 +349,11 @@ public class Player
                 break;
         }
     }
+
+    /**
+     * Accesseur permettant de connaitre la liste des monopoles que l'on possède
+     * @return String retourne la liste des couleurs où l'on a un monopole
+     */
     public String afficheMonopole()
     {
         if(getNbMonopole()==0)
@@ -382,18 +401,28 @@ public class Player
             return vListMonopole + "\n ";
         }
     }
+
+    /**
+     * accesseur renvoyant le nombre de gares que l'on possède
+     * @return int le nombre de gares que l'on possède
+     */
     public int getNbGare()
     {
         return 4-this.aListPossession[8];
     }
+
+    /**
+     * accesseur renvoyant le nombre de compagnies que l'on possède
+     * @return int le nombre de compagnies que l'on possède
+     */
     public int getNbCompagnie()
     {
         return 2-this.aListPossession[9];
     }
 
     /**
-     *
-     * @return un tableau avec le nombre de maisons puis le nombre d'hotel
+     * accesseur du nombre de maisons et d'hotel que l'on possède
+     * @return un tableau avec le nombre de maisons puis le nombre d'hotel que l'on possède
      */
     public int[] getNbMaisonHotel()
     {

@@ -13,6 +13,12 @@ public class Cases_Plateau
     private final int aNbCase;
     private final String aNomCase;
 
+    /**
+     * Constructeur de la classe Cases_Plateau
+     * @param pNomCase String le nom de la case du plateau
+     * @param pNbCase int le numéro de la case du plateau
+     * @param pTypeCase boolean le type de la case (si c'est une case achetable ou non)
+     */
     public Cases_Plateau(String pNomCase,int pNbCase,boolean pTypeCase) {
         this.aNbCase = pNbCase;
         this.aNomCase = pNomCase;
@@ -21,7 +27,7 @@ public class Cases_Plateau
 
     /**
      * Accesseur du type de la case
-     * @return aTypeCase type de la case
+     * @return aTypeCase boolean le type de la case(achetable ou non)
      */
     public boolean getTypeCase()
     {
@@ -32,7 +38,7 @@ public class Cases_Plateau
 
     /**
      * accesseur du numéro de la case
-     * @return aNbCase numéros de la case depuis la case départ
+     * @return aNbCase int numéro de la case
      */
     public int getNbCase()
     {
@@ -42,7 +48,7 @@ public class Cases_Plateau
 
     /**
      * accesseur du nom de la case
-     * @return aNomCase nom de la case
+     * @return aNomCase String nom de la case
      */
     public String getNomCase()
     {

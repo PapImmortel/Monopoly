@@ -15,12 +15,12 @@ public class Patrimoine extends Cases_Plateau{
     private final int aPrixHypotheque;
     /**
      * Constructeur naturel de patrimoine
-     * @param pNomPatrimoine le nom de la case
-     * @param pIdPropriete l'id de la propriété
-     * @param pPrixAchat  le prix de l'achat
-     * @param pJoueurBoss le joueur qui possède la case
-     * @param pColor    la couleur de la case
-     * @param pPrixHypotheque le prix d'hypothèque de la case
+     * @param pNomPatrimoine String le nom de la case
+     * @param pIdPropriete int l'id de la propriété
+     * @param pPrixAchat int le prix de l'achat
+     * @param pJoueurBoss int le joueur qui possède la case(0 s'il n'y a pas de propriétaire
+     * @param pColor String la couleur de la case
+     * @param pPrixHypotheque int le prix d'hypothèque de la case
      */
     public Patrimoine(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,String pColor, int pPrixHypotheque)
 
@@ -33,22 +33,26 @@ public class Patrimoine extends Cases_Plateau{
     }
 
     /**
-    Accesseur du prix d'achat du terrain
+     * Accesseur du prix d'achat du terrain
+     * @return aPrixAchat int renvoie le prix d'achat du terrain
      */
     public int getPrixAchat()
     {
         return this.aPrixAchat;
     }
+
     /**
-    Accesseur du propriétaire du terrain
+     * Accesseur du propriétaire du terrain
+     * @return aJoueurBoss int renvoie le propriétaire du terrain
      */
+
     public int getJoueurBoss()
     {
         return this.aJoueurBoss;
     }
     /**
-     * set de l'attribue aJoueurBoss
-     * @param pJoueurBoss le joueur qui possède la case
+     * mutateur de l'attribue aJoueurBoss
+     * @param pJoueurBoss int le joueur qui possède la case
      */
     public void setJoueurBoss(int pJoueurBoss)
     {
@@ -56,21 +60,21 @@ public class Patrimoine extends Cases_Plateau{
     }
     /**
      *renvoie le prix à payer si on se situe sur une propriété d'un autre joueur (cette fonction est override dans les sous classes)
-     * @param vListPlayer la liste des joueurs
+     * @param vListPlayer HashMap<Integer,Player> la liste des joueurs
      * @return renvoie le prix à payer
      */
     public int getPrixPayer(HashMap<Integer,Player> vListPlayer){return -1;}
     /**
      *renvoie le prix à payer si on se situe sur une compagnie d'un autre joueur (cette fonction est override dans la sous classe compagnie)
-     * @param vListPlayer la liste des joueurs
-     * @param vScoreDes  le résultat des dés du joueur qui vient de jouer
-     * @return renvoie le prix à payer
+     * @param vListPlayer HashMap<Integer,Player> la liste des joueurs
+     * @param vScoreDes int le résultat des dés du joueur qui vient de jouer
+     * @return int renvoie le prix à payer
      */
     public int getPrixPayer(HashMap<Integer,Player> vListPlayer,int vScoreDes){return -1;}
 
     /**
      * Accesseur du prix de l'hypothèque
-     * @return le prix de l'hypothèque
+     * @return int le prix de l'hypothèque
      */
     public int getHypotheque()
     {
@@ -78,8 +82,9 @@ public class Patrimoine extends Cases_Plateau{
     }
     /**
      * Accesseur de la couleur
-     * @return la couleur
+     * @return String la couleur
      */
+
     public String getColor()
     {
         return this.aColor;

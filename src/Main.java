@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Main {
     /**
      * Fonction main du programme
-     * @param args
+     * @param args les args :)
      */
     public static void main(String[] args)
     {

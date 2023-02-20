@@ -1,5 +1,12 @@
 import java.util.HashMap;
-
+/**
+ * Classe des patrimoines de type Rue
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ * @date (2023/19/02)
+ */
 public class Rue extends Patrimoine
 {
     private int aNbMaison;
@@ -9,7 +16,18 @@ public class Rue extends Patrimoine
 
     private final int [] aPrixRente;
 
-
+    /**
+     * Constructeur de la classe Rue
+     * @param pNomPatrimoine String le nom de la case
+     * @param pIdPropriete int le numéro de la case
+     * @param pPrixAchat int le prix d'achat de la case
+     * @param pJoueurBoss int le numéro du joueur qui possède cette case(0 s'il n'y a pas de propriétaire)
+     * @param pHypotheque int le prix d'hypothèque du terrain
+     * @param pNbMaison int le nombre de maisons construites
+     * @param pHotel int le nombre d'hôtels construits
+     * @param pColor String la couleur du monopole de cette case
+     * @param pPrixPassage int[] la liste d'entier indiquant le prix à payer en fonction du nombre de maisons
+     */
     public Rue(String pNomPatrimoine,int pIdPropriete, int pPrixAchat,int pJoueurBoss,int pNbMaison, int pHotel, String pColor, int[] pPrixPassage, int pHypotheque)
     {
         super(pNomPatrimoine,pIdPropriete,pPrixAchat,pJoueurBoss,pColor,pHypotheque);
@@ -19,6 +37,11 @@ public class Rue extends Patrimoine
         this.aPrixRente=pPrixPassage;
     }
 
+    /**
+     * Accesseur du prix à payer si l'on atterrit sur cette case alors que l'on est pas propriétaire
+     * @param vListPlayer HashMap<Integer,Player> la liste des joueurs
+     * @return int renvoie le prix à payer
+     */
     @Override public int getPrixPayer(HashMap<Integer,Player> vListPlayer)
     {
         if(this.aNbMaison==0 && this.aHotel==0 )
@@ -40,7 +63,12 @@ public class Rue extends Patrimoine
             return this.aPrixRente[this.aNbMaison];
         }
     }
-    public void setaNbMaison(int pNbMaison) //ajout potentiel d'une verification du droit de construction
+
+    /**
+     * mutateur du nombre de maisons
+     * @param pNbMaison le nombre de maisons à ajouter
+     */
+    public void setaNbMaison(int pNbMaison)
     {
         if (pNbMaison+this.aNbMaison<=4 && this.aHotel==0)
         {
@@ -56,12 +84,20 @@ public class Rue extends Patrimoine
         }
     }
 
+    /**
+     * accesseur du nombre de maisons et hotels construits sur ce terrain
+     * @return int[] renvoie une liste contenant le nombre de maisons et hôtel construits
+     */
 
     public int[] getNbMaison()
     {
 
         return new int [] {this.aNbMaison,this.aHotel};
     }
+
+    /**
+     * mutateur qui supprime une maison ou un hôtel sur ce terrain
+     */
     public void supprimeMaison()
     {
         if(this.aHotel==1)
