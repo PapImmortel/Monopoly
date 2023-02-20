@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="TOUT FONCTIONNE C EST ENFIN FINI ***">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -256,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676919065765</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="TOUT FONCTIONNE C EST ENFIN FINI ***">
+      <created>1676920015999</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1676920015999</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

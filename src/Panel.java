@@ -24,18 +24,34 @@ public class Panel extends JPanel {
 
     private static final String[] ListCouleur = new String[4];
 
+    /**
+     * accesseur de l'état de l'attribue isFinish
+     * @return String[] retourne l'état de l'attribue isFinish
+     */
     public static boolean getIsFinish(){
         return isFinish;
     }
 
+    /**
+     * accesseur de la liste des joueurs
+     * @return HashMap<Integer, String> retourne la liste des joueurs
+     */
     public static HashMap<Integer, String> getPlayerList(){
         return ListJoueur;
     }
 
+    /**
+     * accesseur de la liste des couleurs
+     * @return String[] retourne la liste des couleurs
+     */
     public static String[] getColorList(){
         return ListCouleur;
     }
 
+    /**
+     * accesseur de l'IndexPlayer
+     * @return int retourne IndexPlayer
+     */
     public static int getIndexPlayer(){
         return IndexPlayer;
     }
