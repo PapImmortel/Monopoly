@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 /**
  * Classe de base du jeu avec toutes les informations du monopoly
@@ -15,6 +17,7 @@ public class VideoGame
     private int aNumJoueurActif;
     private final HashMap<Integer,Player> aListPlayer;
     private final HashMap<Integer,Cases_Plateau> aListeCase;
+    private final GameFrame aGame = new GameFrame("Javapoly");;
 
     /**
      * Constructeur à 3 paramètre de la Classe VideoGame
@@ -25,7 +28,6 @@ public class VideoGame
     {
         this.aNbJoueur = pNbJoueur;
         this.aBanque = new Banque();
-        new GameFrame("Javapoly");
         this.aListPlayer = new HashMap<>();
         this.aListeCase = new HashMap<>();
         remplirCase();
@@ -37,7 +39,15 @@ public class VideoGame
             vPositionListCouleur+=1;
         }//while(.)
         this.aNumJoueurActif = 1;
+
+        this.aGame.setNPlayer(pNbJoueur);
+        this.aGame.setPlayerList(this.aListPlayer);
+        this.aGame.UpdateMoneyGUI();
+
+        //this.aGame.UpdatePlayerGUI();
         tourJoueur();
+        //Initialisation Interface
+
         //début du tour du joueur1
     }//VideoGame(.,.,.)
 
@@ -52,7 +62,10 @@ public class VideoGame
         return this.aNbJoueur;
     }//getNbJoueur()
 
-
+    public void ajouteArgent(Player pP, int pArgent){
+        pP.ajouteArgent(pArgent);
+        this.aGame.UpdateMoneyGUI();
+    }
 
     /**
      * Accesseur de Banque
@@ -170,7 +183,7 @@ public class VideoGame
         if(getJoueurActif().getArgent() - vTerrain.getPrixAchat()>=0)//si on a l'argent pour acheter le terrain
         {
             GameFrame.PrintMSG("Tu achètes le titre de propriété : " + vTerrain.getNomCase());
-            getJoueurActif().ajouteArgent(- vTerrain.getPrixAchat());
+            ajouteArgent(getJoueurActif(), - vTerrain.getPrixAchat());
             vTerrain.setJoueurBoss(getNumJoueurActif());
             getJoueurActif().ajouterPatrimoine(vTerrain,1);
             getJoueurActif().getPatrimoine().get(vTerrain.getNbCase()).setJoueurBoss(getNumJoueurActif());
@@ -288,7 +301,7 @@ public class VideoGame
             }
             GameFrame.PrintMSG(this.aListPlayer.get(vGagnant).getNomJoueur() + " emporte l'enchère et achète le terrain " + vTerrain.getNomCase());
             GameFrame.PrintMSG(" pour un prix de " + prix);
-            this.aListPlayer.get(vGagnant).ajouteArgent(-prix);
+            ajouteArgent(aListPlayer.get(vGagnant), -prix);
             this.aListPlayer.get(vGagnant).ajouterPatrimoine(vTerrain,1);
             this.aListPlayer.get(vGagnant).getPatrimoine().get(vTerrain.getNbCase()).setJoueurBoss(vGagnant);
             Patrimoine vCaseSetting= (Patrimoine) this.aListeCase.get(vTerrain.getNbCase());
@@ -399,7 +412,7 @@ public class VideoGame
                             {
                                 getBanque().setNbMaison(-1);
                                 terrain.setaNbMaison(1);
-                                getJoueurActif().ajouteArgent(-vPrixMaison);
+                                ajouteArgent(getJoueurActif(),-vPrixMaison);
                                 GameFrame.PrintMSG(" Vous avez acheté une maison sur : " + terrain.getNomCase() +"\n");
 
                             }
@@ -426,7 +439,7 @@ public class VideoGame
                                 {
                                     getBanque().setNbHotel(-1);
                                     terrain.setaNbMaison(1);
-                                    getJoueurActif().ajouteArgent(-vPrixMaison);
+                                    ajouteArgent(getJoueurActif(), -vPrixMaison);
                                     GameFrame.PrintMSG(" Vous avez acheté une hotel sur : " + terrain.getNomCase() +"\n");
                                 }
                                 else {
@@ -575,8 +588,8 @@ public class VideoGame
 
                                             if (temp4.equals("accepter")) {
                                                 GameFrame.PrintMSG(getJoueurActif().getNomJoueur() + " a acheté " + vTerrainChoisi.getNomCase() + " à " + joueurEchange.getNomJoueur());
-                                                joueurEchange.ajouteArgent(vTerrainChoisi.getPrixAchat());
-                                                getJoueurActif().ajouteArgent(-vTerrainChoisi.getPrixAchat());
+                                                ajouteArgent(joueurEchange, vTerrainChoisi.getPrixAchat());
+                                                ajouteArgent(getJoueurActif(),-vTerrainChoisi.getPrixAchat());
                                                 vTerrainChoisi.setJoueurBoss(getNumJoueurActif());
                                                 getJoueurActif().ajouterPatrimoine(vTerrainChoisi, 1);
                                                 joueurEchange.ajouterPatrimoine(vTerrainChoisi, -1);
@@ -707,8 +720,8 @@ public class VideoGame
                                             if(temp4.equals("accepter"))
                                             {
                                                 GameFrame.PrintMSG(getJoueurActif().getNomJoueur() + " a vendu " + vTerrainChoisi.getNomCase() + " à " + joueurEchange.getNomJoueur());
-                                                joueurEchange.ajouteArgent(-vTerrainChoisi.getPrixAchat());
-                                                getJoueurActif().ajouteArgent(vTerrainChoisi.getPrixAchat());
+                                                ajouteArgent(joueurEchange, -vTerrainChoisi.getPrixAchat());
+                                                ajouteArgent(getJoueurActif(), vTerrainChoisi.getPrixAchat());
                                                 vTerrainChoisi.setJoueurBoss(listJoueur[Integer.parseInt(temp2)]);
                                                 getJoueurActif().ajouterPatrimoine(vTerrainChoisi,-1);
                                                 joueurEchange.ajouterPatrimoine(vTerrainChoisi,1);
@@ -837,7 +850,7 @@ public class VideoGame
             if (valeurEntiere && Integer.parseInt(temp) >= 0 && Integer.parseInt((temp)) < positionListPatrimoine) {
                 Rue terrain = (Rue) getJoueurActif().getPatrimoine().get(Integer.parseInt(temp));
                 if (terrain.getNbMaison()[0] != 0) {
-                    getJoueurActif().ajouteArgent(getPrixMaison(terrain.getNbCase()));
+                    ajouteArgent(getJoueurActif(), getPrixMaison(terrain.getNbCase()));
                     getBanque().setNbMaison(getBanque().getNbMaison() + 1);
                     GameFrame.PrintMSG("Vous avez vendu une maison sur " + terrain.getNomCase() + "( " + terrain.getNbMaison()[0] + " restante(s) ) ");
                     terrain.supprimeMaison();
@@ -845,7 +858,7 @@ public class VideoGame
                 }
                 else
                 {
-                    getJoueurActif().ajouteArgent(getPrixMaison(terrain.getNbCase()) * 5);
+                    ajouteArgent(getJoueurActif(), getPrixMaison(terrain.getNbCase()) * 5);
                     getBanque().setNbHotel(getBanque().getNbHotel() + 1);
                     GameFrame.PrintMSG("Vous avez vendu un hotel sur " + terrain.getNomCase() + " .");
                     GameFrame.PrintMSG("Vous avez gagnez " + getPrixMaison(terrain.getNbCase()) * 5 + "\n");
@@ -941,7 +954,7 @@ public class VideoGame
                 if (vPat.getColor().equals("gare") ||vPat.getColor().equals("compagnie")) {
                     GameFrame.PrintMSG("Vous avez vendu : " + vPat.getNomCase());
 
-                    pJoueur.ajouteArgent(vPat.getHypotheque());
+                    ajouteArgent(pJoueur, vPat.getHypotheque());
                     GameFrame.PrintMSG("Vous avez maintenant " + pJoueur.getArgent());
                     vPat.setJoueurBoss(0);
                     pJoueur.ajouterPatrimoine(vPat,-1);
@@ -954,7 +967,7 @@ public class VideoGame
                     if (vRue.getNbMaison()[0] == 0 && vRue.getNbMaison()[1] == 0) {
                         GameFrame.PrintMSG("Vous avez vendu : " + vRue.getNomCase());
 
-                        pJoueur.ajouteArgent(vRue.getHypotheque());
+                        ajouteArgent(pJoueur, vRue.getHypotheque());
                         GameFrame.PrintMSG("Vous avez maintenant " + pJoueur.getArgent());
 
                         vRue.setJoueurBoss(0);
@@ -968,14 +981,14 @@ public class VideoGame
                         if (vRue.getNbMaison()[0] > 0) {
                             GameFrame.PrintMSG("Vous avez vendu une maison sur : " + vRue.getNomCase());
 
-                            pJoueur.ajouteArgent(prixM);
+                            ajouteArgent(pJoueur, prixM);
 
                         }
                         else
                         {
                             GameFrame.PrintMSG("Vous avez vendu un hotel sur : " + vRue.getNomCase());
 
-                            pJoueur.ajouteArgent(prixM*5);
+                            ajouteArgent(pJoueur, prixM*5);
 
                         }
                         GameFrame.PrintMSG("Vous avez maintenant " + pJoueur.getArgent());
@@ -1174,7 +1187,7 @@ public class VideoGame
                                         else
                                         {
                                             GameFrame.PrintMSG(" Tu payes 50 pour pouvoir sortir de prison.");
-                                            getJoueurActif().ajouteArgent(- 50);
+                                            ajouteArgent(getJoueurActif(), - 50);
                                             getJoueurActif().setEstPrisonnier(0);
                                             fonctionne=true;
                                             if(getJoueurActif().getArgent()<0)
@@ -1216,7 +1229,7 @@ public class VideoGame
                                 {
                                     getJoueurActif().setEstPrisonnier(0);
                                     GameFrame.PrintMSG(" Tu payes 50 pour pouvoir sortir de prison.");
-                                    getJoueurActif().ajouteArgent( - 50);
+                                    ajouteArgent( getJoueurActif(), - 50);
                                     if(getJoueurActif().getArgent()<0)
                                     {
                                         hypothequer();
@@ -1245,6 +1258,7 @@ public class VideoGame
                                 GameFrame.PrintMSG("C'est ton troisième double.");
                                 GameFrame.PrintMSG("Tu as trop de chance, tu vas directement en prison sans touché l'argent de la case départ.");
                                 getJoueurActif().setPosition(getCase(10)); //!\\ à modifier
+                                SwingUtilities.updateComponentTreeUI(aGame);
                                 getJoueurActif().setEstPrisonnier(1);
                                 nbEffetCaseEffectue = 4;
                                 vEffetCaseEffectue = true;
@@ -1256,13 +1270,16 @@ public class VideoGame
                             if(newCase >39)
                             {
                                 getJoueurActif().setPosition(getCase( newCase- 40));
-                                getJoueurActif().ajouteArgent(200);
+
+                                ajouteArgent(getJoueurActif(), 200);
                                 GameFrame.PrintMSG("Tu gagnes 200 car tu es passé par la case départ");
                             }
                             else
                             {
                                 getJoueurActif().setPosition(getCase(newCase));
+
                             }
+                            SwingUtilities.updateComponentTreeUI(aGame);
                             GameFrame.PrintMSG("Tu avances de " + (lancedes1 + lancedes2) + " car tu as fait " + lancedes1 + "et " + lancedes2 + ".");
                             GameFrame.PrintMSG("Tu atterris sur la case : " + getJoueurActif().getPosition().getNomCase());
                             if(getJoueurActif().getPosition().getNbCase()==10)
@@ -1300,8 +1317,8 @@ public class VideoGame
                                     }
 
 
-                                    getJoueurActif().ajouteArgent(-prixAPayer);
-                                    this.aListPlayer.get(terrain.getJoueurBoss()).ajouteArgent(prixAPayer);
+                                    ajouteArgent(getJoueurActif(),  -prixAPayer);
+                                    ajouteArgent(this.aListPlayer.get(terrain.getJoueurBoss()), prixAPayer);
 
                                     nbEffetCaseEffectue += 1;
                                     vEffetCaseEffectue = true;
@@ -1322,7 +1339,7 @@ public class VideoGame
                                 if(getJoueurActif().getPosition().getNbCase()==20)
                                 {
                                     GameFrame.PrintMSG("Tu gagnes le gros lot, tu récupères tout l'argent des impôts : " + getBanque().getBenefice());
-                                    getJoueurActif().ajouteArgent(getBanque().getBenefice());
+                                    ajouteArgent(getJoueurActif(), getBanque().getBenefice());
                                     getBanque().setBenefice(0);
                                     nbEffetCaseEffectue += 1;
                                     vEffetCaseEffectue = true;
@@ -1331,6 +1348,7 @@ public class VideoGame
                                 else if(getJoueurActif().getPosition().getNbCase()==30)
                                 {
                                     getJoueurActif().setPosition(getCase(10));
+                                    SwingUtilities.updateComponentTreeUI(aGame);
                                     getJoueurActif().setEstPrisonnier(1);
                                     nbEffetCaseEffectue = 4;
                                     vEffetCaseEffectue = true;
@@ -1354,7 +1372,7 @@ public class VideoGame
                                 }
 
                                 GameFrame.PrintMSG("Tu perds " + vTaxe);
-                                getJoueurActif().ajouteArgent(-vTaxe);
+                                ajouteArgent(getJoueurActif(), -vTaxe);
                                 getBanque().setBenefice(getBanque().getBenefice()+vTaxe);
                                 if(getJoueurActif().getArgent()<0)
                                 {
@@ -1400,7 +1418,7 @@ public class VideoGame
                                         else if(temp3.equals("10"))
                                         {
                                             GameFrame.PrintMSG(" Vous avez décidé de payer 10 \n");
-                                            getJoueurActif().ajouteArgent(-10);
+                                            ajouteArgent(getJoueurActif(), -10);
                                             vChoix=0;
                                         }
                                         else
