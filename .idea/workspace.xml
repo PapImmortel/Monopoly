@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="ajout code quentin. Il faut jsute verifier heritage encore + le bug des cartes chances et du thread de quentin">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment=" Il faut jsute verifier heritage encore +bug du thread de quentin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CaseEffet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseEffet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676901896145</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary=" Il faut jsute verifier heritage encore +bug du thread de quentin">
+      <created>1676907199409</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1676907199409</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -243,6 +250,7 @@
     <MESSAGE value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)" />
     <MESSAGE value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin, et verifier construction + vente)" />
     <MESSAGE value="ajout code quentin. Il faut jsute verifier heritage encore + le bug des cartes chances et du thread de quentin" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout code quentin. Il faut jsute verifier heritage encore + le bug des cartes chances et du thread de quentin" />
+    <MESSAGE value=" Il faut jsute verifier heritage encore +bug du thread de quentin" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Il faut jsute verifier heritage encore +bug du thread de quentin" />
   </component>
 </project>

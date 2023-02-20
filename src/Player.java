@@ -195,14 +195,17 @@ public class Player
             if(!Case1.getColor().equals("gare")||!Case1.getColor().equals("compagnie"))
             {
                 Rue Case2 = (Rue) Case1;
+                PatrimoineJoueur += "(" +Case2.getColor();
                 if(Case2.getNbMaison()[0]>0)
                 {
-                    PatrimoineJoueur += "(" + Case2.getNbMaison()[0] + " maison(s))";
+                    PatrimoineJoueur += ", " + Case2.getNbMaison()[0] + " maison(s)";
                 }
                 else if(Case2.getNbMaison()[1]>0)
                 {
-                    PatrimoineJoueur += "(" + Case2.getNbMaison()[1] + " hôtel)";
+                    PatrimoineJoueur += ", " + Case2.getNbMaison()[1] + " hôtel";
                 }
+                PatrimoineJoueur += ")";
+
             }
         }//while()
         return  PatrimoineJoueur;

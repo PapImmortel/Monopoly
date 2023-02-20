@@ -1263,6 +1263,7 @@ public class VideoGame
                             else
                             {
                                 getJoueurActif().setPosition(getCase(newCase));
+
                             }
                             SwingUtilities.updateComponentTreeUI(aGame);
                             GameFrame.PrintMSG("Tu avances de " + (lancedes1 + lancedes2) + " car tu as fait " + lancedes1 + "et " + lancedes2 + ".");
@@ -1510,6 +1511,7 @@ public class VideoGame
             for (int i=1; i<=getNbJoueur();i++) {
                 if (this.aListPlayer.get(i).getArgent() >= 0) {
                     GameFrame.PrintMSG("Fin de la partie, " + this.aListPlayer.get(i).getNomJoueur() + " a gagné la partie. Bravo!"); // FIN DE LA PARTIE
+                    GameFrame.PrintMSG("Vous pouvez appuyer sur le bouton quitter en bas de l'écran pour quitter le jeu");
                     break;
                 }
             }
