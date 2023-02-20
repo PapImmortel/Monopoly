@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.*;
+import java.util.HashMap;
 
 public class GameFrame extends JFrame {
 
@@ -35,7 +37,19 @@ public class GameFrame extends JFrame {
             panel.PrintMSG(text);
         }
     }
+
+    public static void setPlayerList(HashMap<Integer, Player> ListJoueurP){
+        panel.setPlayerList(ListJoueurP);
+    }
     public static boolean isType(){
         return panel.getIsType();
     }
+
+    public static void UpdateMoneyGUI(){
+        panel.UpdateMoneyGUI();
+    }
+    public static void setNPlayer(int Nb){
+        panel.setNPlayer(Nb);
+    }
+
 }
