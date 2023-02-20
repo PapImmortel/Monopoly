@@ -1,8 +1,8 @@
 import javax.swing.*;
-
+import java.util.HashMap;
 public class GameFrame extends JFrame {
 
-    private static GamePanel panel = new GamePanel();
+    private static final GamePanel panel = new GamePanel();
 
     public GameFrame(String title){
         setTitle(title);
@@ -27,15 +27,23 @@ public class GameFrame extends JFrame {
 
     public static String getCommand(){
 
-        return panel.getCommand();
+        return GamePanel.getCommand();
     }
 
     public static void PrintMSG(String text){//affiche un message dans la boite de dialogue du jeu
-        if(text != "") {
-            panel.PrintMSG(text);
+        if(!text.equals("")){
+            GamePanel.PrintMSG(text);
         }
     }
-    public static boolean isType(){
-        return panel.getIsType();
+    public static void setPlayerList(HashMap<Integer, Player> ListJoueurP){
+        GamePanel.setPlayerList(ListJoueurP);
+    }
+
+
+    public static void UpdateMoneyGUI(){
+        GamePanel.UpdateMoneyGUI();
+    }
+    public static void setNPlayer(int Nb){
+        GamePanel.setNPlayer(Nb);
     }
 }

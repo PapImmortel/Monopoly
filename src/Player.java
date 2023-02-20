@@ -201,7 +201,7 @@ public class Player
                 }
                 else if(Case2.getNbMaison()[1]>0)
                 {
-                    PatrimoineJoueur += "(" + Case2.getNbMaison()[0] + " hôtel)";
+                    PatrimoineJoueur += "(" + Case2.getNbMaison()[1] + " hôtel)";
                 }
             }
         }//while()
@@ -261,73 +261,73 @@ public class Player
                 if(this.aListPossession[0]==0){setNbMonopole(1);}
                 break;
             case "cyan":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[1]==0){setNbMonopole(-1);}
 
                 this.aListPossession[1]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[1]==0){setNbMonopole(1);}
 
                 break;
             case "rose":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[2]==0){setNbMonopole(-1);}
                 this.aListPossession[2]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[2]==0){setNbMonopole(1);}
 
                 break;
 
             case "orange":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[3]==0){setNbMonopole(-1);}
 
                 this.aListPossession[3]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[3]==0){setNbMonopole(1);}
 
 
                 break;
 
             case "rouge":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[4]==0){setNbMonopole(-1);}
 
                 this.aListPossession[4]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[4]==0){setNbMonopole(1);}
 
                 break;
 
             case "jaune":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[5]==0){setNbMonopole(-1);}
 
                 this.aListPossession[5]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[5]==0){setNbMonopole(1);}
 
                 break;
 
             case "vert":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[6]==0){setNbMonopole(-1);}
 
                 this.aListPossession[6]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[6]==0){setNbMonopole(1);}
 
                 break;
 
             case "bleu":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[7]==0){setNbMonopole(-1);}
 
                 this.aListPossession[7]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[7]==0){setNbMonopole(1);}
 
                 break;
 
             case "gare":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[8]==0){setNbMonopole(-1);}
 
                 this.aListPossession[8]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[8]==0){setNbMonopole(1);}
 
                 break;
 
             case "compagnie":
-                if(this.aListPossession[0]==0){setNbMonopole(-1);}
+                if(this.aListPossession[9]==0){setNbMonopole(-1);}
 
                 this.aListPossession[9]-=pModif;
-                if(this.aListPossession[0]==0){setNbMonopole(1);}
+                if(this.aListPossession[9]==0){setNbMonopole(1);}
 
                 break;
         }
@@ -345,21 +345,34 @@ public class Player
                     switch (i) {
                         case 0:
                             vListMonopole += "marron ";
-
+                            break;
                         case 1:
                             vListMonopole += "cyan ";
+                            break;
+
                         case 2:
                             vListMonopole += "rose ";
+                            break;
                         case 3:
                             vListMonopole += "orange ";
+                            break;
+
                         case 4:
                             vListMonopole += "rouge ";
+                            break;
+
                         case 5:
                             vListMonopole += "jaune ";
+                            break;
+
                         case 6:
                             vListMonopole += "vert ";
+                            break;
+
                         case 7:
                             vListMonopole += "bleu ";
+                            break;
+
                     }
                 }
             }

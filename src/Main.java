@@ -1,6 +1,19 @@
 import java.util.HashMap;
 
+
+/**
+ * Classe Main
+ * @author Arvind Tangavelou
+ * @author Quentin Guyot
+ * @author Timothée Royer
+ * @author Clément Lavie
+ * @date (2023/19/02)
+ */
 public class Main {
+    /**
+     * Fonction main du programme
+     * @param args
+     */
     public static void main(String[] args)
     {
         Frame Menu = new Frame("Menu Javapoly");
@@ -8,15 +21,15 @@ public class Main {
 
         int Joueur;
 
-        while(!Menu.isFinish()){
+        while(!Frame.isFinish()){
             System.out.print("");
         }
 
-        HashMap<Integer, String> ListJoueur = Menu.getPlayerList();
-        ListCouleur = Menu.getColorList();
-        Joueur = Menu.getIndex();
+        HashMap<Integer, String> ListJoueur = Frame.getPlayerList();
+        ListCouleur = Frame.getColorList();
+        Joueur = Frame.getIndex();
         Menu.setVisible(false);
-        VideoGame jeux = new VideoGame(Joueur,ListJoueur, ListCouleur);//Constructeur paramÃ©trique de VideoGame
+        VideoGame jeux = new VideoGame(Joueur,ListJoueur, ListCouleur);//Constructeur paramétrique de VideoGame
 
 
     }//main(.)

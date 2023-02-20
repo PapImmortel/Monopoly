@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)">
+    <list default="true" id="2efccd9d-2f5e-4077-9cfe-0e1f6825c06e" name="Changes" comment="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin, et verifier construction + vente)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Patrimoine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Patrimoine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VideoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoGame.java" afterDir="false" />
     </list>
@@ -205,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676844041736</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin, et verifier construction + vente)">
+      <created>1676847615982</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1676847615982</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -227,6 +239,7 @@
     <MESSAGE value="ca commence à ressmebler à quelquechose" />
     <MESSAGE value="Plus de bug visible, mais optimisation necessaire et la methode hypotheque est pas encore corrigé" />
     <MESSAGE value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)" />
-    <option name="LAST_COMMIT_MESSAGE" value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin)(il manque de finir la fonction possession + verifier construction + vente)" />
+    <MESSAGE value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin, et verifier construction + vente)" />
+    <option name="LAST_COMMIT_MESSAGE" value="En vrai le jeu fonctionne je crois :o ( j'ai quasi supp tous les warnings manquent ceux de quentin, et verifier construction + vente)" />
   </component>
 </project>

@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Frame extends JFrame{
 
-    private static Panel panel = new Panel();
+    private static final Panel panel = new Panel();
     public Frame(String title){
         //Titre de la fenêtre
         setTitle(title);
@@ -22,15 +22,15 @@ public class Frame extends JFrame{
     }
 
     public static boolean isFinish(){
-        return panel.getIsFinish();
+        return Panel.getIsFinish();
     }
-    public static HashMap getPlayerList(){
-        return panel.getPlayerList();
+    public static HashMap<Integer,String> getPlayerList(){
+        return Panel.getPlayerList();
     }
     public static String[] getColorList(){
-        return panel.getColorList();
+        return Panel.getColorList();
     }
     public static int getIndex(){
-        return panel.getIndexPlayer();
+        return Panel.getIndexPlayer();
     }
 }
