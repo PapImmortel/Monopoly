@@ -29,7 +29,7 @@ public class Main {
         ListCouleur = Frame.getColorList();
         Joueur = Frame.getIndex();
         Menu.setVisible(false);
-        VideoGame jeux = new VideoGame(Joueur,ListJoueur, ListCouleur);//Constructeur paramétrique de VideoGame
+        new VideoGame(Joueur,ListJoueur, ListCouleur);//Constructeur paramétrique de VideoGame
 
 
     }//main(.)

@@ -180,35 +180,35 @@ public class Player
     public String affichePatrimoine()
     {
         Iterator<Map.Entry<Integer,Patrimoine>> iterator = aPatrimoine.entrySet().iterator();
-        String PatrimoineJoueur = aNomJoueur + " possède " + aNbMonopole + " monopole(s).\n";
+        StringBuilder PatrimoineJoueur = new StringBuilder(aNomJoueur + " possède " + aNbMonopole + " monopole(s).\n");
         if (aPatrimoine.isEmpty())
         {
-            PatrimoineJoueur+= " et 0 patrimoines.";
-            return PatrimoineJoueur;
+            PatrimoineJoueur.append(" et 0 patrimoines.");
+            return PatrimoineJoueur.toString();
         }//if(aPatrimoine.isEmpty())
-        PatrimoineJoueur += aNomJoueur + " possède les propriétés suivantes : ";
+        PatrimoineJoueur.append(aNomJoueur).append(" possède les propriétés suivantes : ");
         while (iterator.hasNext())
         {
             Map.Entry<Integer,Patrimoine> terrain = iterator.next();
             Patrimoine Case1 = terrain.getValue();
-            PatrimoineJoueur  += " \n" + Case1.getNomCase() ;
+            PatrimoineJoueur.append(" \n").append(Case1.getNomCase());
             if(!Case1.getColor().equals("gare")||!Case1.getColor().equals("compagnie"))
             {
                 Rue Case2 = (Rue) Case1;
-                PatrimoineJoueur += "(" +Case2.getColor();
+                PatrimoineJoueur.append("(").append(Case2.getColor());
                 if(Case2.getNbMaison()[0]>0)
                 {
-                    PatrimoineJoueur += ", " + Case2.getNbMaison()[0] + " maison(s)";
+                    PatrimoineJoueur.append(", ").append(Case2.getNbMaison()[0]).append(" maison(s)");
                 }
                 else if(Case2.getNbMaison()[1]>0)
                 {
-                    PatrimoineJoueur += ", " + Case2.getNbMaison()[1] + " hôtel";
+                    PatrimoineJoueur.append(", ").append(Case2.getNbMaison()[1]).append(" hôtel");
                 }
-                PatrimoineJoueur += ")";
+                PatrimoineJoueur.append(")");
 
             }
         }//while()
-        return  PatrimoineJoueur;
+        return PatrimoineJoueur.toString();
     }//affichePatrimoine()
 
 
@@ -342,38 +342,38 @@ public class Player
             return " Vous ne possédez aucun monopole , vous ne pouvez donc pas construire.\n";
         }
         else {
-            String vListMonopole = " Vous possédez toutes les rues de couleur :   ";
+            StringBuilder vListMonopole = new StringBuilder(" Vous possédez toutes les rues de couleur :   ");
             for (int i = 0; i < 8; i++) {
                 if (this.aListPossession[i] == 0) {
                     switch (i) {
                         case 0:
-                            vListMonopole += "marron ";
+                            vListMonopole.append("marron ");
                             break;
                         case 1:
-                            vListMonopole += "cyan ";
+                            vListMonopole.append("cyan ");
                             break;
 
                         case 2:
-                            vListMonopole += "rose ";
+                            vListMonopole.append("rose ");
                             break;
                         case 3:
-                            vListMonopole += "orange ";
+                            vListMonopole.append("orange ");
                             break;
 
                         case 4:
-                            vListMonopole += "rouge ";
+                            vListMonopole.append("rouge ");
                             break;
 
                         case 5:
-                            vListMonopole += "jaune ";
+                            vListMonopole.append("jaune ");
                             break;
 
                         case 6:
-                            vListMonopole += "vert ";
+                            vListMonopole.append("vert ");
                             break;
 
                         case 7:
-                            vListMonopole += "bleu ";
+                            vListMonopole.append("bleu ");
                             break;
 
                     }

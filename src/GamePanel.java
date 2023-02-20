@@ -1,14 +1,12 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class GamePanel extends JPanel {
@@ -34,9 +32,7 @@ public class GamePanel extends JPanel {
     public static void setNPlayer(int n){
         nJoueur = n;
     }
-    public static boolean getIsType(){
-        return isType;
-    }
+
     public static String getLastCommand(){
         if(isType ) {//si une commande tape est en attente de lecture
             String temp = lastCommand;
@@ -136,11 +132,7 @@ public class GamePanel extends JPanel {
             public void keyReleased(KeyEvent e) {
             }
         });
-        quit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(1);
-            }
-        });
+        quit.addActionListener(e -> System.exit(1));
     }
 
     //Partie Graphique
@@ -175,12 +167,9 @@ public class GamePanel extends JPanel {
             else if(ListJoueur.get(1).getCouleur().equals("VERT")){
                 g.setColor(Color.GREEN);
             }
-            Iterator<Map.Entry<Integer,Patrimoine>> iterator = ListJoueur.get(1).getPatrimoine().entrySet().iterator();
-            while (iterator.hasNext())
-            {
-                Map.Entry<Integer,Patrimoine> terrain = iterator.next();
+            for (Map.Entry<Integer, Patrimoine> terrain : ListJoueur.get(1).getPatrimoine().entrySet()) {
                 Patrimoine Case1 = terrain.getValue();
-                g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+                g.fillRect(CaseCoordX[Case1.getNbCase()] - 10, CaseCoordY[Case1.getNbCase()] + 10, 10, 10);
             }
             g.fillOval(CaseCoordX[ListJoueur.get(1).getPosition().getNbCase()],CaseCoordY[ListJoueur.get(1).getPosition().getNbCase()],20,20);
 
@@ -197,12 +186,9 @@ public class GamePanel extends JPanel {
             else if(ListJoueur.get(2).getCouleur().equals("VERT")){
                 g.setColor(Color.GREEN);
             }
-            Iterator<Map.Entry<Integer,Patrimoine>> iterator2 = ListJoueur.get(2).getPatrimoine().entrySet().iterator();
-            while (iterator2.hasNext())
-            {
-                Map.Entry<Integer,Patrimoine> terrain = iterator2.next();
+            for (Map.Entry<Integer, Patrimoine> terrain : ListJoueur.get(2).getPatrimoine().entrySet()) {
                 Patrimoine Case1 = terrain.getValue();
-                g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+                g.fillRect(CaseCoordX[Case1.getNbCase()] - 10, CaseCoordY[Case1.getNbCase()] + 10, 10, 10);
             }
             g.fillOval(CaseCoordX[ListJoueur.get(2).getPosition().getNbCase()]+5,CaseCoordY[ListJoueur.get(2).getPosition().getNbCase()]+5,20,20);
 
@@ -217,12 +203,9 @@ public class GamePanel extends JPanel {
                 } else if (ListJoueur.get(3).getCouleur().equals("VERT")) {
                     g.setColor(Color.GREEN);
                 }
-                Iterator<Map.Entry<Integer,Patrimoine>> iterator3 = ListJoueur.get(3).getPatrimoine().entrySet().iterator();
-                while (iterator3.hasNext())
-                {
-                    Map.Entry<Integer,Patrimoine> terrain = iterator3.next();
+                for (Map.Entry<Integer, Patrimoine> terrain : ListJoueur.get(3).getPatrimoine().entrySet()) {
                     Patrimoine Case1 = terrain.getValue();
-                    g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+                    g.fillRect(CaseCoordX[Case1.getNbCase()] - 10, CaseCoordY[Case1.getNbCase()] + 10, 10, 10);
                 }
                 g.fillOval(CaseCoordX[ListJoueur.get(3).getPosition().getNbCase()] - 5, CaseCoordY[ListJoueur.get(3).getPosition().getNbCase()] - 5, 20, 20);
             }
@@ -236,12 +219,9 @@ public class GamePanel extends JPanel {
                 } else if (ListJoueur.get(4).getCouleur().equals("VERT")){
                     g.setColor(Color.GREEN);
                 }
-                Iterator<Map.Entry<Integer,Patrimoine>> iterator4 = ListJoueur.get(4).getPatrimoine().entrySet().iterator();
-                while (iterator4.hasNext())
-                {
-                    Map.Entry<Integer,Patrimoine> terrain = iterator4.next();
+                for (Map.Entry<Integer, Patrimoine> terrain : ListJoueur.get(4).getPatrimoine().entrySet()) {
                     Patrimoine Case1 = terrain.getValue();
-                    g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+                    g.fillRect(CaseCoordX[Case1.getNbCase()] - 10, CaseCoordY[Case1.getNbCase()] + 10, 10, 10);
                 }
                 g.fillOval(CaseCoordX[ListJoueur.get(4).getPosition().getNbCase()] - 5, CaseCoordY[ListJoueur.get(4).getPosition().getNbCase()] +5 , 20, 20);
             }

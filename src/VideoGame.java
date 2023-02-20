@@ -471,7 +471,6 @@ public class VideoGame
             else if(temp.equals("retour"))
             {
                 fonctionne=true;
-                return;
             }
             else
             {
@@ -774,7 +773,7 @@ public class VideoGame
                 case"retour":
 
                     fonctionne=true;
-                    return;
+                    break;
 
                 default:
 

@@ -2,8 +2,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
@@ -63,17 +61,15 @@ public class Panel extends JPanel {
         JComboBox <String> Couleur = new JComboBox<>(couleurs);
 
         //Logique du bouton
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if(IndexPlayer <2){
-                    textArea.append("Le jeu accepte 2 joueurs minimum.\n");
-                    textArea.setCaretPosition(textArea.getDocument().getLength());
-                }
-                else{
-                    textArea.append("Lancement du jeu !\n");
-                    textArea.setCaretPosition(textArea.getDocument().getLength());
-                    isFinish = true;
-                }
+        button.addActionListener(e -> {
+            if(IndexPlayer <2){
+                textArea.append("Le jeu accepte 2 joueurs minimum.\n");
+                textArea.setCaretPosition(textArea.getDocument().getLength());
+            }
+            else{
+                textArea.append("Lancement du jeu !\n");
+                textArea.setCaretPosition(textArea.getDocument().getLength());
+                isFinish = true;
             }
         });
 
