@@ -1013,7 +1013,7 @@ public class VideoGame
         {
             vMessage += " 'findetour', ";
         }
-        vMessage += " 'business', 'construction' , 'vente', 'infobatiment','possessionsjoueur', 'help' .";
+        vMessage += " 'business', 'construction' , 'vente', 'infobatiment','possession', 'help'.";
         GameFrame.PrintMSG(vMessage);
     }
 
@@ -1245,7 +1245,6 @@ public class VideoGame
                                 GameFrame.PrintMSG("C'est ton troisième double.");
                                 GameFrame.PrintMSG("Tu as trop de chance, tu vas directement en prison sans touché l'argent de la case départ.");
                                 getJoueurActif().setPosition(getCase(10));
-                                SwingUtilities.updateComponentTreeUI(aGame);
 
                                 getJoueurActif().setEstPrisonnier(1);
                                 nbEffetCaseEffectue = 4;
@@ -1421,7 +1420,8 @@ public class VideoGame
                                 }
                                 nbEffetCaseEffectue += 1;
                                 vEffetCaseEffectue = true;
-
+                                GameFrame.UpdateMoneyGUI();
+                                SwingUtilities.updateComponentTreeUI(aGame);
                                 if(getJoueurActif().getArgent()<0)
                                 {
                                     hypothequer();
@@ -1476,7 +1476,7 @@ public class VideoGame
                 case "help":
                     help();
                     break;
-                case "possessionsjoueur":
+                case "possession":
                     possessionsJoueur();
                     break;
 
