@@ -8,7 +8,8 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
+import java.util.Iterator;
+import java.util.Map;
 
 public class GamePanel extends JPanel {
 
@@ -174,6 +175,13 @@ public class GamePanel extends JPanel {
             else if(ListJoueur.get(1).getCouleur().equals("VERT")){
                 g.setColor(Color.GREEN);
             }
+            Iterator<Map.Entry<Integer,Patrimoine>> iterator = ListJoueur.get(1).getPatrimoine().entrySet().iterator();
+            while (iterator.hasNext())
+            {
+                Map.Entry<Integer,Patrimoine> terrain = iterator.next();
+                Patrimoine Case1 = terrain.getValue();
+                g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+            }
             g.fillOval(CaseCoordX[ListJoueur.get(1).getPosition().getNbCase()],CaseCoordY[ListJoueur.get(1).getPosition().getNbCase()],20,20);
 
             //GESTION du Pion du JOUEUR 2
@@ -189,6 +197,13 @@ public class GamePanel extends JPanel {
             else if(ListJoueur.get(2).getCouleur().equals("VERT")){
                 g.setColor(Color.GREEN);
             }
+            Iterator<Map.Entry<Integer,Patrimoine>> iterator2 = ListJoueur.get(2).getPatrimoine().entrySet().iterator();
+            while (iterator2.hasNext())
+            {
+                Map.Entry<Integer,Patrimoine> terrain = iterator2.next();
+                Patrimoine Case1 = terrain.getValue();
+                g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+            }
             g.fillOval(CaseCoordX[ListJoueur.get(2).getPosition().getNbCase()]+5,CaseCoordY[ListJoueur.get(2).getPosition().getNbCase()]+5,20,20);
 
             //GESTION du Pion du JOUEUR 3
@@ -202,6 +217,13 @@ public class GamePanel extends JPanel {
                 } else if (ListJoueur.get(3).getCouleur().equals("VERT")) {
                     g.setColor(Color.GREEN);
                 }
+                Iterator<Map.Entry<Integer,Patrimoine>> iterator3 = ListJoueur.get(3).getPatrimoine().entrySet().iterator();
+                while (iterator3.hasNext())
+                {
+                    Map.Entry<Integer,Patrimoine> terrain = iterator3.next();
+                    Patrimoine Case1 = terrain.getValue();
+                    g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+                }
                 g.fillOval(CaseCoordX[ListJoueur.get(3).getPosition().getNbCase()] - 5, CaseCoordY[ListJoueur.get(3).getPosition().getNbCase()] - 5, 20, 20);
             }
             if(nJoueur>3){
@@ -214,12 +236,19 @@ public class GamePanel extends JPanel {
                 } else if (ListJoueur.get(4).getCouleur().equals("VERT")){
                     g.setColor(Color.GREEN);
                 }
+                Iterator<Map.Entry<Integer,Patrimoine>> iterator4 = ListJoueur.get(4).getPatrimoine().entrySet().iterator();
+                while (iterator4.hasNext())
+                {
+                    Map.Entry<Integer,Patrimoine> terrain = iterator4.next();
+                    Patrimoine Case1 = terrain.getValue();
+                    g.fillRect(CaseCoordX[Case1.getNbCase()]-10,CaseCoordY[Case1.getNbCase()]+10,10,10);
+                }
                 g.fillOval(CaseCoordX[ListJoueur.get(4).getPosition().getNbCase()] - 5, CaseCoordY[ListJoueur.get(4).getPosition().getNbCase()] +5 , 20, 20);
             }
 
             g.setFont(font);
             g.setColor(Color.WHITE);
-            g.drawString("Écrire les commandes ici :",680,595);
+            g.drawString("Écrire les commandes ici :",680,545);
         }
         catch(IOException e){
             e.printStackTrace();

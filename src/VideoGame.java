@@ -47,6 +47,7 @@ public class VideoGame
         GameFrame.UpdateMoneyGUI();
 
         tourJoueur();
+
         //début du tour du joueur1
     }//VideoGame(.,.,.)
 
@@ -121,9 +122,9 @@ public class VideoGame
     public void remplirCase()
     {
         this.aListeCase.put( 0,new Cases_Plateau("DEPART",0,false));
-        this.aListeCase.put( 1,new Rue("BOULEVARD DE BELLEVILLE",1, 60,0,0, 0, "marron",new int[]{2,10,30,90,160,250},30));
+        this.aListeCase.put( 1,new Rue("BOULEVARD DE BELLEVILLE",1, 60,0,0, 1, "marron",new int[]{2,10,30,90,160,250},30));
         this.aListeCase.put( 2,new CaseEffet("CAISSE DE COMMUNAUTE", 2,2));
-        this.aListeCase.put( 3,new Rue("RUE LECOURBE",3, 60,0,0, 0, "marron",new int[]{4,20,60,180,320,450},30));
+        this.aListeCase.put( 3,new Rue("RUE LECOURBE",3, 60,0,4, 0, "marron",new int[]{4,20,60,180,320,450},30));
         this.aListeCase.put( 4,new Cases_Plateau("IMPOTS SUR LE REVENU",4,false));
         this.aListeCase.put( 5,new Gare("GARE MONTPARNASSE",5, 200,0,100));
         this.aListeCase.put( 6,new Rue("RUE DE VAUGIRARD",6, 100,0,0, 0, "cyan",new int[]{6,30,90,270,400,550},50));
@@ -979,6 +980,14 @@ public class VideoGame
 
                         }
                         GameFrame.PrintMSG("Vous avez maintenant " + pJoueur.getArgent());
+                        if(vRue.getNbMaison()[1]==1)
+                        {
+                            getBanque().setNbHotel(getBanque().getNbHotel()+1);
+                        }
+                        else
+                        {
+                            getBanque().setNbMaison(getBanque().getNbMaison()+1);
+                        }
                         vRue.supprimeMaison();
                     }
                 }
